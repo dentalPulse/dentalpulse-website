@@ -2,25 +2,64 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1D2127;
+  
+  /* Figma Design Tokens */
+  --color-green: #213D34;
+  --color-primary: #11f294; /* Vibrant Green */
+  --color-primary-hover: #00df83;
+  --color-secondary-hover: #0ee188;
+  --color-beige: #f8f5ef;
+  --color-separator: #e6e6e6;
+  --color-neutral-2: #EBEFF0;
+  --color-neutral-4: #B9BEC1;
+  --color-neutral-7: #1D2127;
+  --color-black: #000000;
+  --color-white: #FFFFFF;
+  --color-dark: #0a120f;
+  --color-light-bg: #f4f7f9;
+  --color-pricing-bg: #eef2f6;
+  --color-pricing-card: #22262e;
+  --color-pricing-btn-bg: #e6fdf2;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  
+  --color-brand-green: var(--color-green);
+  --color-brand-primary: var(--color-primary);
+  --color-brand-primary-hover: var(--color-primary-hover);
+  --color-brand-secondary-hover: var(--color-secondary-hover);
+  --color-brand-beige: var(--color-beige);
+  --color-brand-separator: var(--color-separator);
+  --color-brand-neutral-2: var(--color-neutral-2);
+  --color-brand-neutral-4: var(--color-neutral-4);
+  --color-brand-neutral-7: var(--color-neutral-7);
+  --color-brand-dark: var(--color-dark);
+  --color-brand-light-bg: var(--color-light-bg);
+  --color-brand-pricing-bg: var(--color-pricing-bg);
+  --color-brand-pricing-card: var(--color-pricing-card);
+  --color-brand-pricing-btn-bg: var(--color-pricing-btn-bg);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-work-sans), 'Helvetica Neue', Arial, sans-serif;
+  --font-body: var(--font-open-sans), Arial, sans-serif;
+
+  --shadow-custom: 0 3px 14px 0 rgba(45, 47, 51, 0.12);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Base resets */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p {
+  font-family: var(--font-body);
 }
