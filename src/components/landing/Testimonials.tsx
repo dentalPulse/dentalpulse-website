@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Marquee from "react-fast-marquee";
 
 const testimonials = [
   {
@@ -26,7 +27,7 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="relative w-full bg-brand-primary py-16 md:py-32 px-6 flex flex-col items-center overflow-hidden">
+    <section className="relative w-full bg-brand-primary py-16 md:py-32 pl-6 flex flex-col items-center overflow-hidden">
 
       {/* Floating Smile Icons */}
       <div className="absolute left-[5%] lg:left-[10%] top-[20%] w-[60px] h-[60px] md:w-[80px] md:h-[80px]">
@@ -36,42 +37,65 @@ export function Testimonials() {
         <Image src="/smile.png" alt="Smile" fill sizes="(max-width: 768px) 40px, 50px" className="object-contain" />
       </div>
 
-      <div className="max-w-[1400px] w-full flex flex-col items-center text-center relative z-10">
-        <h2 className="text-[32px] md:text-[40px] leading-tight mb-20 text-black">
+      <div className="w-full flex flex-col items-center text-center relative z-10">
+        <h2 className="text-[30px] md:text-[36px] !font-normal mb-20 text-black">
           Customers love growing with<br />
-          <span className="font-bold">dental pulse</span>
+          <span className="font-bold text-[36px] md:text-[50px]">dental pulse</span>
         </h2>
 
         {/* Testimonial Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 w-full text-left">
-          {testimonials.map((testimonial, idx) => {
-            const isBlackCard = idx % 2 === 1;
+        <div className="w-full overflow-hidden">
+          <Marquee gradient={false} speed={50} pauseOnHover={true} className="py-4">
+            {testimonials.map((testimonial, idx) => {
+              const isBlackCard = idx % 2 === 1;
 
-            return (
-              <div
-                key={idx}
-                className={`rounded-[32px] p-8 md:p-10 flex flex-col justify-between shadow-lg h-full min-h-[300px] ${isBlackCard ? 'bg-black text-white' : 'bg-white text-black'}`}
-              >
-                <div>
-                  <p className={`text-[15px] leading-relaxed ${isBlackCard ? 'text-gray-300' : 'text-gray-600'}`}>
-                    {testimonial.quote}
-                  </p>
-                </div>
-
-                <div className="flex flex-col">
-                  <div className="flex justify-end mb-4">
-                    <span className="text-[#11f294] font-bold text-3xl italic leading-none" style={{ fontFamily: 'sans-serif' }}>//</span>
+              return (
+                <div
+                  key={idx}
+                  className={`mx-3 w-[215px] md:w-[395px] shrink-0 rounded-[16px] p-7 flex flex-col justify-between shadow-lg min-h-[240px] ${isBlackCard
+                    ? 'bg-black text-white'
+                    : 'bg-white text-black'
+                    }`}
+                >
+                  <div>
+                    <p
+                      className={`text-[13px] leading-[1.35] ${isBlackCard ? 'text-gray-300' : 'text-gray-600'
+                        }`}
+                    >
+                      {testimonial.quote}
+                    </p>
                   </div>
-                  <div className="flex items-center gap-4">
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0">
-                      <Image src={testimonial.image} alt={testimonial.author} fill sizes="48px" className="object-cover" />
+
+                  <div className="flex flex-col">
+                    <div className="flex justify-end mb-4">
+                      <span
+                        className="text-[#11f294] font-bold text-3xl italic leading-none"
+                        style={{ fontFamily: 'sans-serif' }}
+                      >
+                //
+                      </span>
                     </div>
-                    <span className="font-medium text-[15px]">{testimonial.author}</span>
+
+                    <div className="flex items-center gap-3">
+                      <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0">
+                        <Image
+                          src={testimonial.image}
+                          alt={testimonial.author}
+                          fill
+                          sizes="36px"
+                          className="object-cover"
+                        />
+                      </div>
+
+                      <span className="font-medium text-[13px]">
+                        {testimonial.author}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </Marquee>
         </div>
       </div>
     </section>

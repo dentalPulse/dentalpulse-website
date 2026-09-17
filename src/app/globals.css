@@ -1,5 +1,41 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helvetica-neue/HelveticaNeueLight.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helvetica-neue/HelveticaNeueRoman.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helvetica-neue/HelveticaNeueItalic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helvetica-neue/HelveticaNeueMedium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: url('/fonts/helvetica-neue/HelveticaNeueBold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
 :root {
   --background: #ffffff;
   --foreground: #1D2127;
@@ -42,8 +78,9 @@
   --color-brand-pricing-card: var(--color-pricing-card);
   --color-brand-pricing-btn-bg: var(--color-pricing-btn-bg);
 
-  --font-sans: var(--font-work-sans), 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Helvetica Neue', Arial, sans-serif;
   --font-body: var(--font-open-sans), Arial, sans-serif;
+  --font-helvetica: 'Helvetica Neue', Arial, sans-serif;
 
   --shadow-custom: 0 3px 14px 0 rgba(45, 47, 51, 0.12);
 }

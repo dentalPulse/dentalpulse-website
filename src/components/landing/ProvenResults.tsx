@@ -22,7 +22,7 @@ export function ProvenResults() {
 
       {/* Left Icon */}
       <div className="hidden md:block absolute left-[5%] lg:left-[12%] top-[45%] -translate-y-1/2 w-20 h-20 opacity-90">
-        <Image src="/dollar_icon.png" alt="Dollar" fill sizes="80px" className="object-contain" />
+        <Image src="/dollar_icon.png" alt="Dollar" fill sizes="80px" className="object-contain rotate-250" />
       </div>
 
       {/* Right Icon */}
@@ -31,13 +31,13 @@ export function ProvenResults() {
       </div>
 
       <div className="max-w-[1200px] w-full flex flex-col items-center text-center relative z-10">
-        <p className="text-brand-primary text-[18px] font-medium mb-4">
+        <p className="text-brand-primary text-[20px] !font-normal mb-3">
           Our numbers
         </p>
-        <h2 className="text-brand-primary text-[48px] md:text-[64px] font-bold leading-tight mb-6">
+        <h2 className="text-brand-primary text-[48px] md:text-[60px] font-bold leading-tight mb-2">
           Proven Results
         </h2>
-        <p className="text-white text-[20px] md:text-[24px] mb-24 max-w-[700px]">
+        <p className="text-white text-[20px] md:text-[32px] !font-normal mb-[84px]">
           Grow with <span className="font-bold">dental pulse</span> and see measurable results.
         </p>
 
@@ -45,10 +45,10 @@ export function ProvenResults() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-[1000px]">
           {stats.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center text-center px-4">
-              <h3 className="text-brand-primary text-[24px] md:text-[28px] font-bold mb-4">
+              <h3 className="text-brand-primary text-[24px] md:text-[28px] !font-normal">
                 {stat.value}
               </h3>
-              <p className="text-white text-[16px] leading-relaxed max-w-[260px]">
+              <p className="text-white text-[16px]">
                 {stat.description}
               </p>
             </div>

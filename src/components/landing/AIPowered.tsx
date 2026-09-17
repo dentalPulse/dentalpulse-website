@@ -25,7 +25,7 @@ export function AIPowered() {
         <section ref={sectionRef} className="w-full bg-brand-dark py-20 md:py-42 px-6 flex flex-col items-center justify-center overflow-hidden">
             <div className="flex flex-col items-center text-center">
                 <div className={`transition-all duration-1000 transform ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-[100px] opacity-0'}`}>
-                    <h2 className="text-[40px] md:text-[110px] text-white font-medium leading-none mb-2">
+                    <h2 className="text-[40px] md:text-[110px] text-white !font-light leading-none mb-2">
                         AI-powered
                     </h2>
                 </div>
