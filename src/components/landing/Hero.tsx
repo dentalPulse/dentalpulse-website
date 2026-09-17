@@ -18,10 +18,10 @@ export function Hero() {
         </h1>
 
         <p className="text-brand-neutral-4 text-[18px] md:text-[22px] leading-relaxed mb-10 max-w-[600px]">
-          Turn everyday lab data into smarter actions and sustainable growth. AI-powered analytics for dental labs.
+          Complete visibility into customers, cases, revenue, and production - all in one intelligent platform.
         </p>
 
-        <Button variant="primary" size="lg">
+        <Button variant="primary" size="lg" className='rounded-xl'>
           Book a Demo
         </Button>
       </div>

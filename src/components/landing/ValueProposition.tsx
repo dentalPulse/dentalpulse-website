@@ -5,10 +5,10 @@ export function ValueProposition() {
   return (
     <section className="w-full bg-brand-primary py-24 px-6 flex flex-col items-center text-black">
       <div className="max-w-[1200px] w-full flex flex-col items-center text-center">
-        <h2 className="text-[40px] md:text-[56px] font-bold leading-tight mb-6 max-w-[800px]">
+        <h2 className="text-[40px] md:text-[50px] font-bold leading-tight mb-6 max-w-[487px]">
           Turn Customer Data Into Clear Direction
         </h2>
-        <p className="text-[18px] md:text-[20px] font-medium max-w-[800px] mb-20 opacity-90">
+        <p className="text-[18px] md:text-[20px] font-medium max-w-[874px] mb-20 opacity-90">
           <span className="font-bold">dental pulse</span> transforms your lab's customer data into actionable intelligence—helping you uncover growth opportunities, strengthen relationships, and make smarter decisions.
         </p>
 

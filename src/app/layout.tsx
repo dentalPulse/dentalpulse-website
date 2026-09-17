@@ -1,12 +1,6 @@
 import type { Metadata } from "next";
-import { Work_Sans, Open_Sans } from "next/font/google";
+import { Open_Sans } from "next/font/google";
 import "./globals.css";
-
-const workSans = Work_Sans({
-  variable: "--font-work-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
@@ -28,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${workSans.variable} ${openSans.variable} h-full antialiased`}
+      className={`${openSans.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         {children}
