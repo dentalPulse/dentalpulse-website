@@ -34,10 +34,10 @@ export function ProvenResults() {
         <p className="text-brand-primary text-[20px] !font-normal mb-3">
           Our numbers
         </p>
-        <h2 className="text-brand-primary text-[48px] md:text-[60px] font-bold leading-tight mb-2">
+        <h2 className="text-brand-primary text-[42px] md:text-[60px] font-bold leading-tight mb-2">
           Proven Results
         </h2>
-        <p className="text-white text-[20px] md:text-[32px] !font-normal mb-[84px]">
+        <p className="text-white text-[18px] md:text-[32px] !font-normal md:mb-[84px] mb-[44px]">
           Grow with <span className="font-bold">dental pulse</span> and see measurable results.
         </p>
 

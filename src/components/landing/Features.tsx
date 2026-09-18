@@ -28,10 +28,10 @@ export function Features() {
     <section className="w-full bg-brand-dark pb-16 pt-16 md:pb-32 md:pt-26 px-6 flex flex-col items-center text-white overflow-hidden">
       <div className="max-w-[1200px] w-full flex flex-col items-center text-center">
         <div className="mb-[56px] max-w-[824px] text-center">
-          <h3 className="text-[40px] md:text-[60px] !font-normal !leading-[100%] mb-4">
+          <h2 className="text-[40px] md:text-[60px] !font-normal !leading-[100%] mb-4">
             See clearly,<br />act decisively
-          </h3>
-          <p className="text-white text-[16px] md:text-[18px] !leading-[20px] !tracking-[2%]">
+          </h2>
+          <p className="text-white text-[16px] md:text-[18px] md:!leading-[20px]">
             Transform your customer data into a powerful growth engine. <span className="font-bold text-white">dental pulse</span> provides complete visibility into customer relationships, automatically identifies risks and opportunities, and enables sales, marketing and customer success teams to take the right actions at the right time.
           </p>
         </div>
@@ -44,9 +44,9 @@ export function Features() {
               <div className="w-[85%] mt-3 aspect-square rounded-full bg-brand-primary flex items-center justify-center shrink-0 mb-10">
                 <Image src={feature.icon} alt={feature.title.replace('\n', ' ')} width={80} height={80} className="w-20 h-20 object-contain brightness-0" />
               </div>
-              <h4 className="text-[18px] font-bold mb-4 px-4 whitespace-pre-line leading-tight text-white">{feature.title}</h4>
-              <div className="w-6 h-[2px] bg-brand-primary mx-auto mb-4"></div>
-              <p className="text-brand-neutral-4 text-[14px] px-6 whitespace-pre-line leading-snug">{feature.description}</p>
+              <h3 className="text-[18px] !font-bold mb-4 px-4 whitespace-pre-line text-white">{feature.title}</h3>
+              <div className="w-[35px] h-[1px] bg-brand-primary mx-auto mb-4"></div>
+              <p className="text-[16px] md:text-[18px] px-6 whitespace-pre-line leading-snug text-[#ffffff]">{feature.description}</p>
             </div>
           ))}
         </div>

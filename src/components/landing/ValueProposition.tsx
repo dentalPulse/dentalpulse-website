@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 export function ValueProposition() {
   return (
-    <section className="w-full bg-brand-primary py-24 px-6 flex flex-col items-center text-black">
+    <section className="w-full bg-brand-primary md:py-24 md:px-6 py-12 px-3 flex flex-col items-center text-black">
       <div className="max-w-[1200px] w-full flex flex-col items-center text-center">
         <h2 className="text-[40px] md:text-[50px] font-bold leading-tight mb-6 max-w-[487px]">
           Turn Customer Data Into Clear Direction

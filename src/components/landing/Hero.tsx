@@ -29,30 +29,30 @@ export function Hero() {
       {/* Decorative Icons */}
       <div className="hidden md:block absolute z-0 w-full h-full max-w-[1200px] pointer-events-none top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
         {/* Left Side Icons */}
-        <div className="absolute top-[15%] left-[15%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14 animate-pulse duration-1000">
+        <div className="absolute top-[15%] left-[15%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14">
           <Image src="/dental.png" alt="Dental" width={72} height={72} />
         </div>
-        <div className="absolute top-[42%] left-[5%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-16 h-16 animate-pulse duration-1000">
+        <div className="absolute top-[42%] left-[5%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-16 h-16">
           <Image src="/users.png" alt="Users" width={72} height={72} />
         </div>
-        <div className="absolute bottom-[30%] left-[17%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14 animate-pulse duration-1000">
+        <div className="absolute bottom-[30%] left-[17%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14">
           <Image src="/star.png" alt="star" width={72} height={72} />
         </div>
-        <div className="absolute bottom-[10%] left-[10%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14 animate-pulse duration-1000">
+        <div className="absolute bottom-[10%] left-[10%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14">
           <Image src="/growth.png" alt="Growth" width={72} height={72} />
         </div>
 
         {/* Right Side Icons */}
-        <div className="absolute top-[20%] right-[12%] rounded-full  shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14 animate-pulse duration-1000">
+        <div className="absolute top-[20%] right-[12%] rounded-full  shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14">
           <Image src="/chart_bar.png" alt="chart_bar" width={72} height={72} />
         </div>
-        <div className="absolute top-[40%] right-[18%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-16 h-16 animate-pulse duration-1000">
+        <div className="absolute top-[40%] right-[18%] rounded-full shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-16 h-16">
           <Image src="/react.png" alt="React" width={72} height={72} />
         </div>
-        <div className="absolute top-[45%] right-[0%] rounded-full  shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14 animate-pulse duration-1000">
+        <div className="absolute top-[45%] right-[0%] rounded-full  shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14">
           <Image src="/card.png" alt="card" width={72} height={72} />
         </div>
-        <div className="absolute bottom-[25%] right-[5%] rounded-full  shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14 animate-pulse duration-1000">
+        <div className="absolute bottom-[25%] right-[5%] rounded-full  shadow-[0_0_1px_rgba(0,255,157,0.2)] flex items-center justify-center w-14 h-14">
           <Image src="/eyes.png" alt="Eyes" width={72} height={72} />
         </div>
       </div>
