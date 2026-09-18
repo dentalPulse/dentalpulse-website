@@ -20,8 +20,8 @@ export const metadata: Metadata = {
     canonical: "https://dentalpulse.com", // Replace with actual URL
   },
   icons: {
-    icon: "/logo.png",
-    apple: "/logo.png",
+    icon: "/Dental_Pulse_Logo_Black.ico",
+    apple: "/Dental_Pulse_Logo_Black.ico",
   },
   openGraph: {
     title: "DentalPulse | See clearly. Grow smarter.",
