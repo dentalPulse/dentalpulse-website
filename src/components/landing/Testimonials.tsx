@@ -30,15 +30,15 @@ export function Testimonials() {
     <section className="relative w-full bg-brand-primary py-16 md:py-32 pl-6 flex flex-col items-center overflow-hidden">
 
       {/* Floating Smile Icons */}
-      <div className="absolute left-[5%] lg:left-[10%] top-[20%] w-[60px] h-[60px] md:w-[80px] md:h-[80px]">
+      <div className="absolute left-[5%] lg:left-[10%] top-[20%] w-[40px] h-[40px] md:w-[80px] md:h-[80px]">
         <Image src="/smile_lg.png" alt="Smile" fill sizes="(max-width: 768px) 60px, 80px" className="object-contain" />
       </div>
-      <div className="absolute right-[10%] lg:right-[15%] top-[10%] w-[40px] h-[40px] md:w-[50px] md:h-[50px]">
+      <div className="absolute right-[10%] lg:right-[15%] md:top-[10%] top-[0%] w-[30px] h-[30px] md:w-[50px] md:h-[50px]">
         <Image src="/smile.png" alt="Smile" fill sizes="(max-width: 768px) 40px, 50px" className="object-contain" />
       </div>
 
       <div className="w-full flex flex-col items-center text-center relative z-10">
-        <h2 className="text-[30px] md:text-[36px] !font-normal mb-20 text-black">
+        <h2 className="text-[24px] md:text-[36px] !font-normal mb-20 text-black">
           Customers love growing with<br />
           <span className="font-bold text-[36px] md:text-[50px]">dental pulse</span>
         </h2>

@@ -4,11 +4,11 @@ export function BottomCTA() {
   return (
     <section className="w-full bg-brand-light-bg pt-16 md:pt-32 pb-12 md:pb-20 px-6 flex flex-col items-center">
       <div className="max-w-[800px] w-full flex flex-col items-center text-center">
-        <h2 className="text-[#000000] text-[50px] md:text-[48px] font-bold leading-tight mb-6">
+        <h2 className="text-[#000000] text-[28px] md:text-[48px] font-bold leading-tight mb-6">
           Your Lab Has the Data.<br />
           Now Put It to Work.
         </h2>
-        <p className="text-[#000000] text-[16px] md:text-[20px] font-normal mb-10 leading-relaxed">
+        <p className="text-[#000000] text-[14px] md:text-[20px] font-normal mb-10 leading-relaxed">
           <span className="font-bold text-[#000000]">dental pulse</span> helps you turn everyday lab data<br className="hidden md:block" /> into smarter actions and sustainable growth.
         </p>
 

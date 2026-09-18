@@ -76,7 +76,7 @@ export function Pricing() {
     <section className="w-full bg-brand-pricing-bg py-16 md:py-24 px-6 flex flex-col items-center">
       <div className="max-w-[1280px] w-full flex flex-col items-center text-center">
 
-        <h2 className="text-[#111827] text-[38px] md:text-[40px] font-bold !leading-[100%] !tracking-[2%] mb-4">
+        <h2 className="text-[#111827] text-[32px] md:text-[40px] font-bold !leading-[100%] !tracking-[2%] mb-4">
           Pricing that grows with your lab
         </h2>
         <p className="text-gray-500 text-[16px] md:text-[20px] !font-normal mb-[26px]">
@@ -85,7 +85,7 @@ export function Pricing() {
         </p>
 
         {/* Toggle */}
-        <div className="flex items-center bg-brand-pricing-card rounded-full p-1 mb-[86px] shadow-lg">
+        <div className="flex items-center bg-brand-pricing-card rounded-full p-1 md:mb-[86px] mb-[46px] shadow-lg">
           <button
             onClick={() => setIsAnnual(false)}
             className={`px-7 py-2 rounded-full text-[16px] font-bold transition-all duration-200 cursor-pointer ${!isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-400 hover:text-white'

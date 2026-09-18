@@ -11,7 +11,7 @@ export function ProductPreview() {
         <h3 className="text-black text-[46px] md:text-[152px] !font-normal !leading-[100%]">
           100x faster
         </h3>
-        <p className="font-normal text-[20px] leading-[24px] tracking-[2%] w-1/2 mx-auto">
+        <p className="font-normal text-[20px] leading-[24px] tracking-[2%] md:w-1/2 w-full md:p-0 p-3 mx-auto">
           <span className='text-black font-semibold'> dental pulse </span> brings your customer, case, sales, and operational data together in one intelligent platform.
         </p>
 
