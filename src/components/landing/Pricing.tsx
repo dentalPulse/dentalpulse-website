@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import { CheckoutModal } from './CheckoutModal';
 
 const plans = [
   {
@@ -71,9 +72,20 @@ function CheckIcon({ popular }: { popular: boolean }) {
 
 export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [checkoutPlan, setCheckoutPlan] = useState<string | null>(null);
+
+  function handleChoosePlan(planName: string) {
+    if (planName === 'Enterprise') {
+      // No fixed price to charge — Enterprise goes through Book a Demo
+      // (Header) instead of Stripe Checkout, not this modal.
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    setCheckoutPlan(planName);
+  }
 
   return (
-    <section className="w-full bg-brand-pricing-bg py-16 md:py-24 px-6 flex flex-col items-center">
+    <section id="pricing" className="w-full bg-brand-pricing-bg py-16 md:py-24 px-6 flex flex-col items-center">
       <div className="max-w-[1280px] w-full flex flex-col items-center text-center">
 
         <h2 className="text-[#111827] text-[32px] md:text-[40px] font-bold !leading-[100%] !tracking-[2%] mb-4">
@@ -94,13 +106,14 @@ export function Pricing() {
             Monthly
           </button>
           <button
-            onClick={() => setIsAnnual(true)}
-            className={`px-7 py-2 rounded-full text-[14px] font-bold transition-all duration-200 flex items-center gap-1.5 cursor-pointer ${isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-400 hover:text-white'
-              }`}
+            type="button"
+            disabled
+            title="Yearly pricing is coming soon"
+            className="px-7 py-2 rounded-full text-[14px] font-bold flex items-center gap-1.5 text-gray-300 cursor-not-allowed"
           >
             Yearly{' '}
-            <span className={`text-[11px] font-semibold ${isAnnual ? 'text-black/70' : 'text-brand-primary'}`}>
-              2months off*
+            <span className="text-[11px] font-semibold text-gray-300">
+              coming soon
             </span>
           </button>
         </div>
@@ -145,7 +158,10 @@ export function Pricing() {
                     ))}
                   </ul>
                   <div className="px-6 pt-2 pb-0 h-[52px] flex items-start mt-5">
-                    <button className={`  ${plan.isPopular ? 'bg-black text-white' : 'bg-brand-pricing-btn-bg text-black'} w-full py-3 rounded-[8px] !font-normal text-[16px] cursor-pointer`}>
+                    <button
+                      onClick={() => handleChoosePlan(plan.name)}
+                      className={`  ${plan.isPopular ? 'bg-black text-white' : 'bg-brand-pricing-btn-bg text-black'} w-full py-3 rounded-[8px] !font-normal text-[16px] cursor-pointer`}
+                    >
                       Choose Plan
                     </button>
                   </div>
@@ -156,6 +172,14 @@ export function Pricing() {
         </div>
 
       </div>
+
+      {checkoutPlan && (
+        <CheckoutModal
+          planName={checkoutPlan}
+          billingInterval={isAnnual ? 'yearly' : 'monthly'}
+          onClose={() => setCheckoutPlan(null)}
+        />
+      )}
     </section>
   );
 }
