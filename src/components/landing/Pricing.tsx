@@ -6,6 +6,7 @@ const plans = [
   {
     name: 'Starter',
     price: '$499',
+    yearlyPrice: '$4,990',
     period: 'billed monthly',
     features: [
       'Users Included 3',
@@ -21,6 +22,7 @@ const plans = [
   {
     name: 'Growth',
     price: '$799',
+    yearlyPrice: '$7,990',
     period: 'billed monthly',
     features: [
       'Users Included 5',
@@ -36,6 +38,7 @@ const plans = [
   {
     name: 'Growth AI',
     price: '$999',
+    yearlyPrice: '$9,990',
     period: 'billed monthly',
     features: [
       'Users Included 10',
@@ -50,6 +53,7 @@ const plans = [
   {
     name: 'Enterprise',
     price: 'Custom',
+    yearlyPrice: 'Custom',
     period: 'billed monthly',
     features: [
       'Users Included - Unlimited',
@@ -100,20 +104,21 @@ export function Pricing() {
         <div className="flex items-center bg-brand-pricing-card rounded-full p-1 md:mb-[86px] mb-[46px] shadow-lg">
           <button
             onClick={() => setIsAnnual(false)}
-            className={`px-7 py-2 rounded-full text-[16px] font-bold transition-all duration-200 cursor-pointer ${!isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-400 hover:text-white'
-              }`}
+            className={`px-7 py-2 rounded-full text-[16px] font-bold transition-all duration-200 cursor-pointer ${
+              !isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-400 hover:text-white'
+            }`}
           >
             Monthly
           </button>
           <button
-            type="button"
-            disabled
-            title="Yearly pricing is coming soon"
-            className="px-7 py-2 rounded-full text-[14px] font-bold flex items-center gap-1.5 text-gray-300 cursor-not-allowed"
+            onClick={() => setIsAnnual(true)}
+            className={`px-7 py-2 rounded-full text-[14px] font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
+              isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-300 hover:text-white'
+            }`}
           >
             Yearly{' '}
-            <span className="text-[11px] font-semibold text-gray-300">
-              coming soon
+            <span className={`text-[11px] font-semibold ${isAnnual ? 'text-black' : 'text-brand-primary'}`}>
+              2 Months Free
             </span>
           </button>
         </div>
@@ -143,9 +148,9 @@ export function Pricing() {
                   {/* Price */}
                   <div className="flex items-center gap-2 mb-8">
                     <span className="text-[36px] font-bold text-black leading-none">
-                      {plan.price}
+                      {isAnnual ? plan.yearlyPrice : plan.price}
                     </span>
-                    <span className={`${plan.isPopular ? 'text-[11px] text-black font-medium leading-tight whitespace-pre-line' : 'text-[11px] text-gray-400 font-medium leading-tight whitespace-pre-line'}`}>{plan.period}</span>
+                    <span className={`${plan.isPopular ? 'text-[11px] text-black font-medium leading-tight whitespace-pre-line' : 'text-[11px] text-gray-400 font-medium leading-tight whitespace-pre-line'}`}>{isAnnual ? 'billed Yearly' : plan.period}</span>
                   </div>
 
                   {/* Features */}
