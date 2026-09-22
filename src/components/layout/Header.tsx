@@ -16,7 +16,7 @@ export function Header() {
             {/* Desktop Logo */}
             <Image src="/logo.png" alt="DentalPulse Logo" width={189} height={34} className="hidden lg:block h-[34px] w-[189px] object-contain" priority />
             {/* Mobile Logo */}
-            <Image src="/Dental_Pulse_Black.png" alt="DentalPulse Logo" width={180} height={34} className="block lg:hidden h-[34px] w-auto object-contain" priority />
+            <Image src="/Dental_Pulse_Black.png" alt="DentalPulse Logo" width={180} height={34} className="block lg:hidden h-[34px] w-auto object-contain" style={{ width: 'auto', height: '100%' }} priority />
           </Link>
         </div>
 

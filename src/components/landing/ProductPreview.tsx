@@ -22,7 +22,8 @@ export function ProductPreview() {
             alt="Dashboard Interface Mockup"
             width={1000}
             height={600}
-            className="w-full h-auto block"
+            className="block"
+            style={{ width: '100%', height: 'auto' }}
             priority
             sizes="(max-width: 1200px) 100vw, 1000px"
           />

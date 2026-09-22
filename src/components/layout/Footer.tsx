@@ -7,7 +7,7 @@ export function Footer() {
       <div className="max-w-[1200px] w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 items-start">
         {/* Brand */}
         <div className="flex flex-col gap-6 md:col-span-1">
-          <Image src="/logo.png" alt="Dental Pulse" width={160} height={40} className="w-[160px] h-8" />
+          <Image src="/logo.png" alt="Dental Pulse" width={160} height={40} className="w-[160px] h-8" style={{ width: '100%', height: 'auto' }} />
         </div>
 
         {/* Links */}
