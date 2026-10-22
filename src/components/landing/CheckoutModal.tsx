@@ -4,6 +4,8 @@ import React, { useEffect, useState } from 'react';
 type CheckoutModalProps = {
   planName: string;
   billingInterval: 'monthly' | 'yearly';
+  ratePerSeatMonthly: number;
+  minUsers: number;
   onClose: () => void;
 };
 
@@ -12,18 +14,60 @@ type FormState = {
   email: string;
   phone: string;
   labName: string;
+  password: string;
+  confirmPassword: string;
 };
 
-const EMPTY_FORM: FormState = { name: '', email: '', phone: '', labName: '' };
+const EMPTY_FORM: FormState = { name: '', email: '', phone: '', labName: '', password: '', confirmPassword: '' };
+
+// Curated, not exhaustive — covers the markets this is actually sold in
+// today plus the common ones a prospect might be calling from. The backend
+// (app/billing/service.py::_validate_phone, via the `phonenumbers` library)
+// is the real validator; this list only has to get the dial code right,
+// not police every country's number format.
+const COUNTRY_CODES = [
+  { code: '+91', label: 'India (+91)' },
+  { code: '+1', label: 'US / Canada (+1)' },
+  { code: '+44', label: 'United Kingdom (+44)' },
+  { code: '+971', label: 'UAE (+971)' },
+  { code: '+966', label: 'Saudi Arabia (+966)' },
+  { code: '+65', label: 'Singapore (+65)' },
+  { code: '+61', label: 'Australia (+61)' },
+  { code: '+49', label: 'Germany (+49)' },
+  { code: '+33', label: 'France (+33)' },
+  { code: '+64', label: 'New Zealand (+64)' },
+  { code: '+27', label: 'South Africa (+27)' },
+  { code: '+974', label: 'Qatar (+974)' },
+  { code: '+92', label: 'Pakistan (+92)' },
+  { code: '+880', label: 'Bangladesh (+880)' },
+  { code: '+94', label: 'Sri Lanka (+94)' },
+  { code: '+60', label: 'Malaysia (+60)' },
+  { code: '+63', label: 'Philippines (+63)' },
+];
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Placeholder — must match the backend's STRIPE_PRICE_SETUP_FEE amount (see
+// app/config.py). Display-only; the real charge always comes from whatever
+// Price that Stripe ID actually points to, not this number.
+const SETUP_FEE_USD = 499;
 
 // Same origin as the backend's CORS_ORIGINS default (see app/config.py) —
 // this site is one of the allowed browser origins for POST /billing/checkout-session.
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:7000/api/v1';
 
-export function CheckoutModal({ planName, billingInterval, onClose }: CheckoutModalProps) {
+export function CheckoutModal({ planName, billingInterval, ratePerSeatMonthly, minUsers, onClose }: CheckoutModalProps) {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
+  const [countryCode, setCountryCode] = useState('+91');
+  const [numUsers, setNumUsers] = useState(minUsers);
+  const [includeSetupFee, setIncludeSetupFee] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const effectiveRate = billingInterval === 'yearly' ? ratePerSeatMonthly * 10 : ratePerSeatMonthly;
+  const subscriptionTotal = effectiveRate * numUsers;
+  const total = subscriptionTotal + (includeSetupFee ? SETUP_FEE_USD : 0);
+  const intervalLabel = billingInterval === 'yearly' ? 'year' : 'month';
 
   // Esc to close, and lock background scroll while the modal is open —
   // standard modal hygiene, this page has no other overlay to conflict with.
@@ -46,11 +90,35 @@ export function CheckoutModal({ planName, billingInterval, onClose }: CheckoutMo
     };
   }
 
+  function handleNumUsersChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const value = parseInt(e.target.value, 10);
+    setNumUsers(Number.isNaN(value) ? minUsers : Math.max(minUsers, value));
+  }
+
+  const passwordsMatch = form.password.length > 0 && form.password === form.confirmPassword;
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
-    setSubmitting(true);
 
+    if (!EMAIL_PATTERN.test(form.email.trim())) {
+      setError('Enter a valid email address.');
+      return;
+    }
+    if (form.phone.trim().length < 4) {
+      setError('Enter a valid phone number.');
+      return;
+    }
+    if (form.password.length < 8) {
+      setError('Password must be at least 8 characters.');
+      return;
+    }
+    if (!passwordsMatch) {
+      setError('Passwords do not match.');
+      return;
+    }
+
+    setSubmitting(true);
     try {
       const res = await fetch(`${API_BASE_URL}/billing/checkout-session`, {
         method: 'POST',
@@ -58,10 +126,13 @@ export function CheckoutModal({ planName, billingInterval, onClose }: CheckoutMo
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          phone: form.phone,
+          phone: `${countryCode}${form.phone.trim()}`,
           lab_name: form.labName,
           plan_name: planName,
           billing_interval: billingInterval,
+          num_users: numUsers,
+          include_setup_fee: includeSetupFee,
+          password: form.password,
         }),
       });
 
@@ -82,12 +153,12 @@ export function CheckoutModal({ planName, billingInterval, onClose }: CheckoutMo
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 px-4 py-8 overflow-y-auto"
       onClick={onClose}
       role="presentation"
     >
       <div
-        className="w-full max-w-[440px] rounded-2xl bg-white p-6 md:p-8 shadow-xl relative"
+        className="w-full max-w-[440px] rounded-2xl bg-white p-6 md:p-8 shadow-xl relative my-auto"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
@@ -114,11 +185,95 @@ export function CheckoutModal({ planName, billingInterval, onClose }: CheckoutMo
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
           <Field label="Your name" value={form.name} onChange={updateField('name')} type="text" autoComplete="name" required />
-          <Field label="Work email" value={form.email} onChange={updateField('email')} type="email" autoComplete="email" required />
-          <Field label="Phone number" value={form.phone} onChange={updateField('phone')} type="tel" autoComplete="tel" required />
+          <Field
+            label="Work email"
+            value={form.email}
+            onChange={updateField('email')}
+            type="email"
+            autoComplete="email"
+            pattern={EMAIL_PATTERN.source}
+            required
+          />
+
+          <label className="flex flex-col gap-1.5 text-left">
+            <span className="text-[13px] font-medium text-gray-700">Phone number</span>
+            <div className="flex gap-2">
+              <select
+                value={countryCode}
+                onChange={(e) => setCountryCode(e.target.value)}
+                className="h-11 px-2 rounded-lg border border-gray-300 text-[13px] text-gray-900 outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary shrink-0"
+                aria-label="Country code"
+              >
+                {COUNTRY_CODES.map((c) => (
+                  <option key={c.code + c.label} value={c.code}>{c.label}</option>
+                ))}
+              </select>
+              <input
+                value={form.phone}
+                onChange={updateField('phone')}
+                type="tel"
+                autoComplete="tel-national"
+                required
+                className="h-11 flex-1 min-w-0 px-3.5 rounded-lg border border-gray-300 text-[14px] text-gray-900 outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary"
+              />
+            </div>
+          </label>
+
           <Field label="Lab name" value={form.labName} onChange={updateField('labName')} type="text" autoComplete="organization" required />
 
+          <label className="flex flex-col gap-1.5 text-left">
+            <span className="text-[13px] font-medium text-gray-700">Number of users</span>
+            <input
+              type="number"
+              min={minUsers}
+              step={1}
+              value={numUsers}
+              onChange={handleNumUsersChange}
+              className="h-11 px-3.5 rounded-lg border border-gray-300 text-[14px] text-gray-900 outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary"
+            />
+            <span className="text-[11px] text-gray-400">{planName} requires at least {minUsers} users.</span>
+          </label>
+
+          <Field
+            label="Set a password"
+            value={form.password}
+            onChange={updateField('password')}
+            type="password"
+            autoComplete="new-password"
+            minLength={8}
+            required
+          />
+          <Field
+            label="Confirm password"
+            value={form.confirmPassword}
+            onChange={updateField('confirmPassword')}
+            type="password"
+            autoComplete="new-password"
+            minLength={8}
+            required
+          />
+          <p className="text-[11px] text-gray-400 -mt-2">
+            This is your DentalPulse login — you&apos;ll use it to sign in at app.dentalpulseai.com right after payment.
+          </p>
+
+          <label className="flex items-start gap-2.5 text-left cursor-pointer">
+            <input
+              type="checkbox"
+              checked={includeSetupFee}
+              onChange={(e) => setIncludeSetupFee(e.target.checked)}
+              className="mt-0.5 h-4 w-4 accent-brand-primary cursor-pointer"
+            />
+            <span className="text-[13px] text-gray-700">
+              Add one-time setup assistance (+${SETUP_FEE_USD}) — our team sets everything up for you.
+            </span>
+          </label>
+
           {error && <p className="text-[13px] text-red-600">{error}</p>}
+
+          <div className="flex items-center justify-between text-[14px] font-semibold text-gray-900 border-t border-gray-100 pt-3">
+            <span>Total due today</span>
+            <span>${total.toLocaleString()} / {includeSetupFee ? `${intervalLabel} + one-time` : intervalLabel}</span>
+          </div>
 
           <button
             type="submit"

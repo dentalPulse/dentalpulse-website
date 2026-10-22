@@ -2,14 +2,18 @@
 import React, { useState } from 'react';
 import { CheckoutModal } from './CheckoutModal';
 
+// ratePerSeatMonthly / minUsers must stay in sync with the backend's
+// app/billing/plans.py (PLAN_PRICE_IDS / PLAN_MIN_USERS) and the actual
+// Stripe Price configured for each plan+interval — this file only controls
+// what's *displayed*, the backend is what's actually charged. Yearly is
+// always 10x the monthly per-seat rate ("2 months free"), not a separate
+// number — see planning/STRIPE_SEAT_BASED_PRICING_AND_SETUP_FEE_PLAN.md §2.
 const plans = [
   {
     name: 'Starter',
-    price: '$499',
-    yearlyPrice: '$4,990',
-    period: 'billed monthly',
+    ratePerSeatMonthly: 10,
+    minUsers: 3,
     features: [
-      'Users Included 3',
       'CRM',
       'Dashboard & Analytics',
       'Customer Database',
@@ -21,11 +25,9 @@ const plans = [
   },
   {
     name: 'Growth',
-    price: '$799',
-    yearlyPrice: '$7,990',
-    period: 'billed monthly',
+    ratePerSeatMonthly: 10,
+    minUsers: 5,
     features: [
-      'Users Included 5',
       'Email Marketing',
       'SMS Marketing',
       'WhatsApp Marketing',
@@ -37,11 +39,9 @@ const plans = [
   },
   {
     name: 'Growth AI',
-    price: '$999',
-    yearlyPrice: '$9,990',
-    period: 'billed monthly',
+    ratePerSeatMonthly: 10,
+    minUsers: 10,
     features: [
-      'Users Included 10',
       'AI Insights',
       'Revenue Forecasting',
       'Churn Prediction',
@@ -52,9 +52,8 @@ const plans = [
   },
   {
     name: 'Enterprise',
-    price: 'Custom',
-    yearlyPrice: 'Custom',
-    period: 'billed monthly',
+    ratePerSeatMonthly: null,
+    minUsers: null,
     features: [
       'Users Included - Unlimited',
       'API Access - Unlimited',
@@ -146,11 +145,22 @@ export function Pricing() {
                   </div>
 
                   {/* Price */}
-                  <div className="flex items-center gap-2 mb-8">
-                    <span className="text-[36px] font-bold text-black leading-none">
-                      {isAnnual ? plan.yearlyPrice : plan.price}
+                  <div className="flex flex-col gap-1 mb-8">
+                    <div className="flex items-center gap-2">
+                      <span className="text-[36px] font-bold text-black leading-none">
+                        {plan.ratePerSeatMonthly === null
+                          ? 'Custom'
+                          : `$${isAnnual ? plan.ratePerSeatMonthly * 10 : plan.ratePerSeatMonthly}`}
+                      </span>
+                      {plan.ratePerSeatMonthly !== null && (
+                        <span className={`${plan.isPopular ? 'text-[11px] text-black font-medium leading-tight whitespace-pre-line' : 'text-[11px] text-gray-400 font-medium leading-tight whitespace-pre-line'}`}>
+                          /user{isAnnual ? '/year' : '/month'}
+                        </span>
+                      )}
+                    </div>
+                    <span className={`text-[11px] ${plan.isPopular ? 'text-black/70' : 'text-gray-400'}`}>
+                      {plan.minUsers === null ? 'billed monthly' : `Minimum ${plan.minUsers} users`}
                     </span>
-                    <span className={`${plan.isPopular ? 'text-[11px] text-black font-medium leading-tight whitespace-pre-line' : 'text-[11px] text-gray-400 font-medium leading-tight whitespace-pre-line'}`}>{isAnnual ? 'billed Yearly' : plan.period}</span>
                   </div>
 
                   {/* Features */}
@@ -178,13 +188,19 @@ export function Pricing() {
 
       </div>
 
-      {checkoutPlan && (
-        <CheckoutModal
-          planName={checkoutPlan}
-          billingInterval={isAnnual ? 'yearly' : 'monthly'}
-          onClose={() => setCheckoutPlan(null)}
-        />
-      )}
+      {checkoutPlan && (() => {
+        const plan = plans.find((p) => p.name === checkoutPlan);
+        if (!plan || plan.ratePerSeatMonthly === null || plan.minUsers === null) return null;
+        return (
+          <CheckoutModal
+            planName={plan.name}
+            billingInterval={isAnnual ? 'yearly' : 'monthly'}
+            ratePerSeatMonthly={plan.ratePerSeatMonthly}
+            minUsers={plan.minUsers}
+            onClose={() => setCheckoutPlan(null)}
+          />
+        );
+      })()}
     </section>
   );
 }

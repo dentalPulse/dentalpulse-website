@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 
@@ -29,21 +28,23 @@ export default async function BillingSuccessPage({
               <path d="M20 6L9 17l-5-5" />
             </svg>
           </div>
-          <h1 className="text-[28px] md:text-[32px] font-bold text-gray-900 mb-3">Payment received</h1>
+          <h1 className="text-[28px] md:text-[32px] font-bold text-gray-900 mb-3">Your account is ready</h1>
           <p className="text-[15px] text-gray-500 mb-2">
-            Thanks for subscribing to DentalPulse. Our team will reach out within 24 hours to set up your account.
+            Log in at <span className="font-medium text-gray-700">app.dentalpulseai.com</span> with the email and
+            password you just set. If you added setup assistance, our team will reach out separately to get that
+            scheduled.
           </p>
           {session_id && (
             <p className="text-[12px] text-gray-400 mb-8">
               Reference: <span className="font-mono">{session_id}</span>
             </p>
           )}
-          <Link
-            href="/"
+          <a
+            href="https://app.dentalpulseai.com"
             className="inline-flex items-center justify-center h-11 px-6 rounded-full bg-brand-primary text-black font-medium hover:bg-[#00df83] transition-colors"
           >
-            Back to home
-          </Link>
+            Go to login
+          </a>
         </div>
       </section>
       <Footer />
