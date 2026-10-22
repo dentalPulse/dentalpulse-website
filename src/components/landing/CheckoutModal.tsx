@@ -4,8 +4,8 @@ import React, { useEffect, useState } from 'react';
 type CheckoutModalProps = {
   planName: string;
   billingInterval: 'monthly' | 'yearly';
-  ratePerSeatMonthly: number;
-  minUsers: number;
+  basePriceMonthly: number;
+  includedUsers: number;
   onClose: () => void;
 };
 
@@ -52,20 +52,31 @@ const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // Price that Stripe ID actually points to, not this number.
 const SETUP_FEE_USD = 499;
 
+// Placeholder — must match the backend's STRIPE_PRICE_EXTRA_SEAT_MONTHLY
+// amount. Display-only; same rate for every plan (app/billing/plans.py's
+// EXTRA_SEAT_PRICE_IDS — one shared Price, not per-plan).
+const EXTRA_SEAT_USD_MONTHLY = 10;
+
 // Same origin as the backend's CORS_ORIGINS default (see app/config.py) —
 // this site is one of the allowed browser origins for POST /billing/checkout-session.
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:7000/api/v1';
 
-export function CheckoutModal({ planName, billingInterval, ratePerSeatMonthly, minUsers, onClose }: CheckoutModalProps) {
+export function CheckoutModal({ planName, billingInterval, basePriceMonthly, includedUsers, onClose }: CheckoutModalProps) {
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [countryCode, setCountryCode] = useState('+91');
-  const [numUsers, setNumUsers] = useState(minUsers);
+  const [numUsers, setNumUsers] = useState(includedUsers);
   const [includeSetupFee, setIncludeSetupFee] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const effectiveRate = billingInterval === 'yearly' ? ratePerSeatMonthly * 10 : ratePerSeatMonthly;
-  const subscriptionTotal = effectiveRate * numUsers;
+  // Flat base price (covers includedUsers) + the shared extra-seat rate for
+  // every seat beyond that — NOT a pure per-seat replacement of the plan
+  // price. Yearly is 10x both components ("2 months free"), matching the
+  // backend's Price setup (app/billing/plans.py).
+  const extraSeats = Math.max(0, numUsers - includedUsers);
+  const effectiveBaseRate = billingInterval === 'yearly' ? basePriceMonthly * 10 : basePriceMonthly;
+  const effectiveExtraSeatRate = billingInterval === 'yearly' ? EXTRA_SEAT_USD_MONTHLY * 10 : EXTRA_SEAT_USD_MONTHLY;
+  const subscriptionTotal = effectiveBaseRate + extraSeats * effectiveExtraSeatRate;
   const total = subscriptionTotal + (includeSetupFee ? SETUP_FEE_USD : 0);
   const intervalLabel = billingInterval === 'yearly' ? 'year' : 'month';
 
@@ -92,7 +103,7 @@ export function CheckoutModal({ planName, billingInterval, ratePerSeatMonthly, m
 
   function handleNumUsersChange(e: React.ChangeEvent<HTMLInputElement>) {
     const value = parseInt(e.target.value, 10);
-    setNumUsers(Number.isNaN(value) ? minUsers : Math.max(minUsers, value));
+    setNumUsers(Number.isNaN(value) ? includedUsers : Math.max(includedUsers, value));
   }
 
   const passwordsMatch = form.password.length > 0 && form.password === form.confirmPassword;
@@ -225,13 +236,15 @@ export function CheckoutModal({ planName, billingInterval, ratePerSeatMonthly, m
             <span className="text-[13px] font-medium text-gray-700">Number of users</span>
             <input
               type="number"
-              min={minUsers}
+              min={includedUsers}
               step={1}
               value={numUsers}
               onChange={handleNumUsersChange}
               className="h-11 px-3.5 rounded-lg border border-gray-300 text-[14px] text-gray-900 outline-none focus:border-brand-primary focus:ring-1 focus:ring-brand-primary"
             />
-            <span className="text-[11px] text-gray-400">{planName} requires at least {minUsers} users.</span>
+            <span className="text-[11px] text-gray-400">
+              {planName} includes {includedUsers} users. Extra seats are +${effectiveExtraSeatRate}/{intervalLabel} each.
+            </span>
           </label>
 
           <Field

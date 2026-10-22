@@ -2,17 +2,20 @@
 import React, { useState } from 'react';
 import { CheckoutModal } from './CheckoutModal';
 
-// ratePerSeatMonthly / minUsers must stay in sync with the backend's
+// basePriceMonthly / includedUsers must stay in sync with the backend's
 // app/billing/plans.py (PLAN_PRICE_IDS / PLAN_MIN_USERS) and the actual
 // Stripe Price configured for each plan+interval — this file only controls
-// what's *displayed*, the backend is what's actually charged. Yearly is
-// always 10x the monthly per-seat rate ("2 months free"), not a separate
-// number — see planning/STRIPE_SEAT_BASED_PRICING_AND_SETUP_FEE_PLAN.md §2.
+// what's *displayed*, the backend is what's actually charged. Each plan is
+// a FLAT price covering its included seats — NOT a pure per-seat rate;
+// going above includedUsers adds the shared extra-seat rate
+// (EXTRA_SEAT_USD_MONTHLY, below) per additional seat. Yearly is always 10x
+// the monthly amount ("2 months free"), not a separate number — see
+// planning/STRIPE_SEAT_BASED_PRICING_AND_SETUP_FEE_PLAN.md §2.
 const plans = [
   {
     name: 'Starter',
-    ratePerSeatMonthly: 10,
-    minUsers: 3,
+    basePriceMonthly: 499,
+    includedUsers: 3,
     features: [
       'CRM',
       'Dashboard & Analytics',
@@ -25,8 +28,8 @@ const plans = [
   },
   {
     name: 'Growth',
-    ratePerSeatMonthly: 10,
-    minUsers: 5,
+    basePriceMonthly: 799,
+    includedUsers: 5,
     features: [
       'Email Marketing',
       'SMS Marketing',
@@ -39,8 +42,8 @@ const plans = [
   },
   {
     name: 'Growth AI',
-    ratePerSeatMonthly: 10,
-    minUsers: 10,
+    basePriceMonthly: 999,
+    includedUsers: 10,
     features: [
       'AI Insights',
       'Revenue Forecasting',
@@ -52,8 +55,8 @@ const plans = [
   },
   {
     name: 'Enterprise',
-    ratePerSeatMonthly: null,
-    minUsers: null,
+    basePriceMonthly: null,
+    includedUsers: null,
     features: [
       'Users Included - Unlimited',
       'API Access - Unlimited',
@@ -63,6 +66,11 @@ const plans = [
     isPopular: false,
   },
 ];
+
+// Placeholder — must match the backend's STRIPE_PRICE_EXTRA_SEAT_MONTHLY
+// amount (app/config.py). Display-only; CheckoutModal.tsx has its own copy
+// of this same number for the live total calculation.
+const EXTRA_SEAT_USD_MONTHLY = 10;
 
 function CheckIcon({ popular }: { popular: boolean }) {
   return (
@@ -148,18 +156,20 @@ export function Pricing() {
                   <div className="flex flex-col gap-1 mb-8">
                     <div className="flex items-center gap-2">
                       <span className="text-[36px] font-bold text-black leading-none">
-                        {plan.ratePerSeatMonthly === null
+                        {plan.basePriceMonthly === null
                           ? 'Custom'
-                          : `$${isAnnual ? plan.ratePerSeatMonthly * 10 : plan.ratePerSeatMonthly}`}
+                          : `$${(isAnnual ? plan.basePriceMonthly * 10 : plan.basePriceMonthly).toLocaleString()}`}
                       </span>
-                      {plan.ratePerSeatMonthly !== null && (
+                      {plan.basePriceMonthly !== null && (
                         <span className={`${plan.isPopular ? 'text-[11px] text-black font-medium leading-tight whitespace-pre-line' : 'text-[11px] text-gray-400 font-medium leading-tight whitespace-pre-line'}`}>
-                          /user{isAnnual ? '/year' : '/month'}
+                          {isAnnual ? 'billed yearly' : 'billed monthly'}
                         </span>
                       )}
                     </div>
                     <span className={`text-[11px] ${plan.isPopular ? 'text-black/70' : 'text-gray-400'}`}>
-                      {plan.minUsers === null ? 'billed monthly' : `Minimum ${plan.minUsers} users`}
+                      {plan.includedUsers === null
+                        ? 'billed monthly'
+                        : `Includes ${plan.includedUsers} users · +$${EXTRA_SEAT_USD_MONTHLY}/extra user/month`}
                     </span>
                   </div>
 
@@ -190,13 +200,13 @@ export function Pricing() {
 
       {checkoutPlan && (() => {
         const plan = plans.find((p) => p.name === checkoutPlan);
-        if (!plan || plan.ratePerSeatMonthly === null || plan.minUsers === null) return null;
+        if (!plan || plan.basePriceMonthly === null || plan.includedUsers === null) return null;
         return (
           <CheckoutModal
             planName={plan.name}
             billingInterval={isAnnual ? 'yearly' : 'monthly'}
-            ratePerSeatMonthly={plan.ratePerSeatMonthly}
-            minUsers={plan.minUsers}
+            basePriceMonthly={plan.basePriceMonthly}
+            includedUsers={plan.includedUsers}
             onClose={() => setCheckoutPlan(null)}
           />
         );
