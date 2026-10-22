@@ -70,7 +70,7 @@ const plans = [
 // Placeholder — must match the backend's STRIPE_PRICE_EXTRA_SEAT_MONTHLY
 // amount (app/config.py). Display-only; CheckoutModal.tsx has its own copy
 // of this same number for the live total calculation.
-const EXTRA_SEAT_USD_MONTHLY = 10;
+const EXTRA_SEAT_USD_MONTHLY = 25;
 
 function CheckIcon({ popular }: { popular: boolean }) {
   return (

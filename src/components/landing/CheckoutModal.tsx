@@ -55,7 +55,7 @@ const SETUP_FEE_USD = 499;
 // Placeholder — must match the backend's STRIPE_PRICE_EXTRA_SEAT_MONTHLY
 // amount. Display-only; same rate for every plan (app/billing/plans.py's
 // EXTRA_SEAT_PRICE_IDS — one shared Price, not per-plan).
-const EXTRA_SEAT_USD_MONTHLY = 10;
+const EXTRA_SEAT_USD_MONTHLY = 25;
 
 // Same origin as the backend's CORS_ORIGINS default (see app/config.py) —
 // this site is one of the allowed browser origins for POST /billing/checkout-session.
