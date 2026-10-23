@@ -31,16 +31,34 @@ export function Footer() {
         {/* Support */}
         <div className="flex flex-col gap-3 text-[14px] text-gray-700 md:col-span-1">
           <h2 className="font-bold text-black text-[15px] mb-1">Support</h2>
-          <a href="mailto:hello@dentalpulse.com" className="hover:text-black">hello@dentalpulse.com</a>
+          <a href="mailto:hello@dentalpulse.com" className="hover:text-black">info@dentalpulseai.com</a>
           <div className="flex items-center gap-3 mt-3">
-            <a href="#" aria-label="Instagram" className="w-6 h-6 hover:opacity-80 transition-opacity relative">
+            <a
+              href="https://www.linkedin.com/company/dentalpulseai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="w-6 h-6 hover:opacity-80 transition-opacity relative"
+            >
+              <Image src="/linkedin.png" alt="LinkedIn" fill sizes="24px" className="object-contain" />
+            </a>
+            <a
+              href="https://www.instagram.com/dentalpulseai/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="w-6 h-6 hover:opacity-80 transition-opacity relative"
+            >
               <Image src="/instagram.png" alt="Instagram" fill sizes="24px" className="object-contain" />
             </a>
-            <a href="#" aria-label="Facebook" className="w-6 h-6 hover:opacity-80 transition-opacity relative">
+            <a
+              href="https://www.facebook.com/people/Dental-Pulse/61594145142887/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="w-6 h-6 hover:opacity-80 transition-opacity relative"
+            >
               <Image src="/facebook.png" alt="Facebook" fill sizes="24px" className="object-contain" />
-            </a>
-            <a href="#" aria-label="LinkedIn" className="w-6 h-6 hover:opacity-80 transition-opacity relative">
-              <Image src="/linkedin.png" alt="LinkedIn" fill sizes="24px" className="object-contain" />
             </a>
           </div>
         </div>
