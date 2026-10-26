@@ -8,6 +8,7 @@ import { GamePlanSection } from '@/components/platform/GamePlanSection';
 import { WorkflowsSection } from '@/components/platform/WorkflowsSection';
 import { ArchitecturePipelineSection } from '@/components/platform/ArchitecturePipelineSection';
 import { SecuritySection } from '@/components/platform/SecuritySection';
+import { PlatformCTA } from '@/components/platform/PlatformCTA';
 
 export const metadata: Metadata = {
   title: 'Platform & How It Works | DentalPulse',
@@ -33,6 +34,7 @@ export default function PlatformPage() {
         <WorkflowsSection />
         <ArchitecturePipelineSection />
         <SecuritySection />
+        <PlatformCTA />
       </div>
       <Footer />
     </main>
