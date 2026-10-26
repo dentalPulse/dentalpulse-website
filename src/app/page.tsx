@@ -5,8 +5,9 @@ import { PartnerLogos } from '@/components/landing/PartnerLogos';
 import { ProblemSection } from '@/components/landing/ProblemSection';
 import { OutcomesSection } from '@/components/landing/OutcomesSection';
 import { HowItWorks } from '@/components/landing/HowItWorks';
-import { Features } from '@/components/landing/Features';
+import { FeaturesBento } from '@/components/landing/FeaturesBento';
 import { ProvenResults } from '@/components/landing/ProvenResults';
+import { RolesSection } from '@/components/landing/RolesSection';
 import { Pricing } from '@/components/landing/Pricing';
 import { Testimonials } from '@/components/landing/Testimonials';
 import { BottomCTA } from '@/components/landing/BottomCTA';
@@ -22,8 +23,9 @@ export default function Home() {
       <ProblemSection />
       <OutcomesSection />
       <HowItWorks />
-      <Features />
+      <FeaturesBento />
       <ProvenResults />
+      <RolesSection />
       <Pricing />
       <Testimonials />
       <BottomCTA />
