@@ -35,13 +35,13 @@ export function Header() {
         {/* Desktop Navigation Links */}
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.label}
               href={link.href}
               className="text-[#E6E6E6] hover:text-[#12F095] transition-colors"
             >
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -53,12 +53,12 @@ export function Header() {
           >
             Log in
           </a>
-          <a
+          <Link
             href="/#book-demo"
             className="bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
           >
             Book a demo
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Hamburger Button */}
@@ -89,17 +89,17 @@ export function Header() {
         <div className="lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl animate-in slide-in-from-top-2">
           <nav className="flex flex-col gap-4 text-[16px] font-medium">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.label}
                 href={link.href}
                 onClick={() => setIsMenuOpen(false)}
                 className="text-[#E6E6E6] hover:text-[#12F095] py-1 transition-colors"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </nav>
-          
+
           <div className="pt-4 border-t border-[#222222] flex flex-col gap-3">
             <a
               href="https://app.dentalpulseai.com"
@@ -108,13 +108,13 @@ export function Header() {
             >
               Log in
             </a>
-            <a
+            <Link
               href="/#book-demo"
               onClick={() => setIsMenuOpen(false)}
               className="w-full text-center py-2.5 text-[15px] font-bold bg-[#12F095] text-[#0A0A0A] rounded-full hover:bg-[#00df83] transition-colors"
             >
               Book a demo
-            </a>
+            </Link>
           </div>
         </div>
       )}
