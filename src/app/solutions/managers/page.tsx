@@ -6,6 +6,8 @@ import { ManagersHero } from '@/components/solutions/managers/ManagersHero';
 import { ManagersQuestionsSection } from '@/components/solutions/managers/ManagersQuestionsSection';
 import { ManagersCapabilitiesSection } from '@/components/solutions/managers/ManagersCapabilitiesSection';
 import { ManagersQuoteSection } from '@/components/solutions/managers/ManagersQuoteSection';
+import { ManagersRolesCrosslink } from '@/components/solutions/managers/ManagersRolesCrosslink';
+import { ManagersCTA } from '@/components/solutions/managers/ManagersCTA';
 
 export const metadata: Metadata = {
   title: 'Solutions for Sales & CS Managers | DentalPulse',
@@ -29,6 +31,8 @@ export default function ManagersPage() {
         <ManagersQuestionsSection />
         <ManagersCapabilitiesSection />
         <ManagersQuoteSection />
+        <ManagersRolesCrosslink />
+        <ManagersCTA />
       </div>
       <Footer />
     </main>
