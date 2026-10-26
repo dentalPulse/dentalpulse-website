@@ -5,6 +5,7 @@ import { PricingHero } from '@/components/pricing/PricingHero';
 import { PricingCardsGrid, PlanData } from '@/components/pricing/PricingCardsGrid';
 import { PricingCompareTable } from '@/components/pricing/PricingCompareTable';
 import { PricingFAQ } from '@/components/pricing/PricingFAQ';
+import { PricingCTA } from '@/components/pricing/PricingCTA';
 import { CheckoutModal } from '@/components/landing/CheckoutModal';
 
 export function PricingPageContent() {
@@ -34,7 +35,8 @@ export function PricingPageContent() {
       {/* Interactive FAQ Accordion */}
       <PricingFAQ />
 
-      {/* Subsequent phase 5: CTA Banner */}
+      {/* Dark Conversion CTA Banner */}
+      <PricingCTA />
 
       {/* Interactive Stripe Checkout Modal */}
       {checkoutPlan && checkoutPlan.priceMonthly && checkoutPlan.includedUsers && (
