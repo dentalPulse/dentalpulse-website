@@ -79,10 +79,11 @@ src/
 
 ---
 
-### Phase 5: Request Banner, Page Assembly & Polish (`IntegrationsRequestBanner.tsx`)
-1. Create `src/components/integrations/IntegrationsRequestBanner.tsx`:
-   - Mint green `#EEFDF5` container with `#BDF5DA` border.
+### Phase 5: Request Banner, Page Assembly & Polish (`IntegrationsRequestBanner.tsx`) (COMPLETED)
+1. Created [`src/components/integrations/IntegrationsRequestBanner.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/integrations/IntegrationsRequestBanner.tsx):
+   - Mint green `#EEFDF5` container with `#BDF5DA` border and rounded corners (`rounded-[28px]`).
    - Headline: *"Don’t see your system?"*
-   - Subtext and action buttons: *"Request an integration"* (`bg-[#0A0A0A]`) and *"Compare plans"* (`border border-[#0A0A0A]`).
-2. Assemble all sections in `src/app/integrations/page.tsx` with `<Header />` and `<Footer />`.
-3. Validate production build via `npm run build` (15/15 routes compiled with 0 errors) and verify HTTP 200 on `http://localhost:3000/integrations`.
+   - Subtext: *"Tell us what you use. Growth AI includes API access, and Enterprise plans include unlimited API access and custom connections."*
+   - Dual action buttons: *"Request an integration"* (`bg-[#0A0A0A]`) and *"Compare plans"* (`border border-[#0A0A0A]`).
+2. Assembled full page in [`src/app/integrations/page.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/app/integrations/page.tsx) with `<Header />`, `<IntegrationsHero />`, `<IntegrationsDirectory />`, `<IntegrationsHowItWorks />`, `<IntegrationsRequestBanner />`, and `<Footer />`.
+3. Validated production build via `npm run build` (15/15 routes compiled with 0 errors) and verified HTTP 200 on `http://localhost:3000/integrations`.

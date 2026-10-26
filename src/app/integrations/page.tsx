@@ -4,6 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { IntegrationsHero } from '@/components/integrations/IntegrationsHero';
 import { IntegrationsDirectory } from '@/components/integrations/IntegrationsDirectory';
 import { IntegrationsHowItWorks } from '@/components/integrations/IntegrationsHowItWorks';
+import { IntegrationsRequestBanner } from '@/components/integrations/IntegrationsRequestBanner';
 
 export const metadata: Metadata = {
   title: 'Integrations | DentalPulse',
@@ -25,7 +26,7 @@ export default function IntegrationsPage() {
         <IntegrationsHero />
         <IntegrationsDirectory />
         <IntegrationsHowItWorks />
-        {/* Remaining sections will be assembled in subsequent phases */}
+        <IntegrationsRequestBanner />
       </div>
       <Footer />
     </main>
