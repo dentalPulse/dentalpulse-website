@@ -10,7 +10,7 @@ export function Header() {
   const navLinks = [
     { label: 'Platform', href: '/platform' },
     { label: 'Solutions', href: '/solutions' },
-    { label: 'Integrations', href: '/#features' },
+    { label: 'Integrations', href: '/integrations' },
     { label: 'ROI', href: '/#results' },
     { label: 'Pricing', href: '/#book-demo' },
     { label: 'Customers', href: '/#testimonials' },

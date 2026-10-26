@@ -35,9 +35,9 @@ export function Footer() {
               <a href="/#book-demo" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Pricing
               </a>
-              <a href="/#features" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/integrations" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Integrations
-              </a>
+              </Link>
               <a href="/#results" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 ROI calculator
               </a>
