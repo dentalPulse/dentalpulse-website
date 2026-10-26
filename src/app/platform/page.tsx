@@ -6,6 +6,8 @@ import { Customer360Section } from '@/components/platform/Customer360Section';
 import { PredictiveInsightsSection } from '@/components/platform/PredictiveInsightsSection';
 import { GamePlanSection } from '@/components/platform/GamePlanSection';
 import { WorkflowsSection } from '@/components/platform/WorkflowsSection';
+import { ArchitecturePipelineSection } from '@/components/platform/ArchitecturePipelineSection';
+import { SecuritySection } from '@/components/platform/SecuritySection';
 
 export const metadata: Metadata = {
   title: 'Platform & How It Works | DentalPulse',
@@ -29,6 +31,8 @@ export default function PlatformPage() {
         <PredictiveInsightsSection />
         <GamePlanSection />
         <WorkflowsSection />
+        <ArchitecturePipelineSection />
+        <SecuritySection />
       </div>
       <Footer />
     </main>
