@@ -90,3 +90,16 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Modular component architecture in `src/components/integrations/`.
    - 5-phase rollout roadmap.
 
+---
+
+## 5. Pricing Page
+
+1. [**Pricing Page Audit (`PRICING_PAGE_AUDIT.md`)**](PRICING_PAGE_AUDIT.md)
+   - Detailed audit of `Pricing.dc.html` (`Pricing-html`).
+   - Interactive monthly/yearly toggle with "2 months free" discount mechanism.
+   - 4-tier subscription cards (Starter, Growth, Growth AI, Enterprise), comprehensive 5-category comparison matrix, accordion FAQ, and CheckoutModal integration.
+
+2. [**Pricing Implementation Plan (`PRICING_IMPLEMENTATION_PLAN.md`)**](PRICING_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/pricing` (`src/app/pricing/page.tsx`).
+   - Modular component architecture in `src/components/pricing/`.
+   - 5-phase rollout roadmap.
