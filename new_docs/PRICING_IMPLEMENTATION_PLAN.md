@@ -68,14 +68,16 @@ src/
 
 ---
 
-### Phase 4: Feature Comparison Table & FAQ Accordion (`PricingCompareTable.tsx` & `PricingFAQ.tsx`)
-1. Create `src/components/pricing/PricingCompareTable.tsx`:
+### Phase 4: Feature Comparison Table & FAQ Accordion (`PricingCompareTable.tsx` & `PricingFAQ.tsx`) (COMPLETED)
+1. Created `src/components/pricing/PricingCompareTable.tsx`:
    - 5-Column feature comparison matrix (`Features`, `Starter`, `Growth`, `Growth AI`, `Enterprise`).
-   - 5 Grouped categories: `USERS & ACCESS`, `CUSTOMER INTELLIGENCE`, `MARKETING`, `AI`, and `SUPPORT`.
+   - 5 Grouped categories: `USERS & ACCESS`, `CUSTOMER INTELLIGENCE`, `MARKETING`, `AI & PREDICTIVE SUITE`, and `SUPPORT & SERVICES`.
    - Distinct green checkmarks (`#067A47`), dashes, and specific metrics (user counts, API access levels).
-2. Create `src/components/pricing/PricingFAQ.tsx`:
-   - 2-Column layout: headline on left, 5 accordion items on right.
+2. Created `src/components/pricing/PricingFAQ.tsx`:
+   - 2-Column responsive layout: headline and email support callout on left, 5 accordion items on right.
    - Verified answers covering user definitions, annual savings, setup timelines, plan switches, and lab management integrations.
+3. Integrated into `PricingPageContent.tsx`.
+4. Verified compilation via `npm run build` (16 routes compiled) and HTTP 200 on `http://localhost:3000/pricing`.
 
 ---
 

@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { PricingHero } from '@/components/pricing/PricingHero';
 import { PricingCardsGrid, PlanData } from '@/components/pricing/PricingCardsGrid';
+import { PricingCompareTable } from '@/components/pricing/PricingCompareTable';
+import { PricingFAQ } from '@/components/pricing/PricingFAQ';
 import { CheckoutModal } from '@/components/landing/CheckoutModal';
 
 export function PricingPageContent() {
@@ -20,12 +22,19 @@ export function PricingPageContent() {
 
   return (
     <div className="flex-1 w-full flex flex-col">
+      {/* Hero & Cadence Switcher */}
       <PricingHero isYearly={isYearly} onToggleYearly={setIsYearly} />
       
       {/* 4-Card Subscription Grid */}
       <PricingCardsGrid isYearly={isYearly} onSelectPlan={handleSelectPlan} />
 
-      {/* Subsequent phases: Comparison Matrix, FAQ, and CTA */}
+      {/* 5-Category Feature Comparison Matrix */}
+      <PricingCompareTable />
+
+      {/* Interactive FAQ Accordion */}
+      <PricingFAQ />
+
+      {/* Subsequent phase 5: CTA Banner */}
 
       {/* Interactive Stripe Checkout Modal */}
       {checkoutPlan && checkoutPlan.priceMonthly && checkoutPlan.includedUsers && (
