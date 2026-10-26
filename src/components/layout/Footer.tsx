@@ -46,9 +46,9 @@ export function Footer() {
             {/* Column 2: Solutions */}
             <div className="flex flex-col gap-3">
               <b className="text-white text-[14px] tracking-wide uppercase font-mono">Solutions</b>
-              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Owners &amp; C-suite
-              </a>
+              </Link>
               <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Managers
               </a>
