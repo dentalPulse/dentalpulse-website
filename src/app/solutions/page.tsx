@@ -6,6 +6,8 @@ import { SolutionsHero } from '@/components/solutions/SolutionsHero';
 import { QuestionsSection } from '@/components/solutions/QuestionsSection';
 import { ExecutiveCapabilitiesSection } from '@/components/solutions/ExecutiveCapabilitiesSection';
 import { ExecutiveQuoteSection } from '@/components/solutions/ExecutiveQuoteSection';
+import { SolutionsRolesCrosslink } from '@/components/solutions/SolutionsRolesCrosslink';
+import { SolutionsCTA } from '@/components/solutions/SolutionsCTA';
 
 export const metadata: Metadata = {
   title: 'Solutions for Lab Owners & C-Suite | DentalPulse',
@@ -29,6 +31,8 @@ export default function SolutionsPage() {
         <QuestionsSection />
         <ExecutiveCapabilitiesSection />
         <ExecutiveQuoteSection />
+        <SolutionsRolesCrosslink />
+        <SolutionsCTA />
       </div>
       <Footer />
     </main>
