@@ -1,26 +1,30 @@
 import { Header } from '@/components/layout/Header';
 import { Hero } from '@/components/landing/Hero';
 import { ProductPreview } from '@/components/landing/ProductPreview';
-import { AIPowered } from '@/components/landing/AIPowered';
+import { PartnerLogos } from '@/components/landing/PartnerLogos';
+import { ProblemSection } from '@/components/landing/ProblemSection';
+import { OutcomesSection } from '@/components/landing/OutcomesSection';
+import { HowItWorks } from '@/components/landing/HowItWorks';
 import { Features } from '@/components/landing/Features';
 import { ProvenResults } from '@/components/landing/ProvenResults';
 import { Pricing } from '@/components/landing/Pricing';
-import { ValueProposition } from '@/components/landing/ValueProposition';
 import { Testimonials } from '@/components/landing/Testimonials';
 import { BottomCTA } from '@/components/landing/BottomCTA';
 import { Footer } from '@/components/layout/Footer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen w-full flex flex-col bg-black">
+    <main className="min-h-screen w-full flex flex-col bg-white">
       <Header />
       <Hero />
       <ProductPreview />
-      <AIPowered />
+      <PartnerLogos />
+      <ProblemSection />
+      <OutcomesSection />
+      <HowItWorks />
       <Features />
       <ProvenResults />
       <Pricing />
-      <ValueProposition />
       <Testimonials />
       <BottomCTA />
       <Footer />
