@@ -75,3 +75,18 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Route mapping for `/solutions/marketing`.
    - Modular component architecture in `src/components/solutions/marketing/`.
    - 5-phase rollout roadmap.
+
+---
+
+## 4. Integrations Page
+
+1. [**Integrations Page Audit (`INTEGRATIONS_PAGE_AUDIT.md`)**](INTEGRATIONS_PAGE_AUDIT.md)
+   - Detailed audit of `Integrations.dc.html` (`Integrations-html`).
+   - Central data hub diagram (LMS, Accounting, CRM, Messaging connected to DentalPulse engine).
+   - 4-category integration directory, dark 4-step IT onboarding workflow, and mint request banner.
+
+2. [**Integrations Implementation Plan (`INTEGRATIONS_IMPLEMENTATION_PLAN.md`)**](INTEGRATIONS_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/integrations` (`src/app/integrations/page.tsx`).
+   - Modular component architecture in `src/components/integrations/`.
+   - 5-phase rollout roadmap.
+
