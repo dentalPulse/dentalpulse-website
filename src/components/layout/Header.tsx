@@ -1,70 +1,123 @@
 "use client";
+
 import React, { useState } from 'react';
-import { Button } from '../ui/Button';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  return (
-    <header className="px-4 lg:px-8 w-full bg-white relative z-50">
-      <div className='max-w-[1512px] h-[88px] mx-auto flex items-center justify-between'>
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <Link href="/">
-            {/* Desktop Logo */}
-            <Image src="/logo.png" alt="DentalPulse Logo" width={189} height={34} className="hidden lg:block h-[34px] w-[189px] object-contain" priority />
-            {/* Mobile Logo */}
-            <Image src="/Dental_Pulse_Black.png" alt="DentalPulse Logo" width={180} height={34} className="block lg:hidden h-[34px] w-auto object-contain" style={{ width: 'auto', height: '100%' }} priority />
-          </Link>
-        </div>
+  const navLinks = [
+    { label: 'Platform', href: '#how-it-works' },
+    { label: 'Solutions', href: '#solutions' },
+    { label: 'Integrations', href: '#features' },
+    { label: 'ROI', href: '#results' },
+    { label: 'Pricing', href: '#pricing' },
+    { label: 'Customers', href: '#testimonials' },
+    { label: 'Resources', href: '#resources' },
+  ];
 
-        {/* Navigation Links - Desktop */}
-        <nav className="hidden lg:flex items-center gap-8 text-[16px] font-medium text-brand-neutral-7">
-          <a href="#how-it-works" className="hover:text-brand-green transition-colors">How it Works</a>
-          <a href="#solutions" className="hover:text-brand-green transition-colors">Solutions</a>
-          <a href="#roles" className="hover:text-brand-green transition-colors">Roles</a>
-          <a href="#customer" className="hover:text-brand-green transition-colors">Customer</a>
-          <a href="#career" className="hover:text-brand-green transition-colors">Career</a>
+  return (
+    <header className="w-full bg-[#0A0A0A] border-b border-[#222222] sticky top-0 z-50 transition-colors">
+      <div className="max-w-[1240px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
+        {/* Brand Logo */}
+        <Link href="/" aria-label="Dental Pulse home" className="flex items-center gap-2.5 shrink-0">
+          <Image
+            src="/logo.png"
+            alt="Dental Pulse"
+            width={167}
+            height={30}
+            className="h-[30px] w-auto object-contain brightness-0 invert"
+            priority
+          />
+        </Link>
+
+        {/* Desktop Navigation Links */}
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
+          {navLinks.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              className="text-[#E6E6E6] hover:text-[#12F095] transition-colors"
+            >
+              {link.label}
+            </a>
+          ))}
         </nav>
 
-        {/* Auth / CTA - Desktop */}
-        <div className="hidden lg:flex items-center gap-4">
-          <Button variant="primary" className="rounded-lg">Login</Button>
-          <Button variant="primary" className="rounded-lg">Book a Demo</Button>
+        {/* Desktop Auth / CTA */}
+        <div className="hidden lg:flex items-center gap-2 shrink-0">
+          <a
+            href="https://app.dentalpulseai.com"
+            className="text-[15px] font-semibold text-white px-3.5 py-2.5 hover:text-[#12F095] transition-colors"
+          >
+            Log in
+          </a>
+          <a
+            href="#book-demo"
+            className="bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
+          >
+            Book a demo
+          </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Hamburger Button */}
         <button
-          className="lg:hidden p-2 text-brand-neutral-7"
+          type="button"
+          className="lg:hidden p-2 text-[#E6E6E6] hover:text-white focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          aria-expanded={isMenuOpen}
+          aria-label="Toggle navigation menu"
         >
           {isMenuOpen ? (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18" />
+              <line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
           ) : (
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <line x1="3" y1="12" x2="21" y2="12" />
+              <line x1="3" y1="6" x2="21" y2="6" />
+              <line x1="3" y1="18" x2="21" y2="18" />
+            </svg>
           )}
         </button>
-
-        {/* Mobile Menu Overlay */}
-        {isMenuOpen && (
-          <div className="absolute top-[88px] left-0 w-full bg-white border-t border-gray-100 shadow-xl lg:hidden flex flex-col p-6 animate-in slide-in-from-top-2">
-            <nav className="flex flex-col gap-6 text-[16px] font-medium text-brand-neutral-7 mb-8">
-              <a href="#how-it-works" className="hover:text-brand-green transition-colors" onClick={() => setIsMenuOpen(false)}>How it Works</a>
-              <a href="#solutions" className="hover:text-brand-green transition-colors" onClick={() => setIsMenuOpen(false)}>Solutions</a>
-              <a href="#roles" className="hover:text-brand-green transition-colors" onClick={() => setIsMenuOpen(false)}>Roles</a>
-              <a href="#customer" className="hover:text-brand-green transition-colors" onClick={() => setIsMenuOpen(false)}>Customer</a>
-              <a href="#career" className="hover:text-brand-green transition-colors" onClick={() => setIsMenuOpen(false)}>Career</a>
-            </nav>
-            <div className="flex flex-col gap-4">
-              <Button variant="primary" className="w-full rounded-lg justify-center border border-brand-green bg-transparent text-brand-green hover:bg-brand-green/10" onClick={() => setIsMenuOpen(false)}>Login</Button>
-              <Button variant="primary" className="w-full rounded-lg justify-center" onClick={() => setIsMenuOpen(false)}>Book a Demo</Button>
-            </div>
-          </div>
-        )}
       </div>
+
+      {/* Mobile Menu Drawer */}
+      {isMenuOpen && (
+        <div className="lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl animate-in slide-in-from-top-2">
+          <nav className="flex flex-col gap-4 text-[16px] font-medium">
+            {navLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className="text-[#E6E6E6] hover:text-[#12F095] py-1 transition-colors"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+          
+          <div className="pt-4 border-t border-[#222222] flex flex-col gap-3">
+            <a
+              href="https://app.dentalpulseai.com"
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full text-center py-2.5 text-[15px] font-semibold text-white border border-[#333333] rounded-full hover:bg-white/5 transition-colors"
+            >
+              Log in
+            </a>
+            <a
+              href="#book-demo"
+              onClick={() => setIsMenuOpen(false)}
+              className="w-full text-center py-2.5 text-[15px] font-bold bg-[#12F095] text-[#0A0A0A] rounded-full hover:bg-[#00df83] transition-colors"
+            >
+              Book a demo
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
