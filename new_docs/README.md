@@ -31,3 +31,18 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Dedicated Next.js App Router route: `/platform` (`src/app/platform/page.tsx`).
    - Modular component structure in `src/components/platform/`.
    - Phased execution plan from hero jump bar to pipeline diagrams and conversion CTAs.
+
+---
+
+## 3. Solutions Pages (Role-Based Intelligence)
+
+1. [**Solutions (Lab Owners & C-Suite) Audit (`SOLUTIONS_OWNERS_PAGE_AUDIT.md`)**](SOLUTIONS_OWNERS_PAGE_AUDIT.md)
+   - Detailed audit of `Owners.dc.html` (`Solutions — Lab owners & C-suite-html`).
+   - Executive scorecard breakdown ($4.86M Revenue, 91.4% Retention, $48.2K LTV, $186K Revenue at risk, segment bars).
+   - Executive question cards, dark capabilities section, testimonial quote, and role cross-links.
+
+2. [**Solutions Implementation Plan (`SOLUTIONS_OWNERS_IMPLEMENTATION_PLAN.md`)**](SOLUTIONS_OWNERS_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/solutions` and `/solutions/owners`.
+   - Component architecture in `src/components/solutions/`.
+   - 5-phase rollout roadmap.
+
