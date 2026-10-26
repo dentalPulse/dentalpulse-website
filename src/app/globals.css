@@ -45,9 +45,20 @@
   --background: #ffffff;
   --foreground: #1D2127;
   
-  /* Figma Design Tokens */
+  /* Redesign Design Tokens */
+  --color-neon-green: #12F095;
+  --color-dark-green: #067A47;
+  --color-forest-green: #06663C;
+  --color-dark-surface: #0A0A0A;
+  --color-dark-surface-card: #161616;
+  --color-pitch-black: #000000;
+  --color-mint-surface: #EEFDF5;
+  --color-mint-border: #BDF5DA;
+  --color-mint-badge: #E3FCEF;
+
+  /* Legacy / Compatibility Design Tokens */
   --color-green: #213D34;
-  --color-primary: #11f294; /* Vibrant Green */
+  --color-primary: #12F095; /* Updated to Match Redesign Neon Green */
   --color-primary-hover: #00df83;
   --color-secondary-hover: #0ee188;
   --color-beige: #f8f5ef;
@@ -67,6 +78,17 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+
+  /* Redesign Tokens */
+  --color-neon-green: var(--color-neon-green);
+  --color-dark-green: var(--color-dark-green);
+  --color-forest-green: var(--color-forest-green);
+  --color-dark-surface: var(--color-dark-surface);
+  --color-dark-surface-card: var(--color-dark-surface-card);
+  --color-pitch-black: var(--color-pitch-black);
+  --color-mint-surface: var(--color-mint-surface);
+  --color-mint-border: var(--color-mint-border);
+  --color-mint-badge: var(--color-mint-badge);
   
   --color-brand-green: var(--color-green);
   --color-brand-primary: var(--color-primary);
@@ -83,27 +105,33 @@
   --color-brand-pricing-card: var(--color-pricing-card);
   --color-brand-pricing-btn-bg: var(--color-pricing-btn-bg);
 
-  --font-sans: 'Helvetica Neue', Arial, sans-serif;
-  --font-body: var(--font-open-sans), Arial, sans-serif;
+  --font-sans: var(--font-plus-jakarta), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), monospace;
+  --font-jakarta: var(--font-plus-jakarta), system-ui, sans-serif;
+  --font-body: var(--font-plus-jakarta), system-ui, sans-serif;
   --font-helvetica: 'Helvetica Neue', Arial, sans-serif;
 
   --shadow-custom: 0 3px 14px 0 rgba(45, 47, 51, 0.12);
+  --shadow-pulse-glow: 0 0 0 1px rgba(18,240,149,0.55), 0 0 0 8px rgba(18,240,149,0.10), 0 40px 90px -20px rgba(18,240,149,0.45);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Base resets */
+/* Base typography */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  line-height: 1.2;
+  font-family: var(--font-sans);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 p {
-  font-family: var(--font-body);
+  font-family: var(--font-sans);
 }
 
 /* Hide scrollbar while preserving scroll functionality */
@@ -113,4 +141,61 @@ p {
 }
 .no-scrollbar::-webkit-scrollbar {
   display: none;
+}
+
+/* Redesign Micro-Animations */
+@keyframes dpDash {
+  to {
+    stroke-dashoffset: -2400;
+  }
+}
+
+@keyframes dpFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes dpBlink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.dp-trace {
+  stroke-dasharray: 260 2140;
+  animation: dpDash 7s linear infinite;
+}
+
+.dp-float {
+  animation: dpFloat 6s ease-in-out infinite;
+}
+
+.dp-float-2 {
+  animation: dpFloat 7s ease-in-out -2.5s infinite;
+}
+
+.dp-live {
+  animation: dpBlink 1.6s ease-in-out infinite;
+}
+
+@media (max-width: 1180px) {
+  .dp-chip {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dp-trace,
+  .dp-float,
+  .dp-float-2,
+  .dp-live {
+    animation: none;
+  }
 }
