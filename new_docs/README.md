@@ -56,4 +56,15 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Modular component architecture in `src/components/solutions/managers/`.
    - 5-phase rollout roadmap.
 
+5. [**Solutions (Sales Representatives) Audit (`SOLUTIONS_SALES_REPS_PAGE_AUDIT.md`)**](SOLUTIONS_SALES_REPS_PAGE_AUDIT.md)
+   - Detailed audit of `SalesReps.dc.html` (`Solutions — Sales reps-html`).
+   - Mobile phone scorecard mockup (Today's priorities: Lakeside, Riverbend, Dr. Chen with field talking points).
+   - "Less time digging. More time with dentists" 4-card grid, dark capabilities section, testimonial quote, and role cross-links.
+
+6. [**Solutions (Sales Representatives) Implementation Plan (`SOLUTIONS_SALES_REPS_IMPLEMENTATION_PLAN.md`)**](SOLUTIONS_SALES_REPS_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/solutions/sales-reps`.
+   - Modular component architecture in `src/components/solutions/sales-reps/`.
+   - 5-phase rollout roadmap.
+
+
 
