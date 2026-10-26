@@ -8,13 +8,13 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Platform', href: '#how-it-works' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'Integrations', href: '#features' },
-    { label: 'ROI', href: '#results' },
-    { label: 'Pricing', href: '#book-demo' },
-    { label: 'Customers', href: '#testimonials' },
-    { label: 'Resources', href: '#resources' },
+    { label: 'Platform', href: '/platform' },
+    { label: 'Solutions', href: '/#solutions' },
+    { label: 'Integrations', href: '/#features' },
+    { label: 'ROI', href: '/#results' },
+    { label: 'Pricing', href: '/#book-demo' },
+    { label: 'Customers', href: '/#testimonials' },
+    { label: 'Resources', href: '/#resources' },
   ];
 
   return (
@@ -54,7 +54,7 @@ export function Header() {
             Log in
           </a>
           <a
-            href="#book-demo"
+            href="/#book-demo"
             className="bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
           >
             Book a demo
@@ -109,7 +109,7 @@ export function Header() {
               Log in
             </a>
             <a
-              href="#book-demo"
+              href="/#book-demo"
               onClick={() => setIsMenuOpen(false)}
               className="w-full text-center py-2.5 text-[15px] font-bold bg-[#12F095] text-[#0A0A0A] rounded-full hover:bg-[#00df83] transition-colors"
             >

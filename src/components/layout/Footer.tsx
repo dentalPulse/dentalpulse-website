@@ -29,16 +29,16 @@ export function Footer() {
             {/* Column 1: Platform */}
             <div className="flex flex-col gap-3">
               <b className="text-white text-[14px] tracking-wide uppercase font-mono">Platform</b>
-              <a href="#how-it-works" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/platform" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 How it works
-              </a>
-              <a href="#book-demo" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              </Link>
+              <a href="/#book-demo" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Pricing
               </a>
-              <a href="#features" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#features" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Integrations
               </a>
-              <a href="#results" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#results" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 ROI calculator
               </a>
             </div>
@@ -46,16 +46,16 @@ export function Footer() {
             {/* Column 2: Solutions */}
             <div className="flex flex-col gap-3">
               <b className="text-white text-[14px] tracking-wide uppercase font-mono">Solutions</b>
-              <a href="#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Owners &amp; C-suite
               </a>
-              <a href="#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Managers
               </a>
-              <a href="#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Sales reps
               </a>
-              <a href="#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Marketing
               </a>
             </div>
@@ -63,16 +63,16 @@ export function Footer() {
             {/* Column 3: Company */}
             <div className="flex flex-col gap-3">
               <b className="text-white text-[14px] tracking-wide uppercase font-mono">Company</b>
-              <a href="#about" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#about" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 About
               </a>
-              <a href="#testimonials" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#testimonials" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Customers
               </a>
-              <a href="#careers" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#careers" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Careers
               </a>
-              <a href="#resources" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <a href="/#resources" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Resources
               </a>
             </div>
