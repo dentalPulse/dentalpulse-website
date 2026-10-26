@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/Footer';
 import { SolutionsRoleNav } from '@/components/solutions/SolutionsRoleNav';
 import { ManagersHero } from '@/components/solutions/managers/ManagersHero';
 import { ManagersQuestionsSection } from '@/components/solutions/managers/ManagersQuestionsSection';
+import { ManagersCapabilitiesSection } from '@/components/solutions/managers/ManagersCapabilitiesSection';
+import { ManagersQuoteSection } from '@/components/solutions/managers/ManagersQuoteSection';
 
 export const metadata: Metadata = {
   title: 'Solutions for Sales & CS Managers | DentalPulse',
@@ -25,6 +27,8 @@ export default function ManagersPage() {
         <SolutionsRoleNav activeRole="managers" />
         <ManagersHero />
         <ManagersQuestionsSection />
+        <ManagersCapabilitiesSection />
+        <ManagersQuoteSection />
       </div>
       <Footer />
     </main>
