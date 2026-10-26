@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { PlatformHero } from '@/components/platform/PlatformHero';
 
 export const metadata: Metadata = {
   title: 'Platform & How It Works | DentalPulse',
@@ -19,7 +20,7 @@ export default function PlatformPage() {
     <main className="min-h-screen w-full flex flex-col bg-white">
       <Header />
       <div className="flex-1 w-full flex flex-col">
-        {/* Platform page sections will be added here in following phases */}
+        <PlatformHero />
       </div>
       <Footer />
     </main>
