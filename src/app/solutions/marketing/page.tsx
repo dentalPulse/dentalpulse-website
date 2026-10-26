@@ -6,6 +6,8 @@ import { MarketingHero } from '@/components/solutions/marketing/MarketingHero';
 import { MarketingQuestionsSection } from '@/components/solutions/marketing/MarketingQuestionsSection';
 import { MarketingCapabilitiesSection } from '@/components/solutions/marketing/MarketingCapabilitiesSection';
 import { MarketingQuoteSection } from '@/components/solutions/marketing/MarketingQuoteSection';
+import { MarketingRolesCrosslink } from '@/components/solutions/marketing/MarketingRolesCrosslink';
+import { MarketingCTA } from '@/components/solutions/marketing/MarketingCTA';
 
 export const metadata: Metadata = {
   title: 'Solutions for Marketing Teams | DentalPulse',
@@ -29,7 +31,8 @@ export default function MarketingPage() {
         <MarketingQuestionsSection />
         <MarketingCapabilitiesSection />
         <MarketingQuoteSection />
-        {/* Remaining sections will be assembled in subsequent phases */}
+        <MarketingRolesCrosslink />
+        <MarketingCTA />
       </div>
       <Footer />
     </main>
