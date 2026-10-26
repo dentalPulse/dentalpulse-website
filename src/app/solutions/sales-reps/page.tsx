@@ -6,6 +6,8 @@ import { SalesRepsHero } from '@/components/solutions/sales-reps/SalesRepsHero';
 import { SalesRepsQuestionsSection } from '@/components/solutions/sales-reps/SalesRepsQuestionsSection';
 import { SalesRepsCapabilitiesSection } from '@/components/solutions/sales-reps/SalesRepsCapabilitiesSection';
 import { SalesRepsQuoteSection } from '@/components/solutions/sales-reps/SalesRepsQuoteSection';
+import { SalesRepsRolesCrosslink } from '@/components/solutions/sales-reps/SalesRepsRolesCrosslink';
+import { SalesRepsCTA } from '@/components/solutions/sales-reps/SalesRepsCTA';
 
 export const metadata: Metadata = {
   title: 'Solutions for Sales Representatives | DentalPulse',
@@ -29,7 +31,8 @@ export default function SalesRepsPage() {
         <SalesRepsQuestionsSection />
         <SalesRepsCapabilitiesSection />
         <SalesRepsQuoteSection />
-        {/* Remaining sections will be assembled in subsequent phases */}
+        <SalesRepsRolesCrosslink />
+        <SalesRepsCTA />
       </div>
       <Footer />
     </main>
