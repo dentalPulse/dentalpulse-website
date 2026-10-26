@@ -45,7 +45,7 @@ src/
 
 ---
 
-### Phase 2: Managers Hero & Team Performance Card (`ManagersHero.tsx`)
+### Phase 2: Managers Hero & Team Performance Card (`ManagersHero.tsx`) (COMPLETED)
 1. Create `src/components/solutions/managers/ManagersHero.tsx`:
    - Kicker: `FOR SALES & CUSTOMER SUCCESS MANAGERS` (JetBrains Mono, `#067A47`).
    - Headline: *"Coach your team with the numbers that matter."*
