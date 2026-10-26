@@ -66,5 +66,12 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Modular component architecture in `src/components/solutions/sales-reps/`.
    - 5-phase rollout roadmap.
 
+7. [**Solutions (Marketing Teams) Audit (`SOLUTIONS_MARKETING_PAGE_AUDIT.md`)**](SOLUTIONS_MARKETING_PAGE_AUDIT.md)
+   - Detailed audit of `Marketing.dc.html` (`Solutions — Marketing-html`).
+   - Interactive segment builder mockup (Implant-ready practices, WHERE/AND query rules, 3-channel campaign performance).
+   - "Marketing that shows up in case volume" 4-card grid, dark capabilities section, testimonial quote, and role cross-links.
 
-
+8. [**Solutions (Marketing Teams) Implementation Plan (`SOLUTIONS_MARKETING_IMPLEMENTATION_PLAN.md`)**](SOLUTIONS_MARKETING_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/solutions/marketing`.
+   - Modular component architecture in `src/components/solutions/marketing/`.
+   - 5-phase rollout roadmap.
