@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SolutionsRoleNav } from '@/components/solutions/SolutionsRoleNav';
+import { SolutionsHero } from '@/components/solutions/SolutionsHero';
 
 export const metadata: Metadata = {
   title: 'Solutions for Lab Owners & C-Suite | DentalPulse',
@@ -21,7 +22,7 @@ export default function SolutionsPage() {
       <Header />
       <div className="flex-1 w-full flex flex-col">
         <SolutionsRoleNav activeRole="owners" />
-        {/* Solutions sections will be assembled in subsequent phases */}
+        <SolutionsHero />
       </div>
       <Footer />
     </main>
