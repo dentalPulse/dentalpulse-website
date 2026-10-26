@@ -32,9 +32,9 @@ export function Footer() {
               <Link href="/platform" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 How it works
               </Link>
-              <a href="/#book-demo" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/pricing" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Pricing
-              </a>
+              </Link>
               <Link href="/integrations" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Integrations
               </Link>

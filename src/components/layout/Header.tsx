@@ -12,7 +12,7 @@ export function Header() {
     { label: 'Solutions', href: '/solutions' },
     { label: 'Integrations', href: '/integrations' },
     { label: 'ROI', href: '/#results' },
-    { label: 'Pricing', href: '/#book-demo' },
+    { label: 'Pricing', href: '/pricing' },
     { label: 'Customers', href: '/#testimonials' },
     { label: 'Resources', href: '/#resources' },
   ];
