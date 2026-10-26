@@ -52,13 +52,13 @@ src/
 
 ---
 
-### Phase 2: Marketing Hero & Segment Builder Mockup Card (`MarketingHero.tsx`)
-1. Create `src/components/solutions/marketing/MarketingHero.tsx`:
+### Phase 2: Marketing Hero & Segment Builder Mockup Card (`MarketingHero.tsx`) (COMPLETED)
+1. Created [`src/components/solutions/marketing/MarketingHero.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/solutions/marketing/MarketingHero.tsx):
    - Kicker: `FOR MARKETING TEAMS` (JetBrains Mono, `#067A47`).
    - Headline: *"Campaigns that reach the right dentist at the right time."*
    - Subtext and action buttons:
      - *"Book a demo"* (linking to `https://app.dentalpulseai.com`)
-     - *"See Growth plan"* (linking to `/pricing`)
+     - *"See Growth plan"* (linking to `/platform`)
    - Code-rendered **Segment Builder & Multi-Channel Campaign Card**:
      * Card header: `Segment — Implant-ready practices` with `42 dentists` green pill badge (`#06663C` on `#E3FCEF`).
      * Query Predicate Rules:
@@ -68,6 +68,8 @@ src/
      * Campaign Performance Breakdown:
        - Title: `Campaign — Implant launch`
        - 3 Metrics: Day 0 Email (`48% opened`), Day 3 WhatsApp (`71% read`), 30-day Result (`9 first implant cases` highlighted in mint).
+2. Wired `MarketingHero` into [`src/app/solutions/marketing/page.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/app/solutions/marketing/page.tsx).
+3. Verified compilation via `npm run build` and HTTP 200 on `http://localhost:3000/solutions/marketing`.
 
 ---
 
