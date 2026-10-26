@@ -46,8 +46,8 @@ src/
 
 ---
 
-### Phase 2: Sales Reps Hero & Mobile Phone Mockup Card (`SalesRepsHero.tsx`)
-1. Create `src/components/solutions/sales-reps/SalesRepsHero.tsx`:
+### Phase 2: Sales Reps Hero & Mobile Phone Mockup Card (`SalesRepsHero.tsx`) (COMPLETED)
+1. Created [`src/components/solutions/sales-reps/SalesRepsHero.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/solutions/sales-reps/SalesRepsHero.tsx):
    - Kicker: `FOR SALES REPRESENTATIVES` (JetBrains Mono, `#067A47`).
    - Headline: *"Walk into every practice knowing what to say."*
    - Subtext and action buttons ("Book a demo", "See the platform" -> `/platform`).
@@ -59,6 +59,8 @@ src/
        - **Riverbend Dental** (Cross-sell, crowns only, implant turnaround talking point).
        - **Dr. Chen & Associates** (Thank you, volume up 30%).
      * Phone bottom navigation bar (`Today`, `Accounts`, `Tasks`, `Ask AI`).
+2. Wired `SalesRepsHero` into [`src/app/solutions/sales-reps/page.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/app/solutions/sales-reps/page.tsx).
+3. Verified compilation via `npm run build` and HTTP 200 response on `http://localhost:3000/solutions/sales-reps`.
 
 ---
 
