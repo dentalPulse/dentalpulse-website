@@ -55,9 +55,9 @@ export function Footer() {
               <Link href="/solutions/sales-reps" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Sales reps
               </Link>
-              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/solutions/marketing" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Marketing
-              </a>
+              </Link>
             </div>
 
             {/* Column 3: Company */}

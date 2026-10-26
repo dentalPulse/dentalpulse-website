@@ -5,7 +5,7 @@ export function ManagersRolesCrosslink() {
   const roles = [
     { label: 'For owners & C-suite', href: '/solutions' },
     { label: 'For sales reps', href: '/solutions/sales-reps' },
-    { label: 'For marketing', href: '/solutions#marketing' },
+    { label: 'For marketing', href: '/solutions/marketing' },
   ];
 
   return (
