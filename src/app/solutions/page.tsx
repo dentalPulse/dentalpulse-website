@@ -3,6 +3,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { SolutionsRoleNav } from '@/components/solutions/SolutionsRoleNav';
 import { SolutionsHero } from '@/components/solutions/SolutionsHero';
+import { QuestionsSection } from '@/components/solutions/QuestionsSection';
 
 export const metadata: Metadata = {
   title: 'Solutions for Lab Owners & C-Suite | DentalPulse',
@@ -23,6 +24,7 @@ export default function SolutionsPage() {
       <div className="flex-1 w-full flex flex-col">
         <SolutionsRoleNav activeRole="owners" />
         <SolutionsHero />
+        <QuestionsSection />
       </div>
       <Footer />
     </main>
