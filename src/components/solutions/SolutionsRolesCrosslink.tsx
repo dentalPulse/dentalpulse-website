@@ -4,7 +4,7 @@ import Link from 'next/link';
 export function SolutionsRolesCrosslink() {
   const roles = [
     { label: 'For managers', href: '/solutions/managers' },
-    { label: 'For sales reps', href: '/solutions#sales-reps' },
+    { label: 'For sales reps', href: '/solutions/sales-reps' },
     { label: 'For marketing', href: '/solutions#marketing' },
   ];
 

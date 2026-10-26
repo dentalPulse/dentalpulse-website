@@ -52,9 +52,9 @@ export function Footer() {
               <Link href="/solutions/managers" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Managers
               </Link>
-              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/solutions/sales-reps" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Sales reps
-              </a>
+              </Link>
               <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Marketing
               </a>

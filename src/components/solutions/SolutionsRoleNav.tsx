@@ -9,7 +9,7 @@ export function SolutionsRoleNav({ activeRole = 'owners' }: SolutionsRoleNavProp
   const roles = [
     { id: 'owners', label: 'Owners & C-suite', href: '/solutions' },
     { id: 'managers', label: 'Managers', href: '/solutions/managers' },
-    { id: 'sales-reps', label: 'Sales reps', href: '/solutions#roles' },
+    { id: 'sales-reps', label: 'Sales reps', href: '/solutions/sales-reps' },
     { id: 'marketing', label: 'Marketing', href: '/solutions#roles' },
   ];
 
