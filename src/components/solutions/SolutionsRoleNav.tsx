@@ -8,7 +8,7 @@ interface SolutionsRoleNavProps {
 export function SolutionsRoleNav({ activeRole = 'owners' }: SolutionsRoleNavProps) {
   const roles = [
     { id: 'owners', label: 'Owners & C-suite', href: '/solutions' },
-    { id: 'managers', label: 'Managers', href: '/solutions#roles' },
+    { id: 'managers', label: 'Managers', href: '/solutions/managers' },
     { id: 'sales-reps', label: 'Sales reps', href: '/solutions#roles' },
     { id: 'marketing', label: 'Marketing', href: '/solutions#roles' },
   ];

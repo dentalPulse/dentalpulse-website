@@ -49,9 +49,9 @@ export function Footer() {
               <Link href="/solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Owners &amp; C-suite
               </Link>
-              <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/solutions/managers" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Managers
-              </a>
+              </Link>
               <a href="/#solutions" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Sales reps
               </a>
