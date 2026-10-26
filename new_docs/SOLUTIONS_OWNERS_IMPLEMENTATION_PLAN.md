@@ -41,7 +41,7 @@ src/
 
 ---
 
-### Phase 2: Executive Hero & Scorecard Card (`SolutionsHero.tsx`)
+### Phase 2: Executive Hero & Scorecard Card (`SolutionsHero.tsx`) (COMPLETED)
 1. Create `src/components/solutions/SolutionsHero.tsx`:
    - Kicker: `FOR LAB OWNERS & C-SUITE` (JetBrains Mono, `#067A47`).
    - Headline: *"See the health of your whole lab on one screen."*
