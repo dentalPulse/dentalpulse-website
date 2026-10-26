@@ -65,8 +65,8 @@ src/
 
 ---
 
-### Phase 4: Dark Process Workflow & Onboarding Steps (`IntegrationsHowItWorks.tsx`)
-1. Create `src/components/integrations/IntegrationsHowItWorks.tsx`:
+### Phase 4: Dark Process Workflow & Onboarding Steps (`IntegrationsHowItWorks.tsx`) (COMPLETED)
+1. Created [`src/components/integrations/IntegrationsHowItWorks.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/integrations/IntegrationsHowItWorks.tsx):
    - High-contrast dark `#0A0A0A` background with crisp white typography.
    - Headline: *"Connected and running without IT headaches."*
    - 4 Sequential Process Cards (with `#12F095` neon green accent top border):
@@ -74,6 +74,8 @@ src/
      * **STEP 2 — Secure connection:** Our team connects your data sources and imports your history.
      * **STEP 3 — Automatic sync:** Data refreshes continuously in real time — dashboards and alerts stay current.
      * **STEP 4 — Team onboarding:** Role-based training for owners, managers, reps and marketing.
+2. Wired `IntegrationsHowItWorks` into [`src/app/integrations/page.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/app/integrations/page.tsx).
+3. Verified compilation via `npm run build` (15 routes compiled with 0 errors) and HTTP 200 on `http://localhost:3000/integrations`.
 
 ---
 

@@ -3,6 +3,7 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { IntegrationsHero } from '@/components/integrations/IntegrationsHero';
 import { IntegrationsDirectory } from '@/components/integrations/IntegrationsDirectory';
+import { IntegrationsHowItWorks } from '@/components/integrations/IntegrationsHowItWorks';
 
 export const metadata: Metadata = {
   title: 'Integrations | DentalPulse',
@@ -23,6 +24,7 @@ export default function IntegrationsPage() {
       <div className="flex-1 w-full flex flex-col">
         <IntegrationsHero />
         <IntegrationsDirectory />
+        <IntegrationsHowItWorks />
         {/* Remaining sections will be assembled in subsequent phases */}
       </div>
       <Footer />
