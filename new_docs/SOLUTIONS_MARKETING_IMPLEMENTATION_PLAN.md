@@ -86,14 +86,16 @@ src/
 
 ---
 
-### Phase 4: Dark Capabilities & Marketer Social Proof
-1. Create `src/components/solutions/marketing/MarketingCapabilitiesSection.tsx`:
+### Phase 4: Dark Capabilities & Marketer Social Proof (COMPLETED)
+1. Created [`src/components/solutions/marketing/MarketingCapabilitiesSection.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/solutions/marketing/MarketingCapabilitiesSection.tsx):
    - Dark `#0A0A0A` container with `#12F095` neon green icons in `#161616` badges:
      * **Customer segments** (Team / users icon)
      * **Campaign builder** (Mail / envelope icon)
      * **Revenue attribution** (Trending chart / analytics arrow icon)
-2. Create `src/components/solutions/marketing/MarketingQuoteSection.tsx`:
+2. Created [`src/components/solutions/marketing/MarketingQuoteSection.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/solutions/marketing/MarketingQuoteSection.tsx):
    - Testimonial from Sarah Jenkins (Head of Marketing, Lumina Dental Craft).
+3. Wired both into [`src/app/solutions/marketing/page.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/app/solutions/marketing/page.tsx).
+4. Verified via `npm run build` (14 routes compiled) and HTTP 200 on `http://localhost:3000/solutions/marketing`.
 
 ---
 

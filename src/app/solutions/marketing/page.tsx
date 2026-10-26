@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/Footer';
 import { SolutionsRoleNav } from '@/components/solutions/SolutionsRoleNav';
 import { MarketingHero } from '@/components/solutions/marketing/MarketingHero';
 import { MarketingQuestionsSection } from '@/components/solutions/marketing/MarketingQuestionsSection';
+import { MarketingCapabilitiesSection } from '@/components/solutions/marketing/MarketingCapabilitiesSection';
+import { MarketingQuoteSection } from '@/components/solutions/marketing/MarketingQuoteSection';
 
 export const metadata: Metadata = {
   title: 'Solutions for Marketing Teams | DentalPulse',
@@ -25,6 +27,8 @@ export default function MarketingPage() {
         <SolutionsRoleNav activeRole="marketing" />
         <MarketingHero />
         <MarketingQuestionsSection />
+        <MarketingCapabilitiesSection />
+        <MarketingQuoteSection />
         {/* Remaining sections will be assembled in subsequent phases */}
       </div>
       <Footer />
