@@ -1,101 +1,73 @@
 import React from 'react';
-import Image from 'next/image';
-import Marquee from "react-fast-marquee";
 
-const testimonials = [
+const TESTIMONIALS = [
   {
-    quote: "Since using dental pulse, we've reduced our time on tracking metrics by 50%. It's easy and intuitive. It's been a game changer for my busy lifestyle.",
-    author: "Kelly M.",
-    image: "/user_pic.png"
+    quote:
+      'Early risk alerts saved our largest implant account. We had two weeks to step in before the dentist moved their volume elsewhere.',
+    initials: 'MS',
+    author: 'Michael S.',
+    title: 'Managing Director, Apex Dental Ceramics',
   },
   {
-    quote: "It helps team leaders bring out the best in people by identifying the blind spots and discovering strengths. Highly recommend for any lab.",
-    author: "Mark T.",
-    image: "/user_pic2.png"
+    quote:
+      'We reduced our time on tracking weekly metrics by 80%. No more exports or copy-pasting numbers out of lab software.',
+    initials: 'DR',
+    author: 'David R.',
+    title: 'VP Operations, Summit Milling Center',
   },
   {
-    quote: "The efficiency savings have been incredible. Plus, every time I have reached out for help the support team was fast and helpful. Highly recommend!",
-    author: "Sarah L.",
-    image: "/user_pic3.png"
+    quote:
+      'DentalPulse uncovered $48K in cross-sell opportunities with our existing dentists in the first month alone.',
+    initials: 'KL',
+    author: 'Kelly L.',
+    title: 'Sales & CS Manager, Precision Dental Arts',
   },
-  {
-    quote: "I never knew managing a lab could be this simple and satisfying. Thanks to dental pulse, my team enjoys diverse, automated tasks every day.",
-    author: "Emily R.",
-    image: "/user_pic4.png"
-  }
 ];
 
 export function Testimonials() {
   return (
-    <section className="relative w-full bg-brand-primary py-16 md:py-32 pl-6 flex flex-col items-center overflow-hidden">
+    <section id="testimonials" className="w-full bg-white pb-24 px-6">
+      <div className="max-w-[1240px] mx-auto">
+        {/* Section Top Header */}
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6">
+          <h2 className="m-0 text-[32px] sm:text-[42px] lg:text-[50px] font-extrabold leading-[1.06] tracking-[-0.03em] text-[#0A0A0A] max-w-[640px]">
+            Labs love growing with Dental Pulse.
+          </h2>
+          <a
+            href="#book-demo"
+            className="font-bold text-[15px] sm:text-[16px] text-[#067A47] hover:text-[#06663C] transition-colors inline-flex items-center gap-1.5 shrink-0"
+          >
+            <span>Read customer stories</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
 
-      {/* Floating Smile Icons */}
-      <div className="absolute left-[5%] lg:left-[10%] top-[20%] w-[40px] h-[40px] md:w-[80px] md:h-[80px]">
-        <Image src="/smile_lg.png" alt="Smile" fill sizes="(max-width: 768px) 60px, 80px" className="object-contain" />
-      </div>
-      <div className="absolute right-[10%] lg:right-[15%] md:top-[10%] top-[0%] w-[30px] h-[30px] md:w-[50px] md:h-[50px]">
-        <Image src="/smile.png" alt="Smile" fill sizes="(max-width: 768px) 40px, 50px" className="object-contain" />
-      </div>
+        {/* 3 Testimonials Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12">
+          {TESTIMONIALS.map((t) => (
+            <figure
+              key={t.author}
+              className="m-0 bg-white border border-[#E6E6E6] hover:border-[#BDBDBD] rounded-[22px] p-7 sm:p-8 flex flex-col justify-between gap-6 transition-all shadow-sm hover:shadow-md"
+            >
+              <blockquote className="m-0 text-[18px] sm:text-[19px] leading-[1.55] font-semibold tracking-[-0.01em] text-[#0A0A0A]">
+                “{t.quote}”
+              </blockquote>
 
-      <div className="w-full flex flex-col items-center text-center relative z-10">
-        <h2 className="text-[24px] md:text-[36px] !font-normal mb-20 text-black">
-          Customers love growing with<br />
-          <span className="font-bold text-[36px] md:text-[50px]">dental pulse</span>
-        </h2>
-
-        {/* Testimonial Cards */}
-        <div className="w-full overflow-hidden">
-          <Marquee gradient={false} speed={50} pauseOnHover={true} className="py-4">
-            {testimonials.map((testimonial, idx) => {
-              const isBlackCard = idx % 2 === 1;
-
-              return (
-                <div
-                  key={idx}
-                  className={`mx-3 w-[215px] md:w-[395px] shrink-0 rounded-[16px] p-7 flex flex-col justify-between shadow-lg min-h-[240px] ${isBlackCard
-                    ? 'bg-black text-white'
-                    : 'bg-white text-black'
-                    }`}
-                >
-                  <div>
-                    <p
-                      className={`text-[13px] leading-[1.35] ${isBlackCard ? 'text-gray-300' : 'text-gray-600'
-                        }`}
-                    >
-                      {testimonial.quote}
-                    </p>
-                  </div>
-
-                  <div className="flex flex-col">
-                    <div className="flex justify-end mb-4">
-                      <span
-                        className="text-[#11f294] font-bold text-3xl italic leading-none"
-                        style={{ fontFamily: 'sans-serif' }}
-                      >
-                //
-                      </span>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                      <div className="relative w-9 h-9 rounded-full overflow-hidden shrink-0">
-                        <Image
-                          src={testimonial.image}
-                          alt={testimonial.author}
-                          fill
-                          sizes="36px"
-                          className="object-cover"
-                        />
-                      </div>
-
-                      <span className="font-medium text-[13px]">
-                        {testimonial.author}
-                      </span>
-                    </div>
-                  </div>
+              <figcaption className="mt-auto flex items-center gap-3 pt-4 border-t border-[#F0F0F0]">
+                <span className="w-11 h-11 rounded-full bg-[#E3FCEF] flex items-center justify-center font-bold text-[14px] text-[#067A47] shrink-0">
+                  {t.initials}
+                </span>
+                <div>
+                  <b className="block text-[15px] font-bold text-[#0A0A0A] leading-tight">
+                    {t.author}
+                  </b>
+                  <span className="text-[13px] text-[#5C5C5C] leading-snug">
+                    {t.title}
+                  </span>
                 </div>
-              );
-            })}
-          </Marquee>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </div>
     </section>

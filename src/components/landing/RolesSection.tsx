@@ -38,7 +38,7 @@ export function RolesSection() {
           {ROLES.map((item) => (
             <a
               key={item.role}
-              href="#pricing"
+              href="#book-demo"
               className="group bg-white border border-[#E6E6E6] hover:border-[#BDBDBD] hover:shadow-md rounded-[20px] p-7 flex flex-col justify-between gap-3 min-h-[210px] transition-all no-underline"
             >
               <div>

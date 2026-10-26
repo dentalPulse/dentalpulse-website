@@ -8,7 +8,6 @@ import { HowItWorks } from '@/components/landing/HowItWorks';
 import { FeaturesBento } from '@/components/landing/FeaturesBento';
 import { ProvenResults } from '@/components/landing/ProvenResults';
 import { RolesSection } from '@/components/landing/RolesSection';
-import { Pricing } from '@/components/landing/Pricing';
 import { Testimonials } from '@/components/landing/Testimonials';
 import { BottomCTA } from '@/components/landing/BottomCTA';
 import { Footer } from '@/components/layout/Footer';
@@ -26,7 +25,6 @@ export default function Home() {
       <FeaturesBento />
       <ProvenResults />
       <RolesSection />
-      <Pricing />
       <Testimonials />
       <BottomCTA />
       <Footer />
