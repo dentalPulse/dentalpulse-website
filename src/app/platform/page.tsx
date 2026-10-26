@@ -2,6 +2,10 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { PlatformHero } from '@/components/platform/PlatformHero';
+import { Customer360Section } from '@/components/platform/Customer360Section';
+import { PredictiveInsightsSection } from '@/components/platform/PredictiveInsightsSection';
+import { GamePlanSection } from '@/components/platform/GamePlanSection';
+import { WorkflowsSection } from '@/components/platform/WorkflowsSection';
 
 export const metadata: Metadata = {
   title: 'Platform & How It Works | DentalPulse',
@@ -21,6 +25,10 @@ export default function PlatformPage() {
       <Header />
       <div className="flex-1 w-full flex flex-col">
         <PlatformHero />
+        <Customer360Section />
+        <PredictiveInsightsSection />
+        <GamePlanSection />
+        <WorkflowsSection />
       </div>
       <Footer />
     </main>
