@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { IntegrationsHero } from '@/components/integrations/IntegrationsHero';
 
 export const metadata: Metadata = {
   title: 'Integrations | DentalPulse',
@@ -19,7 +20,8 @@ export default function IntegrationsPage() {
     <main className="min-h-screen w-full flex flex-col bg-white">
       <Header />
       <div className="flex-1 w-full flex flex-col">
-        {/* Integrations sections will be assembled in subsequent phases */}
+        <IntegrationsHero />
+        {/* Remaining sections will be assembled in subsequent phases */}
       </div>
       <Footer />
     </main>
