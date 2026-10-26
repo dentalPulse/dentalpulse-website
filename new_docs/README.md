@@ -41,8 +41,19 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Executive scorecard breakdown ($4.86M Revenue, 91.4% Retention, $48.2K LTV, $186K Revenue at risk, segment bars).
    - Executive question cards, dark capabilities section, testimonial quote, and role cross-links.
 
-2. [**Solutions Implementation Plan (`SOLUTIONS_OWNERS_IMPLEMENTATION_PLAN.md`)**](SOLUTIONS_OWNERS_IMPLEMENTATION_PLAN.md)
+2. [**Solutions (Lab Owners & C-Suite) Implementation Plan (`SOLUTIONS_OWNERS_IMPLEMENTATION_PLAN.md`)**](SOLUTIONS_OWNERS_IMPLEMENTATION_PLAN.md)
    - Route mapping for `/solutions` and `/solutions/owners`.
    - Component architecture in `src/components/solutions/`.
    - 5-phase rollout roadmap.
+
+3. [**Solutions (Sales & CS Managers) Audit (`SOLUTIONS_MANAGERS_PAGE_AUDIT.md`)**](SOLUTIONS_MANAGERS_PAGE_AUDIT.md)
+   - Detailed audit of `Managers.dc.html` (`Solutions — Sales & CS managers-html`).
+   - Team performance scorecard breakdown (Rep table: Jordan M., Aisha R., Tom K., Lena S., suggested coaching intervention).
+   - "Lead with facts, not hunches" 4-card grid, dark capabilities section, testimonial quote, and role cross-links.
+
+4. [**Solutions (Sales & CS Managers) Implementation Plan (`SOLUTIONS_MANAGERS_IMPLEMENTATION_PLAN.md`)**](SOLUTIONS_MANAGERS_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/solutions/managers`.
+   - Modular component architecture in `src/components/solutions/managers/`.
+   - 5-phase rollout roadmap.
+
 
