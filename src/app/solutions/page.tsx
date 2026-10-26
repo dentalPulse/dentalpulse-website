@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/Footer';
 import { SolutionsRoleNav } from '@/components/solutions/SolutionsRoleNav';
 import { SolutionsHero } from '@/components/solutions/SolutionsHero';
 import { QuestionsSection } from '@/components/solutions/QuestionsSection';
+import { ExecutiveCapabilitiesSection } from '@/components/solutions/ExecutiveCapabilitiesSection';
+import { ExecutiveQuoteSection } from '@/components/solutions/ExecutiveQuoteSection';
 
 export const metadata: Metadata = {
   title: 'Solutions for Lab Owners & C-Suite | DentalPulse',
@@ -25,6 +27,8 @@ export default function SolutionsPage() {
         <SolutionsRoleNav activeRole="owners" />
         <SolutionsHero />
         <QuestionsSection />
+        <ExecutiveCapabilitiesSection />
+        <ExecutiveQuoteSection />
       </div>
       <Footer />
     </main>
