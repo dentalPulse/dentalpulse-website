@@ -77,14 +77,16 @@ src/
 
 ---
 
-### Phase 4: Dark Capabilities & Field Rep Social Proof
-1. Create `src/components/solutions/sales-reps/SalesRepsCapabilitiesSection.tsx`:
-   - Dark `#0A0A0A` container with `#12F095` neon green icons in `#161616` cards:
+### Phase 4: Dark Capabilities & Field Rep Social Proof (COMPLETED)
+1. Created [`src/components/solutions/sales-reps/SalesRepsCapabilitiesSection.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/solutions/sales-reps/SalesRepsCapabilitiesSection.tsx):
+   - Dark `#0A0A0A` container with `#12F095` neon green icons in `#161616` badges:
      * **Game plan AI coach** (Target bullseye icon)
-     * **Real-time alerts** (Bell / alert icon)
-     * **One-tap outreach** (Chat / message icon)
-2. Create `src/components/solutions/sales-reps/SalesRepsQuoteSection.tsx`:
-   - Authentic territory rep quote from Elena Rostova.
+     * **Real-time alerts** (Bell alert icon)
+     * **One-tap outreach** (Chat message icon)
+2. Created [`src/components/solutions/sales-reps/SalesRepsQuoteSection.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/solutions/sales-reps/SalesRepsQuoteSection.tsx):
+   - Territory rep quote from Elena Rostova (Apex Dental Craft).
+3. Wired both into [`src/app/solutions/sales-reps/page.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/app/solutions/sales-reps/page.tsx).
+4. Verified via `npm run build` and HTTP 200 on `http://localhost:3000/solutions/sales-reps`.
 
 ---
 

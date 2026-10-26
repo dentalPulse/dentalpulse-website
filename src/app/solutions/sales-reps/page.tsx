@@ -4,6 +4,8 @@ import { Footer } from '@/components/layout/Footer';
 import { SolutionsRoleNav } from '@/components/solutions/SolutionsRoleNav';
 import { SalesRepsHero } from '@/components/solutions/sales-reps/SalesRepsHero';
 import { SalesRepsQuestionsSection } from '@/components/solutions/sales-reps/SalesRepsQuestionsSection';
+import { SalesRepsCapabilitiesSection } from '@/components/solutions/sales-reps/SalesRepsCapabilitiesSection';
+import { SalesRepsQuoteSection } from '@/components/solutions/sales-reps/SalesRepsQuoteSection';
 
 export const metadata: Metadata = {
   title: 'Solutions for Sales Representatives | DentalPulse',
@@ -25,6 +27,8 @@ export default function SalesRepsPage() {
         <SolutionsRoleNav activeRole="sales-reps" />
         <SalesRepsHero />
         <SalesRepsQuestionsSection />
+        <SalesRepsCapabilitiesSection />
+        <SalesRepsQuoteSection />
         {/* Remaining sections will be assembled in subsequent phases */}
       </div>
       <Footer />
