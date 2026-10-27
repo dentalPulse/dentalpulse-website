@@ -137,4 +137,22 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Modular component architecture in `src/components/resources/`.
    - 5-phase rollout roadmap.
 
+---
+
+## 8. About Page
+
+1. [**About Page Audit (`ABOUT_PAGE_AUDIT.md`)**](ABOUT_PAGE_AUDIT.md)
+   - Detailed audit of `About.dc.html` (`About-html`).
+   - Massive mission hero with split 2-column narrative.
+   - Asymmetric mission showcase bento card (wide workspace visual + dark promise card).
+   - 4-card "What we believe" core operating values grid.
+   - 4-card leadership team showcase with bio modal support.
+   - Dark contact block with direct address, email, and social channels.
+
+2. [**About Implementation Plan (`ABOUT_IMPLEMENTATION_PLAN.md`)**](ABOUT_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/about` (`src/app/about/page.tsx`).
+   - Modular component architecture in `src/components/about/`.
+   - 5-phase rollout roadmap.
+
+
 
