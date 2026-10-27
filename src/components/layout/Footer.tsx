@@ -123,7 +123,7 @@ export function Footer() {
               <FooterNavLink href="/platform">How it works</FooterNavLink>
               <FooterNavLink href="/pricing">Pricing</FooterNavLink>
               <FooterNavLink href="/integrations">Integrations</FooterNavLink>
-              <FooterNavLink href="/#results">ROI calculator</FooterNavLink>
+              <FooterNavLink href="/roi">ROI calculator</FooterNavLink>
             </div>
 
             {/* Column 2: Solutions */}

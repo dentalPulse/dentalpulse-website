@@ -15,7 +15,7 @@ export function Header() {
     { label: 'Platform', href: '/platform' },
     { label: 'Solutions', href: '/solutions' },
     { label: 'Integrations', href: '/integrations' },
-    { label: 'ROI', href: '/#results' },
+    { label: 'ROI', href: '/roi' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Customers', href: '/customers' },
     { label: 'Resources', href: '/resources' },
