@@ -170,8 +170,7 @@ export function Header() {
           </motion.a>
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
-              href="/#book-demo"
-              onClick={(e) => handleSmoothClick(e, '/#book-demo')}
+              href="/book-demo"
               className="inline-block bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
             >
               Book a demo
@@ -243,11 +242,8 @@ export function Header() {
                 Log in
               </a>
               <Link
-                href="/#book-demo"
-                onClick={(e) => {
-                  handleSmoothClick(e, '/#book-demo');
-                  setIsMenuOpen(false);
-                }}
+                href="/book-demo"
+                onClick={() => setIsMenuOpen(false)}
                 className="w-full text-center py-2.5 text-[15px] font-bold bg-[#12F095] text-[#0A0A0A] rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
               >
                 Book a demo
