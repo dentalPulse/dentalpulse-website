@@ -134,7 +134,7 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-2 text-[15px] font-medium">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
           {navLinks.map((link) => {
             const active = isLinkActive(link.href);
             return (
@@ -147,25 +147,10 @@ export function Header() {
                 <Link
                   href={link.href}
                   onClick={(e) => handleSmoothClick(e, link.href)}
-                  className={`relative px-3.5 py-1.5 rounded-full transition-colors flex items-center ${
+                  className={`transition-colors duration-200 ${
                     active ? 'text-[#12F095] font-semibold' : 'text-[#E6E6E6] hover:text-[#12F095]'
                   }`}
                 >
-                  {/* Framer Motion Layout sliding indicator */}
-                  {active && (
-                    <>
-                      <motion.span
-                        layoutId="navActivePill"
-                        className="absolute inset-0 rounded-full bg-[#12F095]/10 border border-[#12F095]/25 -z-10 shadow-[0_0_12px_rgba(18,240,149,0.18)]"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                      <motion.span
-                        layoutId="navActiveLine"
-                        className="absolute -bottom-1 left-3 right-3 h-[2px] bg-[#12F095] rounded-full shadow-[0_0_8px_rgba(18,240,149,0.9)]"
-                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                      />
-                    </>
-                  )}
                   {link.label}
                 </Link>
               </motion.div>
@@ -228,7 +213,7 @@ export function Header() {
             transition={{ duration: 0.25, ease: 'easeInOut' }}
             className="overflow-hidden lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl"
           >
-            <nav className="flex flex-col gap-2 text-[16px] font-medium">
+            <nav className="flex flex-col gap-3 text-[16px] font-medium">
               {navLinks.map((link) => {
                 const active = isLinkActive(link.href);
                 return (
@@ -239,14 +224,11 @@ export function Header() {
                       handleSmoothClick(e, link.href);
                       setIsMenuOpen(false);
                     }}
-                    className={`flex items-center justify-between py-2.5 px-3.5 rounded-lg transition-colors ${
-                      active ? 'text-[#12F095] bg-[#12F095]/10 font-semibold' : 'text-[#E6E6E6] hover:text-[#12F095] hover:bg-white/5'
+                    className={`py-1.5 transition-colors duration-200 ${
+                      active ? 'text-[#12F095] font-semibold' : 'text-[#E6E6E6] hover:text-[#12F095]'
                     }`}
                   >
-                    <span>{link.label}</span>
-                    {active && (
-                      <span className="w-2 h-2 rounded-full bg-[#12F095] shadow-[0_0_8px_#12F095]" />
-                    )}
+                    {link.label}
                   </Link>
                 );
               })}

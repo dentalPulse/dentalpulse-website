@@ -75,20 +75,13 @@ export function Footer() {
         <Link
           href={href}
           onClick={(e) => handleSmoothClick(e, href)}
-          className={`inline-flex items-center gap-2 transition-colors ${
+          className={`transition-colors duration-200 ${
             active
               ? 'text-[#12F095] font-semibold'
               : 'text-[#BDBDBD] hover:text-[#12F095]'
           }`}
         >
-          {active && (
-            <motion.span
-              layoutId="footerActiveDot"
-              className="w-1.5 h-1.5 rounded-full bg-[#12F095] shadow-[0_0_8px_#12F095]"
-              transition={{ type: 'spring', stiffness: 350, damping: 25 }}
-            />
-          )}
-          <span>{children}</span>
+          {children}
         </Link>
       </motion.div>
     );
