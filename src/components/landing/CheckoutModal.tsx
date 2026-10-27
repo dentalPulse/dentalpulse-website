@@ -186,23 +186,23 @@ export function CheckoutModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 16 }}
           transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-          className="w-full max-w-[550px] rounded-[28px] bg-white p-6 sm:p-7 shadow-2xl relative my-auto border border-gray-100 overflow-hidden"
+          className="w-full max-w-[550px] rounded-[24px] sm:rounded-[28px] bg-white p-4 sm:p-7 shadow-2xl relative my-auto border border-gray-100 overflow-hidden"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
         >
           {/* Header Row: DentalPulse Logo + Plan Badge + Close Button */}
-          <div className="flex items-center justify-between gap-3 mb-6">
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-2 sm:gap-3 mb-5 sm:mb-6">
+            <div className="flex flex-wrap sm:flex-nowrap items-center gap-2 sm:gap-3">
               <Image
                 src="/dental_pulse.png"
                 alt="Dental Pulse"
                 width={130}
                 height={26}
-                className="h-6 w-auto object-contain"
+                className="h-5 sm:h-6 w-auto object-contain"
                 priority
               />
-              <span className="inline-flex items-center px-3 py-1 rounded-full text-[12px] font-semibold bg-[#E3FCEF] text-[#067A47] border border-[#B8F7E1] tracking-wide">
+              <span className="inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full text-[11px] sm:text-[12px] font-semibold bg-[#E3FCEF] text-[#067A47] border border-[#B8F7E1] tracking-wide">
                 {planName} · ${effectiveBaseRate}/{intervalLabel}
               </span>
             </div>

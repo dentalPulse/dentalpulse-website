@@ -21,7 +21,7 @@ export function ProductPreview() {
           {/* Code-Rendered High-Fidelity Dashboard Interface */}
           <div className="bg-white rounded-[14px] overflow-hidden flex flex-col md:flex-row text-[#0A0A0A]">
             {/* Sidebar */}
-            <div className="w-full md:w-[210px] shrink-0 bg-[#F5F5F5] border-b md:border-b-0 md:border-r border-[#EAEAEA] p-4 sm:p-5 flex flex-col gap-1 text-[13px] sm:text-[14px] font-medium text-[#5C5C5C]">
+            <div className="hidden md:flex w-[210px] shrink-0 bg-[#F5F5F5] border-r border-[#EAEAEA] p-4 sm:p-5 flex-col gap-1 text-[13px] sm:text-[14px] font-medium text-[#5C5C5C]">
               {/* Sidebar Header */}
               <div className="flex items-center gap-2 pb-4 text-[#0A0A0A] font-extrabold text-[15px]">
                 <svg width="22" height="22" viewBox="0 0 34 34" aria-hidden="true">
@@ -66,65 +66,65 @@ export function ProductPreview() {
             </div>
 
             {/* Main Dashboard Area */}
-            <div className="flex-1 min-w-0 p-4 sm:p-6 flex flex-col gap-4 sm:gap-5">
+            <div className="flex-1 min-w-0 p-3.5 sm:p-6 flex flex-col gap-3.5 sm:gap-5">
               {/* Top Bar */}
-              <div className="flex flex-wrap justify-between items-center gap-3">
+              <div className="flex flex-wrap justify-between items-center gap-2 sm:gap-3">
                 <div>
-                  <div className="text-[18px] sm:text-[20px] font-extrabold tracking-[-0.02em] text-[#0A0A0A]">
+                  <div className="text-[17px] sm:text-[20px] font-extrabold tracking-[-0.02em] text-[#0A0A0A]">
                     Lab overview
                   </div>
-                  <div className="text-[12px] sm:text-[13px] text-[#5C5C5C]">
+                  <div className="text-[11px] sm:text-[13px] text-[#5C5C5C]">
                     Last 90 days • all territories
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-[13px] font-semibold">
-                  <span className="px-3 py-1.5 border border-[#E6E6E6] rounded-lg text-[#0A0A0A] bg-white">
+                <div className="flex items-center gap-2 text-[12px] sm:text-[13px] font-semibold">
+                  <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 border border-[#E6E6E6] rounded-lg text-[#0A0A0A] bg-white">
                     90 days
                   </span>
-                  <span className="px-3 py-1.5 rounded-lg bg-[#0A0A0A] text-white">
+                  <span className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg bg-[#0A0A0A] text-white">
                     Export
                   </span>
                 </div>
               </div>
 
               {/* KPI Cards Row */}
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-                <div className="border border-[#EAEAEA] rounded-[12px] p-3.5 sm:p-4">
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-3">
+                <div className="border border-[#EAEAEA] rounded-[12px] p-2.5 sm:p-4">
                   <div className="text-[11px] sm:text-[12px] text-[#5C5C5C] font-semibold">Revenue</div>
-                  <div className="text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
+                  <div className="text-[18px] xs:text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
                     $1.42M
                   </div>
-                  <div className="text-[11px] sm:text-[12px] font-bold text-[#067A47] mt-0.5">
+                  <div className="text-[10px] sm:text-[12px] font-bold text-[#067A47] mt-0.5">
                     ▲ 6.1% vs prior
                   </div>
                 </div>
 
-                <div className="border border-[#EAEAEA] rounded-[12px] p-3.5 sm:p-4">
+                <div className="border border-[#EAEAEA] rounded-[12px] p-2.5 sm:p-4">
                   <div className="text-[11px] sm:text-[12px] text-[#5C5C5C] font-semibold">Active dentists</div>
-                  <div className="text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
+                  <div className="text-[18px] xs:text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
                     312
                   </div>
-                  <div className="text-[11px] sm:text-[12px] font-bold text-[#067A47] mt-0.5">
+                  <div className="text-[10px] sm:text-[12px] font-bold text-[#067A47] mt-0.5">
                     ▲ 4 net new
                   </div>
                 </div>
 
-                <div className="border border-[#BDBDBD] bg-[#F5F5F5] rounded-[12px] p-3.5 sm:p-4">
+                <div className="border border-[#BDBDBD] bg-[#F5F5F5] rounded-[12px] p-2.5 sm:p-4">
                   <div className="text-[11px] sm:text-[12px] text-[#0A0A0A] font-semibold">Revenue at risk</div>
-                  <div className="text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
+                  <div className="text-[18px] xs:text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
                     $186K
                   </div>
-                  <div className="text-[11px] sm:text-[12px] font-bold text-[#0A0A0A] mt-0.5">
+                  <div className="text-[10px] sm:text-[12px] font-bold text-[#0A0A0A] mt-0.5">
                     18 accounts flagged
                   </div>
                 </div>
 
-                <div className="border border-[#EAEAEA] rounded-[12px] p-3.5 sm:p-4">
+                <div className="border border-[#EAEAEA] rounded-[12px] p-2.5 sm:p-4">
                   <div className="text-[11px] sm:text-[12px] text-[#5C5C5C] font-semibold">Avg. customer LTV</div>
-                  <div className="text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
+                  <div className="text-[18px] xs:text-[22px] sm:text-[26px] font-extrabold tracking-[-0.02em] mt-1 text-[#0A0A0A]">
                     $48.2K
                   </div>
-                  <div className="text-[11px] sm:text-[12px] font-bold text-[#067A47] mt-0.5">
+                  <div className="text-[10px] sm:text-[12px] font-bold text-[#067A47] mt-0.5">
                     ▲ 3.4% vs prior
                   </div>
                 </div>

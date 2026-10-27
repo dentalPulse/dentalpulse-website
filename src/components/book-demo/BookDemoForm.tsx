@@ -47,7 +47,7 @@ export function BookDemoForm() {
   };
 
   return (
-    <div className="flex-1 min-w-[320px] max-w-[620px]">
+    <div className="flex-1 min-w-0 w-full max-w-[620px]">
       <AnimatePresence mode="wait">
         {!isSubmitted ? (
           <motion.form
@@ -57,7 +57,7 @@ export function BookDemoForm() {
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.25 }}
             onSubmit={handleSubmit}
-            className="bg-white border border-[#E6E6E6] rounded-[28px] p-6 sm:p-10 flex flex-col gap-5 shadow-[0_40px_70px_-50px_rgba(0,0,0,0.45)]"
+            className="bg-white border border-[#E6E6E6] rounded-[24px] sm:rounded-[28px] p-5 sm:p-10 flex flex-col gap-5 shadow-[0_40px_70px_-50px_rgba(0,0,0,0.45)]"
           >
             <h2 className="m-0 mb-1 text-[22px] sm:text-[24px] font-extrabold text-[#0A0A0A]">
               Tell us about your lab

@@ -229,9 +229,20 @@ export function PricingCompareTable() {
           </p>
         </div>
 
+        {/* Mobile Swipe Hint */}
+        <div className="flex sm:hidden items-center gap-1.5 text-[12px] font-semibold text-[#5C5C5C] mb-3 bg-[#F3F4F6] px-3 py-1.5 rounded-full w-fit">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+          <span>Swipe horizontally to compare plans</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </div>
+
         {/* Comparison Table Container */}
         <div className="border border-[#E5E7EB] rounded-[24px] overflow-hidden bg-white shadow-xs">
-          <div className="overflow-x-auto">
+          <div className="overflow-x-auto no-scrollbar" style={{ WebkitOverflowScrolling: 'touch' }}>
             <table className="w-full min-w-[760px] border-collapse text-left">
               {/* Header */}
               <thead>

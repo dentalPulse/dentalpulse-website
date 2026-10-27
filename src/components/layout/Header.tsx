@@ -105,7 +105,7 @@ export function Header() {
 
   return (
     <header className="w-full bg-[#0A0A0A] border-b border-[#222222] sticky top-0 z-50 transition-colors">
-      <div className="max-w-[1240px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4">
         {/* Brand Logo */}
         <Link
           href="/"
@@ -119,14 +119,14 @@ export function Header() {
               alt="Dental Pulse"
               width={182}
               height={33}
-              className="h-[32px] w-auto object-contain transition-opacity group-hover:opacity-90"
+              className="h-[28px] sm:h-[32px] w-auto object-contain transition-opacity group-hover:opacity-90"
               priority
             />
           </motion.div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-4 xl:gap-7 text-[14px] xl:text-[15px] font-medium">
           {navLinks.map((link) => {
             const active = isLinkActive(link.href);
             return (
@@ -151,19 +151,19 @@ export function Header() {
         </nav>
 
         {/* Desktop Auth / CTA */}
-        <div className="hidden lg:flex items-center gap-3 shrink-0">
+        <div className="hidden lg:flex items-center gap-2.5 xl:gap-3 shrink-0">
           <motion.a
             whileHover={{ y: -1 }}
             whileTap={{ scale: 0.97 }}
             href="https://app.dentalpulseai.com"
-            className="text-[15px] font-semibold text-white px-3.5 py-2.5 hover:text-[#12F095] transition-colors"
+            className="text-[14px] xl:text-[15px] font-semibold text-white px-2.5 xl:px-3.5 py-2.5 hover:text-[#12F095] transition-colors"
           >
             Log in
           </motion.a>
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
             <Link
               href="/book-demo"
-              className="inline-block bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
+              className="inline-block bg-[#12F095] text-[#0A0A0A] text-[14px] xl:text-[15px] font-bold px-4 xl:px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
             >
               Book a demo
             </Link>
@@ -202,7 +202,7 @@ export function Header() {
             animate={{ opacity: 1, height: 'auto', y: 0 }}
             exit={{ opacity: 0, height: 0, y: -8 }}
             transition={{ duration: 0.25, ease: 'easeInOut' }}
-            className="overflow-hidden lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl"
+            className="overflow-y-auto max-h-[calc(100vh-76px)] lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl"
           >
             <nav className="flex flex-col gap-3 text-[16px] font-medium">
               {navLinks.map((link) => {

@@ -59,7 +59,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[#0A0A0A] text-white pt-20 md:pt-28 pb-44 md:pb-60 px-6 text-center [background-image:radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:28px_28px]">
+    <section className="relative overflow-hidden bg-[#0A0A0A] text-white pt-16 sm:pt-20 md:pt-28 pb-40 sm:pb-48 md:pb-60 px-4 sm:px-6 text-center [background-image:radial-gradient(rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:28px_28px]">
       {/* Background Pulse Trace Animation */}
       <svg
         aria-hidden="true"
@@ -90,7 +90,7 @@ export function Hero() {
 
       <div className="relative z-10 max-w-[1240px] mx-auto">
         {/* Main Headline */}
-        <h1 className="relative mx-auto max-w-[860px] text-[40px] sm:text-[56px] md:text-[76px] lg:text-[88px] font-extrabold leading-[1.02] tracking-[-0.045em] text-white">
+        <h1 className="relative mx-auto max-w-[860px] text-[34px] xs:text-[40px] sm:text-[56px] md:text-[76px] lg:text-[88px] font-extrabold leading-[1.04] tracking-[-0.045em] text-white">
           <span>The AI growth platform built for</span>{' '}
           <span className="relative inline-block text-[#12F095]">
             <span>dental labs.</span>
@@ -99,7 +99,7 @@ export function Hero() {
               aria-hidden="true"
               viewBox="0 0 300 20"
               preserveAspectRatio="none"
-              className="absolute left-0 -bottom-3 sm:-bottom-4 w-full h-4 sm:h-5 pointer-events-none"
+              className="absolute left-0 -bottom-2.5 sm:-bottom-4 w-full h-3.5 sm:h-5 pointer-events-none"
             >
               <path
                 d="M4 14 C60 4 120 4 170 10 S260 16 296 6"
@@ -113,7 +113,7 @@ export function Hero() {
         </h1>
 
         {/* Pulse AI Search & Prompt Card */}
-        <div className="relative max-w-[760px] mx-auto mt-14 sm:mt-18">
+        <div className="relative max-w-[760px] mx-auto mt-10 sm:mt-16 md:mt-18">
           {/* Live Indicator Tag */}
           <div className="inline-flex items-center gap-2 mb-3.5 font-mono text-[13px] font-semibold tracking-[0.08em] text-[#12F095]">
             <span className="dp-live w-2 h-2 rounded-full bg-[#12F095] shadow-[0_0_10px_#12F095]" />
@@ -121,19 +121,19 @@ export function Hero() {
           </div>
 
           {/* Interactive Card */}
-          <div className="bg-white text-[#0A0A0A] rounded-[24px] p-2.5 text-left shadow-[0_0_0_1px_rgba(18,240,149,0.55),0_0_0_8px_rgba(18,240,149,0.10),0_40px_90px_-20px_rgba(18,240,149,0.45)]">
-            <form onSubmit={handleAsk} className="flex items-center gap-3 p-1 sm:pl-2">
+          <div className="bg-white text-[#0A0A0A] rounded-[22px] sm:rounded-[24px] p-2 sm:p-2.5 text-left shadow-[0_0_0_1px_rgba(18,240,149,0.55),0_0_0_8px_rgba(18,240,149,0.10),0_40px_90px_-20px_rgba(18,240,149,0.45)]">
+            <form onSubmit={handleAsk} className="flex items-center gap-2 sm:gap-3 p-1 sm:pl-2">
               {/* EKG Icon Box */}
               <span
                 aria-hidden="true"
-                className="shrink-0 w-11 h-11 rounded-[14px] bg-[#0A0A0A] flex items-center justify-center p-2.5 overflow-hidden"
+                className="shrink-0 w-9 h-9 sm:w-11 sm:h-11 rounded-[12px] sm:rounded-[14px] bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-2.5 overflow-hidden"
               >
                 <Image
                   src="/logo_mark_white.png"
                   alt="Pulse AI"
                   width={30}
                   height={20}
-                  className="w-auto h-[18px] sm:h-[20px] object-contain"
+                  className="w-auto h-[16px] sm:h-[20px] object-contain"
                 />
               </span>
 
@@ -147,18 +147,18 @@ export function Hero() {
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Ask me anything about your lab’s growth…"
-                className="flex-1 min-w-0 min-h-[52px] sm:min-h-[56px] border-none outline-none bg-transparent font-sans text-[16px] sm:text-[18px] text-[#0A0A0A] placeholder-[#6E6E6E]"
+                className="flex-1 min-w-0 min-h-[46px] sm:min-h-[56px] border-none outline-none bg-transparent font-sans text-[14px] sm:text-[18px] text-[#0A0A0A] placeholder-[#6E6E6E]"
               />
 
               {/* Ask Button */}
               <button
                 type="submit"
-                className="shrink-0 inline-flex items-center gap-2 min-h-[48px] sm:min-h-[52px] px-5 sm:px-6 rounded-[16px] bg-[#0A0A0A] text-white font-sans text-[15px] sm:text-[16px] font-bold hover:bg-[#1a1a1a] transition-colors cursor-pointer"
+                className="shrink-0 inline-flex items-center gap-1.5 sm:gap-2 min-h-[44px] sm:min-h-[52px] px-3.5 sm:px-6 rounded-[14px] sm:rounded-[16px] bg-[#0A0A0A] text-white font-sans text-[14px] sm:text-[16px] font-bold hover:bg-[#1a1a1a] transition-colors cursor-pointer"
               >
                 <span>Ask</span>
                 <svg
-                  width="18"
-                  height="18"
+                  width="16"
+                  height="16"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -166,6 +166,7 @@ export function Hero() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
+                  className="hidden xs:inline-block sm:inline-block"
                 >
                   <path d="M5 12h14" />
                   <path d="M12 5l7 7-7 7" />
@@ -177,7 +178,7 @@ export function Hero() {
             {hasAnswer && (
               <div
                 role="status"
-                className="mt-2.5 mx-1 mb-1 p-4 rounded-[16px] bg-[#F2F2F2] flex flex-col gap-1.5 animate-in fade-in duration-200"
+                className="mt-2.5 mx-1 mb-1 p-3.5 sm:p-4 rounded-[16px] bg-[#F2F2F2] flex flex-col gap-1.5 animate-in fade-in duration-200"
               >
                 <div className="flex items-center gap-2 text-[12px] font-extrabold text-[#06663C]">
                   <span>PULSE AI</span>
@@ -193,13 +194,13 @@ export function Hero() {
           </div>
 
           {/* Quick Prompt Chips */}
-          <div className="flex flex-wrap justify-center gap-2 mt-4.5">
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-4.5">
             {SAMPLE_PROMPTS.map((prompt) => (
               <button
                 key={prompt.label}
                 type="button"
                 onClick={() => handleSelectPrompt(prompt)}
-                className="min-h-[42px] px-4 rounded-full border border-[#333333] bg-white/[0.06] text-[#E6E6E6] hover:text-white hover:bg-white/[0.12] hover:border-[#12F095] font-sans text-[13px] sm:text-[14px] font-semibold transition-all cursor-pointer text-left"
+                className="min-h-[38px] sm:min-h-[42px] px-3 sm:px-4 py-1.5 rounded-full border border-[#333333] bg-white/[0.06] text-[#E6E6E6] hover:text-white hover:bg-white/[0.12] hover:border-[#12F095] font-sans text-[12px] sm:text-[14px] font-semibold transition-all cursor-pointer text-left"
               >
                 {prompt.label}
               </button>

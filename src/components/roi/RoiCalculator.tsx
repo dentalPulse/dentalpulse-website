@@ -76,13 +76,13 @@ export function RoiCalculator() {
   };
 
   return (
-    <section className="w-full bg-white pb-24 px-6">
+    <section className="w-full bg-white pb-16 sm:pb-24 px-4 sm:px-6">
       <div className="max-w-[1240px] mx-auto flex flex-col lg:flex-row gap-8 lg:gap-10 items-stretch">
         
         {/* Left Column: Form Inputs */}
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex-[1.2] bg-white border border-[#E6E6E6] rounded-[24px] p-6 sm:p-10 flex flex-col gap-7 shadow-sm"
+          className="flex-[1.2] bg-white border border-[#E6E6E6] rounded-[24px] p-5 sm:p-10 flex flex-col gap-6 sm:gap-7 shadow-sm"
         >
           <h2 className="m-0 text-[22px] font-extrabold text-[#0A0A0A]">Your lab today</h2>
 
@@ -255,18 +255,18 @@ export function RoiCalculator() {
         </form>
 
         {/* Right Column: Estimated Impact Card */}
-        <div className="flex-1 bg-[#0A0A0A] text-white rounded-[24px] p-6 sm:p-10 flex flex-col justify-between gap-6 shadow-xl">
+        <div className="flex-1 bg-[#0A0A0A] text-white rounded-[24px] p-5 sm:p-10 flex flex-col justify-between gap-6 shadow-xl">
           <div>
             <div className="font-mono text-[13px] font-semibold text-[#12F095] tracking-[0.06em] uppercase">
               ESTIMATED YEARLY IMPACT
             </div>
             <div
               aria-live="polite"
-              className="text-[48px] sm:text-[60px] lg:text-[72px] font-extrabold tracking-[-0.04em] leading-none text-white mt-3"
+              className="text-[38px] xs:text-[46px] sm:text-[60px] lg:text-[72px] font-extrabold tracking-[-0.04em] leading-none text-white mt-3"
             >
               {calc.totalLabel}
             </div>
-            <div className="text-[15px] sm:text-[16px] text-[#BDBDBD] mt-3">
+            <div className="text-[14px] sm:text-[16px] text-[#BDBDBD] mt-3">
               <span className="text-[#12F095] font-bold">{calc.roiLabel}</span> return on a {calc.costLabel} yearly plan
             </div>
           </div>
@@ -294,29 +294,29 @@ export function RoiCalculator() {
           </div>
 
           {/* Detailed Line Item Breakdowns */}
-          <div className="flex flex-col gap-1 text-[14px] sm:text-[15px]">
-            <div className="flex justify-between items-center gap-3 py-3.5 border-b border-[#2A2A2A]">
-              <span className="flex items-center gap-2.5 text-[#E6E6E6]">
+          <div className="flex flex-col gap-1 text-[13px] sm:text-[15px]">
+            <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-1 xs:gap-3 py-3 border-b border-[#2A2A2A]">
+              <span className="flex items-center gap-2 text-[#E6E6E6]">
                 <span className="w-2.5 h-2.5 rounded-[3px] bg-[#12F095] shrink-0" />
                 Revenue kept from <strong className="text-white font-semibold">{calc.savedLabel}</strong> retained dentists
               </span>
-              <b className="font-mono text-white text-[15px] shrink-0">{calc.keptLabel}</b>
+              <b className="font-mono text-white text-[14px] sm:text-[15px] shrink-0 self-end xs:self-center">{calc.keptLabel}</b>
             </div>
 
-            <div className="flex justify-between items-center gap-3 py-3.5 border-b border-[#2A2A2A]">
-              <span className="flex items-center gap-2.5 text-[#E6E6E6]">
+            <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-1 xs:gap-3 py-3 border-b border-[#2A2A2A]">
+              <span className="flex items-center gap-2 text-[#E6E6E6]">
                 <span className="w-2.5 h-2.5 rounded-[3px] bg-[#8CF7C9] shrink-0" />
                 New cross-sell revenue
               </span>
-              <b className="font-mono text-white text-[15px] shrink-0">{calc.crossLabel}</b>
+              <b className="font-mono text-white text-[14px] sm:text-[15px] shrink-0 self-end xs:self-center">{calc.crossLabel}</b>
             </div>
 
-            <div className="flex justify-between items-center gap-3 py-3.5 border-b border-[#2A2A2A]">
-              <span className="flex items-center gap-2.5 text-[#E6E6E6]">
+            <div className="flex flex-col xs:flex-row xs:items-center justify-between gap-1 xs:gap-3 py-3 border-b border-[#2A2A2A]">
+              <span className="flex items-center gap-2 text-[#E6E6E6]">
                 <span className="w-2.5 h-2.5 rounded-[3px] bg-[#FFFFFF] shrink-0" />
                 Acquisition cost avoided
               </span>
-              <b className="font-mono text-white text-[15px] shrink-0">{calc.cacSavedLabel}</b>
+              <b className="font-mono text-white text-[14px] sm:text-[15px] shrink-0 self-end xs:self-center">{calc.cacSavedLabel}</b>
             </div>
           </div>
 

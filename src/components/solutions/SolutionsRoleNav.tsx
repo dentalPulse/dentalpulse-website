@@ -14,11 +14,11 @@ export function SolutionsRoleNav({ activeRole = 'owners' }: SolutionsRoleNavProp
   ];
 
   return (
-    <div className="w-full bg-white pt-7 px-6">
-      <div className="max-w-[1240px] mx-auto">
+    <div className="w-full bg-white pt-5 sm:pt-7 px-4 sm:px-6">
+      <div className="max-w-[1240px] mx-auto overflow-x-auto no-scrollbar pb-1">
         <nav
           aria-label="Solutions by role"
-          className="inline-flex flex-wrap items-center gap-1 p-1 rounded-full bg-[#EFEFEF] border border-[#E6E6E6] text-[14px] font-bold"
+          className="inline-flex items-center gap-1 p-1 rounded-full bg-[#EFEFEF] border border-[#E6E6E6] text-[13px] sm:text-[14px] font-bold whitespace-nowrap min-w-max"
         >
           {roles.map((role) => {
             const isActive = role.id === activeRole;
@@ -27,7 +27,7 @@ export function SolutionsRoleNav({ activeRole = 'owners' }: SolutionsRoleNavProp
                 key={role.id}
                 href={role.href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`px-4 sm:px-5 py-2.5 sm:py-3 rounded-full transition-all text-center ${
+                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all text-center ${
                   isActive
                     ? 'bg-[#0A0A0A] text-white shadow-xs'
                     : 'text-[#0A0A0A] hover:text-[#067A47] hover:bg-black/5'
