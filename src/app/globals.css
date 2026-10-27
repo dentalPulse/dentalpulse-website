@@ -41,6 +41,11 @@
 }
 
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #1D2127;

@@ -1,12 +1,14 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
 
   const navLinks = [
@@ -19,61 +21,182 @@ export function Header() {
     { label: 'Resources', href: '/resources' },
   ];
 
+  // Track hash changes and smooth scroll to section on hash mount
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const syncHash = () => {
+      setActiveHash(window.location.hash);
+    };
+
+    syncHash();
+    window.addEventListener('hashchange', syncHash);
+
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 120);
+      }
+    }
+
+    return () => window.removeEventListener('hashchange', syncHash);
+  }, [pathname]);
+
+  // Observer on homepage to activate ROI/results or other sections when scrolled into view
+  useEffect(() => {
+    if (pathname !== '/' || typeof window === 'undefined') return;
+
+    const sections = ['results', 'book-demo'];
+    const observers: IntersectionObserver[] = [];
+
+    sections.forEach((id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveHash(`#${id}`);
+              }
+            });
+          },
+          { threshold: 0.35 }
+        );
+        observer.observe(element);
+        observers.push(observer);
+      }
+    });
+
+    return () => {
+      observers.forEach((o) => o.disconnect());
+    };
+  }, [pathname]);
+
   const isLinkActive = (href: string) => {
-    if (href.startsWith('/#')) return false;
-    if (href === '/') return pathname === '/';
+    if (href.startsWith('/#')) {
+      return pathname === '/' && activeHash === href.slice(1);
+    }
+    if (href === '/') {
+      return pathname === '/' && !activeHash;
+    }
     return pathname === href || pathname.startsWith(href + '/');
+  };
+
+  const handleSmoothClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('/#')) {
+      const targetId = href.replace('/#', '');
+      if (pathname === '/') {
+        e.preventDefault();
+        setActiveHash(`#${targetId}`);
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          window.history.pushState(null, '', `#${targetId}`);
+        }
+      }
+    } else if (href.startsWith('#')) {
+      const targetId = href.replace('#', '');
+      e.preventDefault();
+      setActiveHash(`#${targetId}`);
+      const element = document.getElementById(targetId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.history.pushState(null, '', `#${targetId}`);
+      }
+    } else {
+      setActiveHash('');
+    }
   };
 
   return (
     <header className="w-full bg-[#0A0A0A] border-b border-[#222222] sticky top-0 z-50 transition-colors">
       <div className="max-w-[1240px] mx-auto px-6 py-4 flex items-center justify-between gap-4">
         {/* Brand Logo */}
-        <Link href="/" aria-label="Dental Pulse home" className="flex items-center gap-2.5 shrink-0">
-          <Image
-            src="/dental_pulse_white.png"
-            alt="Dental Pulse"
-            width={182}
-            height={33}
-            className="h-[32px] w-auto object-contain"
-            priority
-          />
+        <Link
+          href="/"
+          onClick={(e) => handleSmoothClick(e, '/')}
+          aria-label="Dental Pulse home"
+          className="flex items-center gap-2.5 shrink-0 group"
+        >
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <Image
+              src="/dental_pulse_white.png"
+              alt="Dental Pulse"
+              width={182}
+              height={33}
+              className="h-[32px] w-auto object-contain transition-opacity group-hover:opacity-90"
+              priority
+            />
+          </motion.div>
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
+        <nav aria-label="Primary" className="hidden lg:flex items-center gap-2 text-[15px] font-medium">
           {navLinks.map((link) => {
             const active = isLinkActive(link.href);
             return (
-              <Link
+              <motion.div
                 key={link.label}
-                href={link.href}
-                className={active ? "text-[#12F095] font-semibold transition-colors" : "text-[#E6E6E6] hover:text-[#12F095] transition-colors"}
+                whileHover={{ y: -1 }}
+                whileTap={{ scale: 0.97 }}
+                className="relative"
               >
-                {link.label}
-              </Link>
+                <Link
+                  href={link.href}
+                  onClick={(e) => handleSmoothClick(e, link.href)}
+                  className={`relative px-3.5 py-1.5 rounded-full transition-colors flex items-center ${
+                    active ? 'text-[#12F095] font-semibold' : 'text-[#E6E6E6] hover:text-[#12F095]'
+                  }`}
+                >
+                  {/* Framer Motion Layout sliding indicator */}
+                  {active && (
+                    <>
+                      <motion.span
+                        layoutId="navActivePill"
+                        className="absolute inset-0 rounded-full bg-[#12F095]/10 border border-[#12F095]/25 -z-10 shadow-[0_0_12px_rgba(18,240,149,0.18)]"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                      <motion.span
+                        layoutId="navActiveLine"
+                        className="absolute -bottom-1 left-3 right-3 h-[2px] bg-[#12F095] rounded-full shadow-[0_0_8px_rgba(18,240,149,0.9)]"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    </>
+                  )}
+                  {link.label}
+                </Link>
+              </motion.div>
             );
           })}
         </nav>
 
         {/* Desktop Auth / CTA */}
-        <div className="hidden lg:flex items-center gap-2 shrink-0">
-          <a
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
+          <motion.a
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.97 }}
             href="https://app.dentalpulseai.com"
             className="text-[15px] font-semibold text-white px-3.5 py-2.5 hover:text-[#12F095] transition-colors"
           >
             Log in
-          </a>
-          <Link
-            href="/#book-demo"
-            className="bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
-          >
-            Book a demo
-          </Link>
+          </motion.a>
+          <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              href="/#book-demo"
+              onClick={(e) => handleSmoothClick(e, '/#book-demo')}
+              className="inline-block bg-[#12F095] text-[#0A0A0A] text-[15px] font-bold px-5 py-2.5 rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
+            >
+              Book a demo
+            </Link>
+          </motion.div>
         </div>
 
         {/* Mobile Menu Hamburger Button */}
-        <button
+        <motion.button
+          whileTap={{ scale: 0.92 }}
           type="button"
           className="lg:hidden p-2 text-[#E6E6E6] hover:text-white focus:outline-none"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -92,46 +215,65 @@ export function Header() {
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           )}
-        </button>
+        </motion.button>
       </div>
 
-      {/* Mobile Menu Drawer */}
-      {isMenuOpen && (
-        <div className="lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl animate-in slide-in-from-top-2">
-          <nav className="flex flex-col gap-4 text-[16px] font-medium">
-            {navLinks.map((link) => {
-              const active = isLinkActive(link.href);
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className={active ? "text-[#12F095] font-semibold py-1 transition-colors" : "text-[#E6E6E6] hover:text-[#12F095] py-1 transition-colors"}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
+      {/* Mobile Menu Drawer with Framer Motion Animation */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -8 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -8 }}
+            transition={{ duration: 0.25, ease: 'easeInOut' }}
+            className="overflow-hidden lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl"
+          >
+            <nav className="flex flex-col gap-2 text-[16px] font-medium">
+              {navLinks.map((link) => {
+                const active = isLinkActive(link.href);
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={(e) => {
+                      handleSmoothClick(e, link.href);
+                      setIsMenuOpen(false);
+                    }}
+                    className={`flex items-center justify-between py-2.5 px-3.5 rounded-lg transition-colors ${
+                      active ? 'text-[#12F095] bg-[#12F095]/10 font-semibold' : 'text-[#E6E6E6] hover:text-[#12F095] hover:bg-white/5'
+                    }`}
+                  >
+                    <span>{link.label}</span>
+                    {active && (
+                      <span className="w-2 h-2 rounded-full bg-[#12F095] shadow-[0_0_8px_#12F095]" />
+                    )}
+                  </Link>
+                );
+              })}
+            </nav>
 
-          <div className="pt-4 border-t border-[#222222] flex flex-col gap-3">
-            <a
-              href="https://app.dentalpulseai.com"
-              onClick={() => setIsMenuOpen(false)}
-              className="w-full text-center py-2.5 text-[15px] font-semibold text-white border border-[#333333] rounded-full hover:bg-white/5 transition-colors"
-            >
-              Log in
-            </a>
-            <Link
-              href="/#book-demo"
-              onClick={() => setIsMenuOpen(false)}
-              className="w-full text-center py-2.5 text-[15px] font-bold bg-[#12F095] text-[#0A0A0A] rounded-full hover:bg-[#00df83] transition-colors"
-            >
-              Book a demo
-            </Link>
-          </div>
-        </div>
-      )}
+            <div className="pt-4 border-t border-[#222222] flex flex-col gap-3">
+              <a
+                href="https://app.dentalpulseai.com"
+                onClick={() => setIsMenuOpen(false)}
+                className="w-full text-center py-2.5 text-[15px] font-semibold text-white border border-[#333333] rounded-full hover:bg-white/5 transition-colors"
+              >
+                Log in
+              </a>
+              <Link
+                href="/#book-demo"
+                onClick={(e) => {
+                  handleSmoothClick(e, '/#book-demo');
+                  setIsMenuOpen(false);
+                }}
+                className="w-full text-center py-2.5 text-[15px] font-bold bg-[#12F095] text-[#0A0A0A] rounded-full hover:bg-[#00df83] transition-colors shadow-sm"
+              >
+                Book a demo
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

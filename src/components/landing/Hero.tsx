@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 interface Prompt {
   label: string;
@@ -125,17 +126,15 @@ export function Hero() {
               {/* EKG Icon Box */}
               <span
                 aria-hidden="true"
-                className="shrink-0 w-11 h-11 rounded-[14px] bg-[#0A0A0A] flex items-center justify-center"
+                className="shrink-0 w-11 h-11 rounded-[14px] bg-[#0A0A0A] flex items-center justify-center p-2.5 overflow-hidden"
               >
-                <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
-                  <path
-                    d="M5 18h6l3-7 4 13 3-6h8"
-                    stroke="#12F095"
-                    strokeWidth="2.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
+                <Image
+                  src="/logo_mark_white.png"
+                  alt="Pulse AI"
+                  width={30}
+                  height={20}
+                  className="w-auto h-[18px] sm:h-[20px] object-contain"
+                />
               </span>
 
               {/* Text Input */}

@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     canonical: "https://dentalpulse.com", // Replace with actual URL
   },
   icons: {
-    icon: "/logo_mark.png",
-    apple: "/logo_mark.png",
+    icon: "/Dental_Pulse_Logo_Black.ico",
+    apple: "/Dental_Pulse_Logo_Black.ico",
   },
   openGraph: {
     title: "DentalPulse | See clearly. Grow smarter.",
@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${plusJakartaSans.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
     >
       <body className="min-h-full flex flex-col font-sans bg-background text-foreground">
         {children}
