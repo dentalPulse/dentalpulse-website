@@ -42,18 +42,21 @@ src/
 
 ---
 
-### Phase 2: Hero & Featured Guide Card
-1. Create `src/components/customers/ResourcesHero.tsx`:
-   - Kicker: `RESOURCES` in JetBrains Mono (`#067A47`).
-   - Headline: *"Ideas for growing a modern dental lab."* (`clamp(40px, 5vw, 66px)`).
+### Phase 2: Hero & Featured Guide Card (COMPLETED)
+1. Created `src/components/resources/ResourcesHero.tsx`:
+   - Eyebrow kicker: `RESOURCES` in JetBrains Mono (`#067A47`).
+   - Main headline: *"Ideas for growing a modern dental lab."* (`text-[40px] sm:text-[54px] lg:text-[66px] font-extrabold`).
    - Side value-prop text: *"Practical guides on retention, account growth, sales and marketing for lab teams."*
-2. Create `src/components/resources/FeaturedGuideCard.tsx`:
+2. Created `src/components/resources/FeaturedGuideCard.tsx`:
    - Split card shell (`bg-white`, `border border-[#E6E6E6]`, `rounded-[28px]`, `overflow-hidden`).
-   - Left panel: `#0A0A0A` dark surface, green heartbeat pulse SVG path (`#12F095`), `FEATURED GUIDE` neon badge.
+   - Left panel: `#0A0A0A` dark surface, green heartbeat pulse ECG SVG path (`#12F095`), `FEATURED GUIDE` neon badge.
    - Right panel:
      - Tag: `RETENTION • 9 MIN READ`.
      - Title: *"The early-warning playbook: 7 signals a dentist is about to leave your lab"*.
-     - Excerpt and animated *"Read the guide →"* trigger.
+     - Excerpt: *"From longer gaps between cases to quiet shifts in product mix — what to watch, and what to do about each one."*
+     - Animated *"Read the guide →"* trigger.
+3. Connected components into `src/components/resources/ResourcesPageContent.tsx`.
+4. Verified compilation and live HTTP 200 response on `http://localhost:3000/resources`.
 
 ---
 
