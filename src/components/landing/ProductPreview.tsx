@@ -263,41 +263,33 @@ export function ProductPreview() {
               <button
                 type="button"
                 onClick={() => setIsPlayingTour(true)}
-                className="bg-white text-[#0A0A0A] font-bold text-[14px] sm:text-[15px] px-4.5 py-2.5 rounded-full shadow-lg hover:bg-gray-100 transition-colors cursor-pointer"
+                className="bg-white text-[#0A0A0A] font-bold text-[14px] sm:text-[15px] px-5 py-2.5 rounded-full shadow-lg hover:bg-gray-100 transition-colors cursor-pointer flex items-center gap-2"
               >
-                Watch the product tour • [2:00]
+                <span>Watch the product tour • 0:30</span>
               </button>
             </div>
           ) : (
-            /* Active Tour Modal / Preview State with Dismiss */
-            <div className="absolute inset-0 rounded-[22px] bg-black/85 flex flex-col items-center justify-center p-6 text-white text-center animate-in fade-in duration-200">
-              <div className="max-w-[480px] flex flex-col items-center gap-4">
-                <div className="w-16 h-16 rounded-full bg-[#12F095]/20 flex items-center justify-center text-[#12F095]">
-                  <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                    <polygon points="5 3 19 12 5 21 5 3" />
-                  </svg>
-                </div>
-                <h3 className="text-[22px] font-extrabold text-white">Interactive Product Tour</h3>
-                <p className="text-[14px] text-[#BDBDBD] leading-relaxed">
-                  Explore how DentalPulse unifies lab cases, accounts, and automated win-back workflows in real time.
-                </p>
-                <div className="flex items-center gap-3 mt-2">
-                  <a
-                    href="#book-demo"
-                    onClick={() => setIsPlayingTour(false)}
-                    className="px-5 py-2.5 rounded-full bg-[#12F095] text-[#0A0A0A] font-bold text-[14px] hover:bg-[#00df83] transition-colors"
-                  >
-                    Book a live 30-min demo
-                  </a>
-                  <button
-                    type="button"
-                    onClick={() => setIsPlayingTour(false)}
-                    className="px-5 py-2.5 rounded-full border border-white/20 text-white font-semibold text-[14px] hover:bg-white/10 transition-colors cursor-pointer"
-                  >
-                    Inspect dashboard
-                  </button>
-                </div>
-              </div>
+            /* Active 30s Product Tour Video with Controls & Close */
+            <div className="absolute inset-0 rounded-[22px] bg-black flex items-center justify-center overflow-hidden z-20 animate-in fade-in duration-300">
+              <video
+                src="/Dental_Pulse_30s.mp4"
+                controls
+                autoPlay
+                playsInline
+                className="w-full h-full object-contain bg-black rounded-[22px]"
+              />
+              {/* Close Button floating top-right */}
+              <button
+                type="button"
+                onClick={() => setIsPlayingTour(false)}
+                aria-label="Close product tour video"
+                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center transition-all border border-white/20 backdrop-blur-md cursor-pointer hover:scale-105 shadow-lg"
+              >
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
             </div>
           )}
         </div>

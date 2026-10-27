@@ -12,11 +12,11 @@ export function Footer() {
           <div className="flex-1 max-w-[320px] flex flex-col gap-4">
             <Link href="/" aria-label="Dental Pulse home" className="inline-block">
               <Image
-                src="/logo.png"
+                src="/dental_pulse_white.png"
                 alt="Dental Pulse"
-                width={167}
-                height={30}
-                className="h-[30px] w-auto object-contain brightness-0 invert"
+                width={182}
+                height={33}
+                className="h-[32px] w-auto object-contain"
               />
             </Link>
             <p className="m-0 text-[14px] sm:text-[15px] leading-[1.6] text-[#BDBDBD]">

@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     canonical: "https://dentalpulse.com", // Replace with actual URL
   },
   icons: {
-    icon: "/Dental_Pulse_Logo_Black.ico",
-    apple: "/Dental_Pulse_Logo_Black.ico",
+    icon: "/logo_mark.png",
+    apple: "/logo_mark.png",
   },
   openGraph: {
     title: "DentalPulse | See clearly. Grow smarter.",
@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     siteName: "DentalPulse",
     images: [
       {
-        url: "/logo.png", // Recommended to use a proper OG image here
-        width: 1200,
-        height: 630,
-        alt: "DentalPulse Platform Preview",
+        url: "/dental_pulse.png",
+        width: 732,
+        height: 133,
+        alt: "DentalPulse",
       }
     ],
     locale: "en_US",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "DentalPulse | See clearly. Grow smarter.",
     description: "Turn everyday lab data into smarter actions and sustainable growth.",
-    images: ["/logo.png"],
+    images: ["/dental_pulse.png"],
     creator: "@DentalPulse",
   }
 };

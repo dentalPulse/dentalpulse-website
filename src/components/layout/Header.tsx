@@ -31,11 +31,11 @@ export function Header() {
         {/* Brand Logo */}
         <Link href="/" aria-label="Dental Pulse home" className="flex items-center gap-2.5 shrink-0">
           <Image
-            src="/logo.png"
+            src="/dental_pulse_white.png"
             alt="Dental Pulse"
-            width={167}
-            height={30}
-            className="h-[30px] w-auto object-contain brightness-0 invert"
+            width={182}
+            height={33}
+            className="h-[32px] w-auto object-contain"
             priority
           />
         </Link>
