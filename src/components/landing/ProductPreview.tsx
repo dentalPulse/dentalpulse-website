@@ -1,9 +1,6 @@
-"use client";
-
-import React, { useState } from 'react';
+import React from 'react';
 
 export function ProductPreview() {
-  const [isPlayingTour, setIsPlayingTour] = useState(false);
 
   return (
     <section className="relative z-20 px-4 sm:px-6 -mt-28 sm:-mt-36 md:-mt-44 pb-20">
@@ -246,52 +243,6 @@ export function ProductPreview() {
               </div>
             </div>
           </div>
-
-          {/* Product Tour Overlay (Matches Reference Design) */}
-          {!isPlayingTour ? (
-            <div className="absolute inset-0 rounded-[22px] bg-black/45 flex flex-col items-center justify-center gap-5 p-4 transition-all duration-300">
-              <button
-                type="button"
-                onClick={() => setIsPlayingTour(true)}
-                aria-label="Play the Dental Pulse product tour video"
-                className="w-20 h-20 sm:w-28 sm:h-28 rounded-full border-none bg-[#12F095] text-[#0A0A0A] flex items-center justify-center cursor-pointer shadow-[0_0_0_12px_rgba(18,240,149,0.22),0_0_0_26px_rgba(18,240,149,0.08),0_24px_60px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform"
-              >
-                <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="ml-1">
-                  <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                onClick={() => setIsPlayingTour(true)}
-                className="bg-white text-[#0A0A0A] font-bold text-[14px] sm:text-[15px] px-5 py-2.5 rounded-full shadow-lg hover:bg-gray-100 transition-colors cursor-pointer flex items-center gap-2"
-              >
-                <span>Watch the product tour • 0:30</span>
-              </button>
-            </div>
-          ) : (
-            /* Active 30s Product Tour Video with Controls & Close */
-            <div className="absolute inset-0 rounded-[22px] bg-black flex items-center justify-center overflow-hidden z-20 animate-in fade-in duration-300">
-              <video
-                src="/Dental_Pulse_30s.mp4"
-                controls
-                autoPlay
-                playsInline
-                className="w-full h-full object-contain bg-black rounded-[22px]"
-              />
-              {/* Close Button floating top-right */}
-              <button
-                type="button"
-                onClick={() => setIsPlayingTour(false)}
-                aria-label="Close product tour video"
-                className="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-black/75 hover:bg-black text-white flex items-center justify-center transition-all border border-white/20 backdrop-blur-md cursor-pointer hover:scale-105 shadow-lg"
-              >
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-          )}
         </div>
       </div>
     </section>
