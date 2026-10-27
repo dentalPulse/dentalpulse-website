@@ -5,12 +5,17 @@ import { ResourcesHero } from './ResourcesHero';
 import { FeaturedGuideCard } from './FeaturedGuideCard';
 import { ResourcesGrid } from './ResourcesGrid';
 import { LabGrowthBrief } from './LabGrowthBrief';
+import { ArticleReaderModal } from './ArticleReaderModal';
 
 export function ResourcesPageContent() {
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
 
   const handleOpenArticle = (articleId: string) => {
     setSelectedArticleId(articleId);
+  };
+
+  const handleCloseArticle = () => {
+    setSelectedArticleId(null);
   };
 
   return (
@@ -26,6 +31,12 @@ export function ResourcesPageContent() {
 
       {/* 4. Newsletter Subscription Banner */}
       <LabGrowthBrief />
+
+      {/* 5. Interactive Article Reader Modal */}
+      <ArticleReaderModal
+        articleId={selectedArticleId}
+        onClose={handleCloseArticle}
+      />
     </div>
   );
 }
