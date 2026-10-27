@@ -20,14 +20,22 @@ export function CustomersCTA() {
           </p>
         </div>
 
-        {/* CTA Button */}
-        <Link
-          href="/book-demo"
-          className="bg-[#12F095] hover:bg-[#00df83] text-[#0A0A0A] font-extrabold text-[16px] px-8 py-4 rounded-full transition-all duration-200 hover:scale-105 shadow-md shrink-0 inline-flex items-center gap-2 relative z-10"
-        >
-          <span>Book a demo</span>
-          <span aria-hidden="true">→</span>
-        </Link>
+        {/* CTA Buttons */}
+        <div className="flex flex-wrap items-center gap-3.5 relative z-10 shrink-0">
+          <Link
+            href="/book-demo"
+            className="bg-[#12F095] hover:bg-[#00df83] text-[#0A0A0A] font-extrabold text-[16px] px-8 py-4 rounded-full transition-all duration-200 hover:scale-105 shadow-md inline-flex items-center gap-2"
+          >
+            <span>Book a demo</span>
+            <span aria-hidden="true">→</span>
+          </Link>
+          <Link
+            href="/roi"
+            className="border border-[#3A3A3A] bg-transparent text-white font-bold text-[16px] px-7 py-4 rounded-full hover:bg-white/10 transition-all inline-flex items-center"
+          >
+            Calculate ROI
+          </Link>
+        </div>
       </div>
     </section>
   );

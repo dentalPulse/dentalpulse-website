@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const STATS = [
   {
@@ -31,6 +32,13 @@ export function ProvenResults() {
             <h2 className="m-0 text-[30px] sm:text-[38px] lg:text-[44px] font-extrabold leading-[1.08] tracking-[-0.03em] text-[#0A0A0A]">
               Grow with Dental Pulse and see it in the numbers.
             </h2>
+            <Link
+              href="/roi"
+              className="mt-6 inline-flex items-center gap-2 bg-[#067A47] hover:bg-[#06663C] text-white font-bold text-[15px] px-6 py-3 rounded-full transition-colors shadow-sm"
+            >
+              <span>Calculate your lab’s ROI</span>
+              <span aria-hidden="true">→</span>
+            </Link>
           </div>
 
           {/* Right Column: 3 Metric Cards */}

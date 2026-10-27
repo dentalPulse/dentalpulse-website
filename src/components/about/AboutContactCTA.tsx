@@ -16,12 +16,20 @@ export function AboutContactCTA() {
           <p className="mt-4 mb-8 text-[17px] sm:text-[18px] text-[#BDBDBD] leading-[1.6]">
             Whether you’re curious, comparing options or ready to start, our team is happy to help.
           </p>
-          <Link
-            href="/book-demo"
-            className="inline-flex items-center justify-center bg-[#12F095] hover:bg-[#0fd683] text-[#0A0A0A] font-extrabold text-[16px] px-8 py-4 rounded-full transition-all duration-200 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
-          >
-            Book a demo
-          </Link>
+          <div className="flex flex-wrap items-center gap-3.5">
+            <Link
+              href="/book-demo"
+              className="inline-flex items-center justify-center bg-[#12F095] hover:bg-[#0fd683] text-[#0A0A0A] font-extrabold text-[16px] px-8 py-4 rounded-full transition-all duration-200 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
+            >
+              Book a demo
+            </Link>
+            <Link
+              href="/roi"
+              className="inline-flex items-center justify-center border border-[#3A3A3A] hover:bg-white/10 text-white font-bold text-[16px] px-7 py-4 rounded-full transition-all duration-200"
+            >
+              Calculate ROI
+            </Link>
+          </div>
         </div>
 
         {/* Right Column: Address, Email & Social Channels */}
