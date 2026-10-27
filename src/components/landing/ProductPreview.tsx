@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export function ProductPreview() {
 
@@ -242,6 +243,25 @@ export function ProductPreview() {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Product Tour Overlay (Play Icon and Pill retained without video file) */}
+          <div className="absolute inset-0 rounded-[22px] bg-black/45 flex flex-col items-center justify-center gap-5 p-4 transition-all duration-300 pointer-events-none">
+            <Link
+              href="/book-demo"
+              aria-label="Book a demo to watch the full product tour"
+              className="pointer-events-auto w-20 h-20 sm:w-28 sm:h-28 rounded-full border-none bg-[#12F095] text-[#0A0A0A] flex items-center justify-center cursor-pointer shadow-[0_0_0_12px_rgba(18,240,149,0.22),0_0_0_26px_rgba(18,240,149,0.08),0_24px_60px_-10px_rgba(0,0,0,0.5)] hover:scale-105 transition-transform"
+            >
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="ml-1">
+                <path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z" />
+              </svg>
+            </Link>
+            <Link
+              href="/book-demo"
+              className="pointer-events-auto bg-white text-[#0A0A0A] font-bold text-[14px] sm:text-[15px] px-5 py-2.5 rounded-full shadow-lg hover:bg-gray-100 transition-colors cursor-pointer flex items-center gap-2"
+            >
+              <span>Watch the product tour • 0:30</span>
+            </Link>
           </div>
         </div>
       </div>
