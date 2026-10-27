@@ -41,17 +41,18 @@ src/
 
 ---
 
-### Phase 2: Hero & Why Us Bento Cards (`CareersHero.tsx` & `CareersWhyCards.tsx`)
-1. Create `src/components/careers/CareersHero.tsx`:
-   - Kicker: `CAREERS` in JetBrains Mono (`#067A47`).
-   - Main headline: *"Help an entire industry see clearly."* (`clamp(42px, 5.4vw, 72px)`, line-height 1.03, tracking `-0.04em`).
+### Phase 2: Hero & Why Us Bento Cards (`CareersHero.tsx` & `CareersWhyCards.tsx`) (COMPLETED)
+1. Created `src/components/careers/CareersHero.tsx`:
+   - Monospace kicker: `CAREERS` in JetBrains Mono (`#067A47`).
+   - Main headline: *"Help an entire industry see clearly."* (`text-[40px] sm:text-[54px] lg:text-[72px] font-extrabold leading-[1.03] tracking-[-0.04em]`).
    - Narrative subtext and *"See open roles"* pill button linking to `#roles`.
-2. Create `src/components/careers/CareersWhyCards.tsx`:
-   - 3 bento cards grid:
-     - **Impact Card (Signature `#0A0A0A` Dark Card):** Kicker `IMPACT` (`#12F095`), *"Your work reaches customers fast"*.
-     - **Ownership Card (Clean White Card):** Kicker `OWNERSHIP` (`#067A47`), *"Own problems end to end"*.
-     - **Craft Card (Clean White Card):** Kicker `CRAFT` (`#067A47`), *"Care about the details"*.
-3. Assemble in `CareersPageContent.tsx` and verify live rendering.
+2. Created `src/components/careers/CareersWhyCards.tsx`:
+   - 3-card bento grid:
+     - **Impact Card (Signature `#0A0A0A` Dark Card):** Kicker `IMPACT` (`#12F095`), *"Your work reaches customers fast"*, ambient radial glow, and body copy.
+     - **Ownership Card (Clean White Card):** Kicker `OWNERSHIP` (`#067A47`), *"Own problems end to end"*, hover lift, and border darkening.
+     - **Craft Card (Clean White Card):** Kicker `CRAFT` (`#067A47`), *"Care about the details"*, hover lift, and border darkening.
+3. Connected components into `src/components/careers/CareersPageContent.tsx`.
+4. Verified compilation and live HTTP 200 response on `http://localhost:3000/careers`.
 
 ---
 
