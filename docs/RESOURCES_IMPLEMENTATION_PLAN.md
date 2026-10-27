@@ -60,21 +60,25 @@ src/
 
 ---
 
-### Phase 3: Interactive Filter & Resources Grid
-1. Create `src/components/resources/ResourcesGrid.tsx`:
+### Phase 3: Interactive Filter & Resources Grid (`ResourcesGrid.tsx`) (COMPLETED)
+1. Created `src/components/resources/ResourcesGrid.tsx`:
    - Interactive topic filter buttons: `All`, `Retention`, `Growth`, `Sales`, `Marketing`, `Guides`.
-   - Dynamic active/inactive pill styling matching reference specifications.
-   - 9 articles with category tags, read times, titles, and reading links:
-     - *How to spot an at-risk dental account before it churns*
-     - *Share of wallet: finding the categories your dentists send elsewhere*
-     - *A weekly routine for lab sales reps that actually sticks*
-     - *WhatsApp, SMS or email? Reaching dentists where they read*
-     - *The real cost of losing a dentist — and how to calculate it*
-     - *The dental lab KPI cheat sheet: numbers every owner should track*
-     - *Turning remake data into a retention signal*
-     - *Onboarding new dentists: the first 90 days*
-     - *Building segments from real buying behaviour*
+   - Dynamic active/inactive pill styling matching reference specifications:
+     - Active: `bg-[#0A0A0A] text-white border border-[#0A0A0A] rounded-full font-bold px-5 py-2.5 min-h-[44px]`
+     - Inactive: `bg-white text-[#0A0A0A] border border-[#D6D6D6] hover:border-[#0A0A0A] rounded-full font-bold px-5 py-2.5 min-h-[44px]`
+   - 9 articles with category tags, read times, titles, vector heartbeat SVG headers, and reading links:
+     - *How to spot an at-risk dental account before it churns* (Retention)
+     - *Share of wallet: finding the categories your dentists send elsewhere* (Growth)
+     - *A weekly routine for lab sales reps that actually sticks* (Sales)
+     - *WhatsApp, SMS or email? Reaching dentists where they read* (Marketing)
+     - *The real cost of losing a dentist — and how to calculate it* (Retention)
+     - *The dental lab KPI cheat sheet: numbers every owner should track* (Guides)
+     - *Turning remake data into a retention signal* (Growth)
+     - *Onboarding new dentists: the first 90 days* (Sales)
+     - *Building segments from real buying behaviour* (Marketing)
    - Dynamic filtering responding to active topic pill clicks.
+2. Connected `ResourcesGrid` into `src/components/resources/ResourcesPageContent.tsx`.
+3. Verified compilation and live HTTP 200 response on `http://localhost:3000/resources`.
 
 ---
 
