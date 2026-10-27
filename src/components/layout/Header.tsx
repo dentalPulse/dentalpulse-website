@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const navLinks = [
     { label: 'Platform', href: '/platform' },
@@ -13,9 +15,15 @@ export function Header() {
     { label: 'Integrations', href: '/integrations' },
     { label: 'ROI', href: '/#results' },
     { label: 'Pricing', href: '/pricing' },
-    { label: 'Customers', href: '/#testimonials' },
+    { label: 'Customers', href: '/customers' },
     { label: 'Resources', href: '/#resources' },
   ];
+
+  const isLinkActive = (href: string) => {
+    if (href.startsWith('/#')) return false;
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname.startsWith(href + '/');
+  };
 
   return (
     <header className="w-full bg-[#0A0A0A] border-b border-[#222222] sticky top-0 z-50 transition-colors">
@@ -34,15 +42,18 @@ export function Header() {
 
         {/* Desktop Navigation Links */}
         <nav aria-label="Primary" className="hidden lg:flex items-center gap-7 text-[15px] font-medium">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-[#E6E6E6] hover:text-[#12F095] transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => {
+            const active = isLinkActive(link.href);
+            return (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={active ? "text-[#12F095] font-semibold transition-colors" : "text-[#E6E6E6] hover:text-[#12F095] transition-colors"}
+              >
+                {link.label}
+              </Link>
+            );
+          })}
         </nav>
 
         {/* Desktop Auth / CTA */}
@@ -88,16 +99,19 @@ export function Header() {
       {isMenuOpen && (
         <div className="lg:hidden w-full bg-[#0A0A0A] border-t border-[#222222] px-6 py-6 flex flex-col gap-5 shadow-2xl animate-in slide-in-from-top-2">
           <nav className="flex flex-col gap-4 text-[16px] font-medium">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="text-[#E6E6E6] hover:text-[#12F095] py-1 transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) => {
+              const active = isLinkActive(link.href);
+              return (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className={active ? "text-[#12F095] font-semibold py-1 transition-colors" : "text-[#E6E6E6] hover:text-[#12F095] py-1 transition-colors"}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           <div className="pt-4 border-t border-[#222222] flex flex-col gap-3">

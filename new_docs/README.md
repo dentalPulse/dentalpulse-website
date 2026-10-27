@@ -103,3 +103,20 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Route mapping for `/pricing` (`src/app/pricing/page.tsx`).
    - Modular component architecture in `src/components/pricing/`.
    - 5-phase rollout roadmap.
+
+---
+
+## 6. Customers Page
+
+1. [**Customers Page Audit (`CUSTOMERS_PAGE_AUDIT.md`)**](CUSTOMERS_PAGE_AUDIT.md)
+   - Detailed audit of `Customers.dc.html` (`Customers-html`).
+   - 2-column bento box featured case study with 3 neon green metrics (94% retention, $180K revenue recovered, 12 hrs saved).
+   - 6-card Wall of Love testimonial grid (white, mint highlight, and signature dark styles).
+   - 3-card More Stories deep-dive grid with category badges and lab visual previews.
+   - High-impact bottom conversion banner and interactive case study modal specifications.
+
+2. [**Customers Implementation Plan (`CUSTOMERS_IMPLEMENTATION_PLAN.md`)**](CUSTOMERS_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/customers` (`src/app/customers/page.tsx`).
+   - Modular component architecture in `src/components/customers/`.
+   - 5-phase rollout roadmap.
+
