@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { AboutHero } from './AboutHero';
 import { AboutMissionCards } from './AboutMissionCards';
+import { AboutValues } from './AboutValues';
 
 export function AboutPageContent() {
   const [selectedLeaderId, setSelectedLeaderId] = useState<string | null>(null);
@@ -18,6 +19,9 @@ export function AboutPageContent() {
 
       {/* 2. Mission Showcase Cards */}
       <AboutMissionCards />
+
+      {/* 3. Core Values Grid */}
+      <AboutValues />
     </div>
   );
 }
