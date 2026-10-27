@@ -189,7 +189,7 @@ export function CheckoutModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 16 }}
           transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-          className="w-full max-w-[510px] rounded-[28px] bg-white p-6 sm:p-7 shadow-2xl relative my-auto border border-gray-100 overflow-hidden"
+          className="w-full max-w-[550px] rounded-[28px] bg-white p-6 sm:p-7 shadow-2xl relative my-auto border border-gray-100 overflow-hidden"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -248,11 +248,10 @@ export function CheckoutModal({
                   </div>
                   {/* Step Label */}
                   <span
-                    className={`text-[12px] transition-colors ${
-                      isPassedOrActive
+                    className={`text-[12px] transition-colors ${isPassedOrActive
                         ? 'text-gray-900 font-semibold'
                         : 'text-gray-400 font-medium'
-                    }`}
+                      }`}
                   >
                     {tab.label}
                   </span>
