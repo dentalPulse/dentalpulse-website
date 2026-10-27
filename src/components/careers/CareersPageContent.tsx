@@ -3,6 +3,7 @@
 import React from 'react';
 import { CareersHero } from './CareersHero';
 import { CareersWhyCards } from './CareersWhyCards';
+import { CareersBenefits } from './CareersBenefits';
 
 export function CareersPageContent() {
   return (
@@ -12,6 +13,9 @@ export function CareersPageContent() {
 
       {/* 2. Culture & Why Us Bento Cards */}
       <CareersWhyCards />
+
+      {/* 3. Benefits & Perks Showcase */}
+      <CareersBenefits />
     </div>
   );
 }
