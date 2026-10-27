@@ -76,7 +76,7 @@ export function AboutLeadership({ onSelectLeader }: AboutLeadershipProps) {
           </div>
 
           <Link
-            href="/#careers"
+            href="/careers"
             className="inline-flex items-center gap-1.5 text-[16px] font-bold text-[#0A0A0A] hover:text-[#067A47] transition-colors py-2 group"
           >
             <span>We’re hiring</span>

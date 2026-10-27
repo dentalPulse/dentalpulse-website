@@ -152,6 +152,19 @@ This directory houses the comprehensive architectural audits and step-by-step im
 2. [**About Implementation Plan (`ABOUT_IMPLEMENTATION_PLAN.md`)**](ABOUT_IMPLEMENTATION_PLAN.md)
    - Route mapping for `/about` (`src/app/about/page.tsx`).
    - Modular component architecture in `src/components/about/`.
+## 9. Careers Page
+
+1. [**Careers Page Audit (`CAREERS_PAGE_AUDIT.md`)**](CAREERS_PAGE_AUDIT.md)
+   - Detailed audit of `Careers.dc.html` (`Careers-html`).
+   - Clean, high-impact hero headline and mission subtext.
+   - 3-card culture & why us bento grid (`Impact` dark `#0A0A0A`, `Ownership` white card, `Craft` white card).
+   - 6-card benefits & perks showcase with health coverage, flexible remote setup, learning budget, and equipment.
+   - Open roles list with department filtering, interactive "Apply →" action, and "Don't see your role?" callout card.
+   - Interactive job details & application modal drawer.
+
+2. [**Careers Implementation Plan (`CAREERS_IMPLEMENTATION_PLAN.md`)**](CAREERS_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/careers` (`src/app/careers/page.tsx`).
+   - Modular component architecture in `src/components/careers/`.
    - 5-phase rollout roadmap.
 
 

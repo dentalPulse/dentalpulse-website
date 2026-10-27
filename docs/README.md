@@ -9,5 +9,7 @@ For quick access to documentation:
 - [Resources Implementation Plan (`RESOURCES_IMPLEMENTATION_PLAN.md`)](./RESOURCES_IMPLEMENTATION_PLAN.md)
 - [About Page Audit (`ABOUT_PAGE_AUDIT.md`)](./ABOUT_PAGE_AUDIT.md)
 - [About Implementation Plan (`ABOUT_IMPLEMENTATION_PLAN.md`)](./ABOUT_IMPLEMENTATION_PLAN.md)
+- [Careers Page Audit (`CAREERS_PAGE_AUDIT.md`)](./CAREERS_PAGE_AUDIT.md)
+- [Careers Implementation Plan (`CAREERS_IMPLEMENTATION_PLAN.md`)](./CAREERS_IMPLEMENTATION_PLAN.md)
 
 
