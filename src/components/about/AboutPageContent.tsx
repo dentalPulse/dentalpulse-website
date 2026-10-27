@@ -5,6 +5,8 @@ import { AboutHero } from './AboutHero';
 import { AboutMissionCards } from './AboutMissionCards';
 import { AboutValues } from './AboutValues';
 import { AboutLeadership, Leader } from './AboutLeadership';
+import { AboutContactCTA } from './AboutContactCTA';
+import { LeaderBioModal } from './LeaderBioModal';
 
 export function AboutPageContent() {
   const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
@@ -30,6 +32,15 @@ export function AboutPageContent() {
 
       {/* 4. Leadership Team Showcase */}
       <AboutLeadership onSelectLeader={handleSelectLeader} />
+
+      {/* 5. Contact Block CTA */}
+      <AboutContactCTA />
+
+      {/* 6. Executive Leader Bio Modal */}
+      <LeaderBioModal
+        leader={selectedLeader}
+        onClose={handleCloseLeader}
+      />
     </div>
   );
 }
