@@ -17,7 +17,7 @@ export function AboutContactCTA() {
             Whether you’re curious, comparing options or ready to start, our team is happy to help.
           </p>
           <Link
-            href="/#book-demo"
+            href="/book-demo"
             className="inline-flex items-center justify-center bg-[#12F095] hover:bg-[#0fd683] text-[#0A0A0A] font-extrabold text-[16px] px-8 py-4 rounded-full transition-all duration-200 shadow-md hover:shadow-xl hover:scale-[1.02] active:scale-[0.98]"
           >
             Book a demo

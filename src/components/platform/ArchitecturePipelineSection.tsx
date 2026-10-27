@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function ArchitecturePipelineSection() {
   const sources = [
@@ -88,13 +89,13 @@ export function ArchitecturePipelineSection() {
               Connect your existing systems in minutes. Dental Pulse sits on top, continuously unifying data, predicting trends and orchestrating actions.
             </p>
           </div>
-          <a
-            href="#book-demo"
+          <Link
+            href="/integrations"
             className="text-[#12F095] font-bold text-[15px] sm:text-[16px] hover:text-[#00df83] transition-colors inline-flex items-center gap-1.5 shrink-0"
           >
             <span>See all integrations</span>
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </div>
 
         {/* 3-Column Architecture Grid */}

@@ -260,7 +260,7 @@ export function CaseStudyModal({ storyId, onClose }: CaseStudyModalProps) {
               Close
             </button>
             <Link
-              href="/#book-demo"
+              href="/book-demo"
               onClick={onClose}
               className="w-full sm:w-auto px-6 py-2.5 bg-[#12F095] hover:bg-[#00df83] text-[#0A0A0A] font-bold text-[14px] rounded-full transition-all text-center shadow-md"
             >

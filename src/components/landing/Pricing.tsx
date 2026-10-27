@@ -87,9 +87,7 @@ export function Pricing() {
 
   function handleChoosePlan(planName: string) {
     if (planName === 'Enterprise') {
-      // No fixed price to charge — Enterprise goes through Book a Demo
-      // (Header) instead of Stripe Checkout, not this modal.
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.location.href = '/book-demo';
       return;
     }
     setCheckoutPlan(planName);

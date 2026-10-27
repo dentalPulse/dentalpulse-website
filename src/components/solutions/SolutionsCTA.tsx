@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 export function SolutionsCTA() {
   return (
@@ -32,12 +33,12 @@ export function SolutionsCTA() {
 
         {/* Right Column: CTA Button */}
         <div className="relative z-10 shrink-0">
-          <a
-            href="https://app.dentalpulseai.com"
+          <Link
+            href="/book-demo"
             className="inline-flex items-center justify-center bg-[#12F095] text-[#0A0A0A] font-extrabold text-[15px] sm:text-[16px] px-8 py-4 rounded-full hover:bg-[#00df83] transition-colors shadow-lg"
           >
             Book a demo
-          </a>
+          </Link>
         </div>
       </div>
     </section>

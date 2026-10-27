@@ -36,14 +36,14 @@ export function PlatformCTA() {
 
         {/* Right Column: Conversion Action Buttons */}
         <div className="relative z-10 flex flex-wrap items-center gap-3.5">
-          <a
-            href="https://app.dentalpulseai.com"
+          <Link
+            href="/book-demo"
             className="inline-flex items-center justify-center bg-[#12F095] text-[#0A0A0A] text-[15px] sm:text-[16px] font-extrabold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-[#00df83] transition-colors shadow-lg"
           >
             Book a demo
-          </a>
+          </Link>
           <Link
-            href="/#book-demo"
+            href="/book-demo"
             className="inline-flex items-center justify-center border border-[#3A3A3A] text-white text-[15px] sm:text-[16px] font-bold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors"
           >
             Talk to a specialist

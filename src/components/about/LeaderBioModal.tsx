@@ -144,7 +144,7 @@ export function LeaderBioModal({ leader, onClose }: LeaderBioModalProps) {
               Close
             </button>
             <Link
-              href="/#book-demo"
+              href="/book-demo"
               onClick={onClose}
               className="w-full sm:w-auto text-center px-6 py-2.5 rounded-full bg-[#12F095] hover:bg-[#0fd683] text-[#0A0A0A] font-extrabold text-[14px] transition-all shadow-md hover:shadow-lg"
             >

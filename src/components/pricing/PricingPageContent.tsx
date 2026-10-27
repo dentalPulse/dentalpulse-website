@@ -15,7 +15,7 @@ export function PricingPageContent() {
   const handleSelectPlan = (plan: PlanData) => {
     if (plan.isCustom || !plan.priceMonthly || !plan.includedUsers) {
       // Enterprise goes to contact/demo
-      window.location.href = '/#book-demo';
+      window.location.href = '/book-demo';
       return;
     }
     setCheckoutPlan(plan);

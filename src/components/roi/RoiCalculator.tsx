@@ -339,7 +339,7 @@ export function RoiCalculator() {
           {/* CTA Link */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full mt-2">
             <Link
-              href="/#book-demo"
+              href="/book-demo"
               className="block w-full text-center bg-[#12F095] text-[#0A0A0A] font-extrabold text-[15px] sm:text-[16px] py-4 px-6 rounded-full hover:bg-[#00df83] transition-colors shadow-lg"
             >
               Get a detailed ROI review in your demo

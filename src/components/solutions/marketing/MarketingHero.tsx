@@ -18,12 +18,12 @@ export function MarketingHero() {
           </p>
 
           <div className="flex flex-wrap items-center gap-3.5 mt-8">
-            <a
-              href="https://app.dentalpulseai.com"
+            <Link
+              href="/book-demo"
               className="inline-flex items-center justify-center bg-[#0A0A0A] text-white text-[15px] sm:text-[16px] font-bold px-7 py-3.5 sm:py-4 rounded-full hover:bg-[#222222] transition-colors shadow-sm"
             >
               Book a demo
-            </a>
+            </Link>
             <Link
               href="/platform"
               className="inline-flex items-center justify-center border border-[#D6D6D6] bg-white text-[#0A0A0A] text-[15px] sm:text-[16px] font-bold px-7 py-3.5 sm:py-4 rounded-full hover:bg-[#F5F5F5] transition-colors"

@@ -22,7 +22,7 @@ export function CustomersCTA() {
 
         {/* CTA Button */}
         <Link
-          href="/#book-demo"
+          href="/book-demo"
           className="bg-[#12F095] hover:bg-[#00df83] text-[#0A0A0A] font-extrabold text-[16px] px-8 py-4 rounded-full transition-all duration-200 hover:scale-105 shadow-md shrink-0 inline-flex items-center gap-2 relative z-10"
         >
           <span>Book a demo</span>

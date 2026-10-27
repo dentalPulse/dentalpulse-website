@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 
 const TESTIMONIALS = [
   {
@@ -33,13 +34,13 @@ export function Testimonials() {
           <h2 className="m-0 text-[32px] sm:text-[42px] lg:text-[50px] font-extrabold leading-[1.06] tracking-[-0.03em] text-[#0A0A0A] max-w-[640px]">
             Labs love growing with Dental Pulse.
           </h2>
-          <a
-            href="#book-demo"
+          <Link
+            href="/customers"
             className="font-bold text-[15px] sm:text-[16px] text-[#067A47] hover:text-[#06663C] transition-colors inline-flex items-center gap-1.5 shrink-0"
           >
             <span>Read customer stories</span>
             <span aria-hidden="true">→</span>
-          </a>
+          </Link>
         </div>
 
         {/* 3 Testimonials Cards Grid */}

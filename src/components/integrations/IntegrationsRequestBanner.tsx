@@ -17,14 +17,14 @@ export function IntegrationsRequestBanner() {
 
         {/* Right Column: Action Buttons */}
         <div className="flex flex-wrap items-center gap-3 shrink-0">
-          <a
-            href="https://app.dentalpulseai.com"
+          <Link
+            href="/book-demo"
             className="inline-flex items-center justify-center bg-[#0A0A0A] text-white text-[15px] sm:text-[16px] font-bold px-7 py-3.5 sm:py-4 rounded-full hover:bg-[#222222] transition-colors shadow-sm"
           >
             Request an integration
-          </a>
+          </Link>
           <Link
-            href="/#book-demo"
+            href="/pricing"
             className="inline-flex items-center justify-center border border-[#0A0A0A] bg-transparent text-[#0A0A0A] text-[15px] sm:text-[16px] font-bold px-7 py-3.5 sm:py-4 rounded-full hover:bg-black/5 transition-colors"
           >
             Compare plans
