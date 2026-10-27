@@ -71,17 +71,18 @@ src/
 
 ---
 
-### Phase 4: Open Roles List & Unlisted Callout (`CareersOpenRoles.tsx`)
-1. Create `src/components/careers/CareersOpenRoles.tsx`:
-   - Heading: *"Open roles"* with department filter tabs (`All`, `Engineering`, `Product & Design`, `Go-To-Market`, `Customer Success`).
-   - Interactive role items with title, department, location, type, and *"Apply →"* hover action:
-     - Senior Full-Stack Engineer (Next.js & Python)
-     - Data Infrastructure Engineer (Pipelines & Integrations)
-     - Product Designer (Design Systems & Workflows)
-     - Senior Account Executive (Dental Lab Solutions)
-     - Laboratory Success Manager
-   - "Don’t see your role?" callout card in `#EEFDF5` with `#BDF5DA` border and *"Send us a note"* button.
-2. Assemble in `CareersPageContent.tsx` and verify live rendering.
+### Phase 4: Open Roles List & Unlisted Callout (`CareersOpenRoles.tsx`) (COMPLETED)
+1. Created `src/components/careers/CareersOpenRoles.tsx`:
+   - Section heading: *"Open roles"* (`text-[30px] sm:text-[36px] lg:text-[44px] font-extrabold`) with department filter tabs (`All`, `Engineering`, `Product & Design`, `Go-To-Market`, `Customer Success`).
+   - 5 dental laboratory intelligence positions with real compensation ranges, location, discipline badges, and interactive "Apply →" action with arrow translation:
+     - **Senior Full-Stack Engineer (Next.js & Python)**
+     - **Data Infrastructure Engineer (PMS/LMS Integrations)**
+     - **Lead Product Designer (Design Systems & Workflows)**
+     - **Senior Enterprise Account Executive (Dental Lab Solutions)**
+     - **Laboratory Customer Success Manager**
+   - "Don’t see your role?" callout card in `#EEFDF5` with `#BDF5DA` border, subtext, and *"Send us a note"* button linking to `careers@dentalpulseai.com`.
+2. Connected `CareersOpenRoles` into `src/components/careers/CareersPageContent.tsx` with role selection state.
+3. Verified compilation via `pnpm build` (all 20 static routes compiled with 0 errors) and confirmed live HTTP 200 response on `http://localhost:3000/careers`.
 
 ---
 
