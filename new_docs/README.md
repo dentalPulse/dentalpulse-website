@@ -120,3 +120,21 @@ This directory houses the comprehensive architectural audits and step-by-step im
    - Modular component architecture in `src/components/customers/`.
    - 5-phase rollout roadmap.
 
+---
+
+## 7. Resources (Blog & Guides) Page
+
+1. [**Resources Page Audit (`RESOURCES_PAGE_AUDIT.md`)**](RESOURCES_PAGE_AUDIT.md)
+   - Detailed audit of `Resources.dc.html` (`Resources (Blog)-html`).
+   - Asymmetric hero section, large split featured guide card with heartbeat pulse SVG and neon badge.
+   - Interactive topic filter pills (`All`, `Retention`, `Growth`, `Sales`, `Marketing`, `Guides`) with instantaneous state filtering.
+   - 9-card responsive article grid with reading times, category tags, and vector headers.
+   - Mint newsletter subscription banner (*The Lab Growth Brief*) with email form validation.
+   - Interactive article reader drawer modal.
+
+2. [**Resources Implementation Plan (`RESOURCES_IMPLEMENTATION_PLAN.md`)**](RESOURCES_IMPLEMENTATION_PLAN.md)
+   - Route mapping for `/resources` (`src/app/resources/page.tsx`).
+   - Modular component architecture in `src/components/resources/`.
+   - 5-phase rollout roadmap.
+
+

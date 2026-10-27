@@ -16,7 +16,7 @@ export function Header() {
     { label: 'ROI', href: '/#results' },
     { label: 'Pricing', href: '/pricing' },
     { label: 'Customers', href: '/customers' },
-    { label: 'Resources', href: '/#resources' },
+    { label: 'Resources', href: '/resources' },
   ];
 
   const isLinkActive = (href: string) => {

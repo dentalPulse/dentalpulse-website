@@ -72,9 +72,9 @@ export function Footer() {
               <a href="/#careers" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Careers
               </a>
-              <a href="/#resources" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
+              <Link href="/resources" className="text-[#BDBDBD] hover:text-[#12F095] transition-colors">
                 Resources
-              </a>
+              </Link>
             </div>
 
             {/* Column 4: Contact */}
