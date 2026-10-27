@@ -24,6 +24,8 @@ const SETUP_FEE_USD = 499;
 const EXTRA_SEAT_USD_MONTHLY = 25;
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:7000/api/v1';
 
+import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
+
 export function CheckoutModal({
   planName,
   billingInterval,
@@ -31,6 +33,8 @@ export function CheckoutModal({
   includedUsers,
   onClose,
 }: CheckoutModalProps) {
+  useLockBodyScroll(true);
+
   const [currentTab, setCurrentTab] = useState<1 | 2 | 3>(1);
   const [direction, setDirection] = useState<1 | -1>(1);
 
@@ -60,21 +64,14 @@ export function CheckoutModal({
   const additionalCost = extraSeats * extraSeatRate;
   const subscriptionTotal = effectiveBaseRate + additionalCost;
 
-  // Esc key and body scroll lock
+  // Esc key closes modal
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     document.addEventListener('keydown', onKeyDown);
-    const prevBodyOverflow = document.body.style.overflow;
-    const prevHtmlOverflow = document.documentElement.style.overflow;
-    document.body.style.overflow = 'hidden';
-    document.documentElement.style.overflow = 'hidden';
-
     return () => {
       document.removeEventListener('keydown', onKeyDown);
-      document.body.style.overflow = prevBodyOverflow;
-      document.documentElement.style.overflow = prevHtmlOverflow;
     };
   }, [onClose]);
 

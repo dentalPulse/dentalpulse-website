@@ -129,17 +129,19 @@ interface CaseStudyModalProps {
   onClose: () => void;
 }
 
+import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
+
 export function CaseStudyModal({ storyId, onClose }: CaseStudyModalProps) {
+  useLockBodyScroll(!!storyId);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     if (storyId) {
-      document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => {
-      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [storyId, onClose]);

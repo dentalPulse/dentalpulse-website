@@ -5,21 +5,13 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
+import { HEADER_NAV_LINKS } from '@/data/navigationData';
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
-
-  const navLinks = [
-    { label: 'Platform', href: '/platform' },
-    { label: 'Solutions', href: '/solutions' },
-    { label: 'Integrations', href: '/integrations' },
-    { label: 'ROI', href: '/roi' },
-    { label: 'Pricing', href: '/pricing' },
-    { label: 'Customers', href: '/customers' },
-    { label: 'Resources', href: '/resources' },
-  ];
+  const navLinks = HEADER_NAV_LINKS;
 
   // Track hash changes and smooth scroll to section on hash mount
   useEffect(() => {

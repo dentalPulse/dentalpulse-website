@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { JobRole } from './CareersOpenRoles';
+import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 interface JobApplicationModalProps {
   role: JobRole | null;
@@ -15,6 +16,8 @@ export function JobApplicationModal({ role, onClose }: JobApplicationModalProps)
   const [applicantNote, setApplicantNote] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
+  useLockBodyScroll(!!role);
+
   useEffect(() => {
     if (!role) return;
 
@@ -24,12 +27,8 @@ export function JobApplicationModal({ role, onClose }: JobApplicationModalProps)
       }
     };
 
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
-      document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [role, onClose]);

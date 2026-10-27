@@ -1,75 +1,17 @@
 'use client';
 import React, { useState } from 'react';
 import { CheckoutModal } from './CheckoutModal';
+import { PRICING_PLANS } from '@/data/pricingData';
 
-// basePriceMonthly / includedUsers must stay in sync with the backend's
-// app/billing/plans.py (PLAN_PRICE_IDS / PLAN_MIN_USERS) and the actual
-// Stripe Price configured for each plan+interval — this file only controls
-// what's *displayed*, the backend is what's actually charged. Each plan is
-// a FLAT price covering its included seats — NOT a pure per-seat rate;
-// going above includedUsers adds the shared extra-seat rate
-// (EXTRA_SEAT_USD_MONTHLY, below) per additional seat. Yearly is always 10x
-// the monthly amount ("2 months free"), not a separate number — see
-// planning/STRIPE_SEAT_BASED_PRICING_AND_SETUP_FEE_PLAN.md §2.
-const plans = [
-  {
-    name: 'Starter',
-    basePriceMonthly: 499,
-    includedUsers: 3,
-    features: [
-      'CRM',
-      'Dashboard & Analytics',
-      'Customer Database',
-      'Lead Management',
-      'Task Management',
-      'Website Tracking',
-    ],
-    isPopular: false,
-  },
-  {
-    name: 'Growth',
-    basePriceMonthly: 799,
-    includedUsers: 5,
-    features: [
-      'Email Marketing',
-      'SMS Marketing',
-      'WhatsApp Marketing',
-      'Customers Segments',
-      'Campaign Builder',
-      'Marketing Automation'
-    ],
-    isPopular: true,
-  },
-  {
-    name: 'Growth AI',
-    basePriceMonthly: 999,
-    includedUsers: 10,
-    features: [
-      'AI Insights',
-      'Revenue Forecasting',
-      'Churn Prediction',
-      'Ai Business Assistant',
-      'API Access - Limited',
-    ],
-    isPopular: false,
-  },
-  {
-    name: 'Enterprise',
-    basePriceMonthly: null,
-    includedUsers: null,
-    features: [
-      'Users Included - Unlimited',
-      'API Access - Unlimited',
-      'Dedicated Success Manager',
-      'All Plans Included'
-    ],
-    isPopular: false,
-  },
-];
+// Map shared PRICING_PLANS for landing page display compatibility
+const plans = PRICING_PLANS.map((p) => ({
+  name: p.name,
+  basePriceMonthly: p.priceMonthly,
+  includedUsers: p.includedUsers,
+  features: p.features,
+  isPopular: !!p.isPopular,
+}));
 
-// Placeholder — must match the backend's STRIPE_PRICE_EXTRA_SEAT_MONTHLY
-// amount (app/config.py). Display-only; CheckoutModal.tsx has its own copy
-// of this same number for the live total calculation.
 const EXTRA_SEAT_USD_MONTHLY = 25;
 
 function CheckIcon({ popular }: { popular: boolean }) {

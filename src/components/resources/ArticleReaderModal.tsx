@@ -173,17 +173,19 @@ interface ArticleReaderModalProps {
   onClose: () => void;
 }
 
+import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
+
 export function ArticleReaderModal({ articleId, onClose }: ArticleReaderModalProps) {
+  useLockBodyScroll(!!articleId);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
     };
     if (articleId) {
-      document.body.style.overflow = 'hidden';
       window.addEventListener('keydown', handleKeyDown);
     }
     return () => {
-      document.body.style.overflow = '';
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [articleId, onClose]);

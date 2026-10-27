@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Leader } from './AboutLeadership';
+import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
 interface LeaderBioModalProps {
   leader: Leader | null;
@@ -11,6 +12,8 @@ interface LeaderBioModalProps {
 }
 
 export function LeaderBioModal({ leader, onClose }: LeaderBioModalProps) {
+  useLockBodyScroll(!!leader);
+
   useEffect(() => {
     if (!leader) return;
 
@@ -20,12 +23,8 @@ export function LeaderBioModal({ leader, onClose }: LeaderBioModalProps) {
       }
     };
 
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
-
     return () => {
-      document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [leader, onClose]);

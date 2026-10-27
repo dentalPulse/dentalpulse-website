@@ -6,6 +6,8 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 
+import { FOOTER_COLUMNS, COMPANY_CONTACT, SOCIAL_LINKS } from '@/data/navigationData';
+
 export function Footer() {
   const pathname = usePathname();
   const [activeHash, setActiveHash] = useState('');
@@ -117,81 +119,46 @@ export function Footer() {
 
           {/* 4 Navigation Columns */}
           <div className="flex-[2] w-full grid grid-cols-2 sm:grid-cols-4 gap-8 text-[14px] sm:text-[15px]">
-            {/* Column 1: Platform */}
-            <div className="flex flex-col gap-3">
-              <b className="text-white text-[14px] tracking-wide uppercase font-mono">Platform</b>
-              <FooterNavLink href="/platform">How it works</FooterNavLink>
-              <FooterNavLink href="/pricing">Pricing</FooterNavLink>
-              <FooterNavLink href="/integrations">Integrations</FooterNavLink>
-              <FooterNavLink href="/roi">ROI calculator</FooterNavLink>
-            </div>
-
-            {/* Column 2: Solutions */}
-            <div className="flex flex-col gap-3">
-              <b className="text-white text-[14px] tracking-wide uppercase font-mono">Solutions</b>
-              <FooterNavLink href="/solutions">Owners &amp; C-suite</FooterNavLink>
-              <FooterNavLink href="/solutions/managers">Managers</FooterNavLink>
-              <FooterNavLink href="/solutions/sales-reps">Sales reps</FooterNavLink>
-              <FooterNavLink href="/solutions/marketing">Marketing</FooterNavLink>
-            </div>
-
-            {/* Column 3: Company */}
-            <div className="flex flex-col gap-3">
-              <b className="text-white text-[14px] tracking-wide uppercase font-mono">Company</b>
-              <FooterNavLink href="/about">About</FooterNavLink>
-              <FooterNavLink href="/customers">Customers</FooterNavLink>
-              <FooterNavLink href="/careers">Careers</FooterNavLink>
-              <FooterNavLink href="/resources">Resources</FooterNavLink>
-            </div>
+            {FOOTER_COLUMNS.map((col) => (
+              <div key={col.title} className="flex flex-col gap-3">
+                <b className="text-white text-[14px] tracking-wide uppercase font-mono">{col.title}</b>
+                {col.links.map((link) => (
+                  <FooterNavLink key={link.label} href={link.href}>
+                    {link.label}
+                  </FooterNavLink>
+                ))}
+              </div>
+            ))}
 
             {/* Column 4: Contact */}
             <div className="flex flex-col gap-3">
               <b className="text-white text-[14px] tracking-wide uppercase font-mono">Contact</b>
               <span className="text-[#BDBDBD] leading-relaxed">
-                8 The Green, Suite A<br />
-                Dover, DE 19901, USA
+                {COMPANY_CONTACT.addressLine1}<br />
+                {COMPANY_CONTACT.addressLine2}
               </span>
               <motion.a
                 whileHover={{ x: 4 }}
-                href="mailto:info@dentalpulseai.com"
+                href={`mailto:${COMPANY_CONTACT.email}`}
                 className="text-[#BDBDBD] hover:text-[#12F095] transition-colors"
               >
-                info@dentalpulseai.com
+                {COMPANY_CONTACT.email}
               </motion.a>
               <div className="flex items-center gap-3 mt-1">
-                <motion.a
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://www.linkedin.com/company/dentalpulseai/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                  className="w-5 h-5 opacity-80 hover:opacity-100 transition-opacity relative brightness-0 invert"
-                >
-                  <Image src="/linkedin.png" alt="LinkedIn" fill sizes="20px" className="object-contain" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://www.instagram.com/dentalpulseai/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-5 h-5 opacity-80 hover:opacity-100 transition-opacity relative brightness-0 invert"
-                >
-                  <Image src="/instagram.png" alt="Instagram" fill sizes="20px" className="object-contain" />
-                </motion.a>
-                <motion.a
-                  whileHover={{ scale: 1.15, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://www.facebook.com/people/Dental-Pulse/61594145142887/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-5 h-5 opacity-80 hover:opacity-100 transition-opacity relative brightness-0 invert"
-                >
-                  <Image src="/facebook.png" alt="Facebook" fill sizes="20px" className="object-contain" />
-                </motion.a>
+                {SOCIAL_LINKS.map((s) => (
+                  <motion.a
+                    key={s.name}
+                    whileHover={{ scale: 1.15, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.name}
+                    className="w-5 h-5 opacity-80 hover:opacity-100 transition-opacity relative brightness-0 invert"
+                  >
+                    <Image src={s.icon} alt={s.name} fill sizes="20px" className="object-contain" />
+                  </motion.a>
+                ))}
               </div>
             </div>
           </div>
