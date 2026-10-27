@@ -1,12 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { AboutHero } from './AboutHero';
 import { AboutMissionCards } from './AboutMissionCards';
 import { AboutValues } from './AboutValues';
 import { AboutLeadership, Leader } from './AboutLeadership';
 import { AboutContactCTA } from './AboutContactCTA';
-import { LeaderBioModal } from './LeaderBioModal';
+
+const LeaderBioModal = dynamic(
+  () => import('./LeaderBioModal').then((mod) => mod.LeaderBioModal),
+  { ssr: false }
+);
 
 export function AboutPageContent() {
   const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
@@ -37,10 +42,12 @@ export function AboutPageContent() {
       <AboutContactCTA />
 
       {/* 6. Executive Leader Bio Modal */}
-      <LeaderBioModal
-        leader={selectedLeader}
-        onClose={handleCloseLeader}
-      />
+      {selectedLeader && (
+        <LeaderBioModal
+          leader={selectedLeader}
+          onClose={handleCloseLeader}
+        />
+      )}
     </div>
   );
 }

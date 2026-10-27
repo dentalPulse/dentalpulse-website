@@ -1,11 +1,16 @@
 "use client";
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { CareersHero } from './CareersHero';
 import { CareersWhyCards } from './CareersWhyCards';
 import { CareersBenefits } from './CareersBenefits';
 import { CareersOpenRoles, JobRole } from './CareersOpenRoles';
-import { JobApplicationModal } from './JobApplicationModal';
+
+const JobApplicationModal = dynamic(
+  () => import('./JobApplicationModal').then((mod) => mod.JobApplicationModal),
+  { ssr: false }
+);
 
 export function CareersPageContent() {
   const [selectedRole, setSelectedRole] = useState<JobRole | null>(null);
@@ -33,10 +38,12 @@ export function CareersPageContent() {
       <CareersOpenRoles onSelectRole={handleSelectRole} />
 
       {/* 5. Interactive Job Details & Application Modal */}
-      <JobApplicationModal
-        role={selectedRole}
-        onClose={handleCloseRole}
-      />
+      {selectedRole && (
+        <JobApplicationModal
+          role={selectedRole}
+          onClose={handleCloseRole}
+        />
+      )}
     </div>
   );
 }

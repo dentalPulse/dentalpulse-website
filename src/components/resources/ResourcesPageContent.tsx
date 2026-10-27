@@ -1,11 +1,16 @@
 "use client";
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { ResourcesHero } from './ResourcesHero';
 import { FeaturedGuideCard } from './FeaturedGuideCard';
 import { ResourcesGrid } from './ResourcesGrid';
 import { LabGrowthBrief } from './LabGrowthBrief';
-import { ArticleReaderModal } from './ArticleReaderModal';
+
+const ArticleReaderModal = dynamic(
+  () => import('./ArticleReaderModal').then((mod) => mod.ArticleReaderModal),
+  { ssr: false }
+);
 
 export function ResourcesPageContent() {
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
@@ -33,10 +38,12 @@ export function ResourcesPageContent() {
       <LabGrowthBrief />
 
       {/* 5. Interactive Article Reader Modal */}
-      <ArticleReaderModal
-        articleId={selectedArticleId}
-        onClose={handleCloseArticle}
-      />
+      {selectedArticleId && (
+        <ArticleReaderModal
+          articleId={selectedArticleId}
+          onClose={handleCloseArticle}
+        />
+      )}
     </div>
   );
 }

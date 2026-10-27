@@ -1,7 +1,13 @@
 'use client';
+
 import React, { useState } from 'react';
-import { CheckoutModal } from './CheckoutModal';
+import dynamic from 'next/dynamic';
 import { PRICING_PLANS } from '@/data/pricingData';
+
+const CheckoutModal = dynamic(
+  () => import('./CheckoutModal').then((mod) => mod.CheckoutModal),
+  { ssr: false }
+);
 
 // Map shared PRICING_PLANS for landing page display compatibility
 const plans = PRICING_PLANS.map((p) => ({

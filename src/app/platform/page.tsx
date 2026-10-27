@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { PlatformHero } from '@/components/platform/PlatformHero';
 import { Customer360Section } from '@/components/platform/Customer360Section';
 import { PredictiveInsightsSection } from '@/components/platform/PredictiveInsightsSection';
@@ -11,11 +9,14 @@ import { SecuritySection } from '@/components/platform/SecuritySection';
 import { PlatformCTA } from '@/components/platform/PlatformCTA';
 
 export const metadata: Metadata = {
-  title: 'Platform & How It Works | DentalPulse',
+  title: 'Platform & Architecture | DentalPulse',
   description:
     'Complete customer intelligence, predictive insights, and automated workflows built specifically for dental laboratories.',
+  alternates: {
+    canonical: 'https://dentalpulse.com/platform',
+  },
   openGraph: {
-    title: 'Platform & How It Works | DentalPulse',
+    title: 'Platform & Architecture | DentalPulse',
     description:
       'Complete customer intelligence, predictive insights, and automated workflows built specifically for dental laboratories.',
     url: 'https://dentalpulse.com/platform',
@@ -24,19 +25,15 @@ export const metadata: Metadata = {
 
 export default function PlatformPage() {
   return (
-    <main className="min-h-screen w-full flex flex-col bg-white">
-      <Header />
-      <div className="flex-1 w-full flex flex-col">
-        <PlatformHero />
-        <Customer360Section />
-        <PredictiveInsightsSection />
-        <GamePlanSection />
-        <WorkflowsSection />
-        <ArchitecturePipelineSection />
-        <SecuritySection />
-        <PlatformCTA />
-      </div>
-      <Footer />
-    </main>
+    <div className="flex-1 w-full flex flex-col bg-white">
+      <PlatformHero />
+      <Customer360Section />
+      <PredictiveInsightsSection />
+      <GamePlanSection />
+      <WorkflowsSection />
+      <ArchitecturePipelineSection />
+      <SecuritySection />
+      <PlatformCTA />
+    </div>
   );
 }

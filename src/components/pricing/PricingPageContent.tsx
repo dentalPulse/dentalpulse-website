@@ -1,12 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { PricingHero } from '@/components/pricing/PricingHero';
 import { PricingCardsGrid, PlanData } from '@/components/pricing/PricingCardsGrid';
 import { PricingCompareTable } from '@/components/pricing/PricingCompareTable';
 import { PricingFAQ } from '@/components/pricing/PricingFAQ';
 import { PricingCTA } from '@/components/pricing/PricingCTA';
-import { CheckoutModal } from '@/components/landing/CheckoutModal';
+
+const CheckoutModal = dynamic(
+  () => import('@/components/landing/CheckoutModal').then((mod) => mod.CheckoutModal),
+  { ssr: false }
+);
 
 export function PricingPageContent() {
   const [isYearly, setIsYearly] = useState(false);

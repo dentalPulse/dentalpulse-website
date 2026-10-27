@@ -1,14 +1,15 @@
 import type { Metadata } from 'next';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
 import { AboutPageContent } from '@/components/about/AboutPageContent';
 
 export const metadata: Metadata = {
-  title: 'About Us | DentalPulse',
+  title: 'About Us | Our Mission & Leadership | DentalPulse',
   description:
     'DentalPulse is on a mission to help dental laboratories protect doctor relationships and grow sustainably through customer intelligence.',
+  alternates: {
+    canonical: 'https://dentalpulse.com/about',
+  },
   openGraph: {
-    title: 'About Us | DentalPulse',
+    title: 'About Us | Our Mission & Leadership | DentalPulse',
     description:
       'DentalPulse is on a mission to help dental laboratories protect doctor relationships and grow sustainably through customer intelligence.',
     url: 'https://dentalpulse.com/about',
@@ -17,10 +18,8 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen w-full flex flex-col bg-white">
-      <Header />
+    <div className="flex-1 w-full flex flex-col bg-white">
       <AboutPageContent />
-      <Footer />
-    </main>
+    </div>
   );
 }

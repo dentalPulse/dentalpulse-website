@@ -1,12 +1,17 @@
 "use client";
 
 import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { CustomersHero } from './CustomersHero';
 import { FeaturedCaseStudy } from './FeaturedCaseStudy';
 import { WallOfLove } from './WallOfLove';
 import { MoreStoriesGrid } from './MoreStoriesGrid';
 import { CustomersCTA } from './CustomersCTA';
-import { CaseStudyModal } from './CaseStudyModal';
+
+const CaseStudyModal = dynamic(
+  () => import('./CaseStudyModal').then((mod) => mod.CaseStudyModal),
+  { ssr: false }
+);
 
 export function CustomersPageContent() {
   const [selectedStoryId, setSelectedStoryId] = useState<string | null>(null);
@@ -37,7 +42,9 @@ export function CustomersPageContent() {
       <CustomersCTA />
 
       {/* 6. Interactive Case Study Deep Dive Modal */}
-      <CaseStudyModal storyId={selectedStoryId} onClose={handleCloseStory} />
+      {selectedStoryId && (
+        <CaseStudyModal storyId={selectedStoryId} onClose={handleCloseStory} />
+      )}
     </div>
   );
 }
