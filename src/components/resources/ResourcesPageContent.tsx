@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { ResourcesHero } from './ResourcesHero';
 import { FeaturedGuideCard } from './FeaturedGuideCard';
 import { ResourcesGrid } from './ResourcesGrid';
+import { LabGrowthBrief } from './LabGrowthBrief';
 
 export function ResourcesPageContent() {
   const [selectedArticleId, setSelectedArticleId] = useState<string | null>(null);
@@ -22,6 +23,9 @@ export function ResourcesPageContent() {
 
       {/* 3. Interactive Topic Filter & Resources Grid */}
       <ResourcesGrid onOpenArticle={handleOpenArticle} />
+
+      {/* 4. Newsletter Subscription Banner */}
+      <LabGrowthBrief />
     </div>
   );
 }
