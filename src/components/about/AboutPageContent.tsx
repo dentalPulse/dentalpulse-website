@@ -4,12 +4,17 @@ import React, { useState } from 'react';
 import { AboutHero } from './AboutHero';
 import { AboutMissionCards } from './AboutMissionCards';
 import { AboutValues } from './AboutValues';
+import { AboutLeadership, Leader } from './AboutLeadership';
 
 export function AboutPageContent() {
-  const [selectedLeaderId, setSelectedLeaderId] = useState<string | null>(null);
+  const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
 
-  const handleOpenLeader = (leaderId: string) => {
-    setSelectedLeaderId(leaderId);
+  const handleSelectLeader = (leader: Leader) => {
+    setSelectedLeader(leader);
+  };
+
+  const handleCloseLeader = () => {
+    setSelectedLeader(null);
   };
 
   return (
@@ -22,6 +27,9 @@ export function AboutPageContent() {
 
       {/* 3. Core Values Grid */}
       <AboutValues />
+
+      {/* 4. Leadership Team Showcase */}
+      <AboutLeadership onSelectLeader={handleSelectLeader} />
     </div>
   );
 }

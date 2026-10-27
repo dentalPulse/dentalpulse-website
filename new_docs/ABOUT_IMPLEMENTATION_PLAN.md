@@ -67,15 +67,17 @@ src/
 
 ---
 
-### Phase 4: Leadership Team Showcase (`AboutLeadership.tsx`)
-1. Create `src/components/about/AboutLeadership.tsx`:
-   - Section heading with *"Leadership"* and *"We’re hiring →"* career link.
-   - 4 polished executive leadership cards:
-     - **Alex Vance** — Co-founder & CEO
-     - **Dr. Marcus Sterling** — Co-founder & CTO
-     - **Elena Rostova** — Head of Customer Success
-     - **Julian Chen** — Head of Product
-   - Rich portrait visuals and bio modal trigger support.
+### Phase 4: Leadership Team Showcase (`AboutLeadership.tsx`) (COMPLETED)
+1. Created `src/components/about/AboutLeadership.tsx`:
+   - Section heading with *"Leadership"* (`text-[32px] sm:text-[40px] lg:text-[48px] font-extrabold`) and *"We’re hiring →"* career link linking to `/#careers`.
+   - 4 executive leadership cards with `aspect-[4/5]`, `rounded-[22px]`, `group-hover:border-[#12F095]`, and smooth hover lift:
+     - **Alex Vance** — Co-founder & CEO (15+ yrs Dental Lab Tech & SaaS)
+     - **Dr. Marcus Sterling** — Co-founder & CTO (PhD Computational Geometry)
+     - **Elena Rostova** — Head of Customer Success (Former Multi-Site Lab VP Ops)
+     - **Julian Chen** — Head of Product (Ex-Mission-Critical Vertical SaaS)
+   - Integrated grayscale-to-color portrait image transitions, discipline badges, monogram tokens, and interactive "Read Bio →" hover triggers with modal selection callback support.
+2. Connected `AboutLeadership` into `src/components/about/AboutPageContent.tsx`.
+3. Verified compilation and live HTTP 200 response on `http://localhost:3000/about`.
 
 ---
 
