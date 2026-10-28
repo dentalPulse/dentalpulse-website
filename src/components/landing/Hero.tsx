@@ -115,16 +115,13 @@ export function Hero() {
 
         {/* Pulse AI Search & Prompt Card */}
         <div className="relative max-w-[760px] mx-auto mt-10 sm:mt-16 md:mt-18">
-          {/* Live Indicator Tag */}
-          <div className="inline-flex items-center gap-2 mb-3.5 font-mono text-[13px] font-semibold tracking-[0.08em] text-[#12F095]">
+          {/* <div className="inline-flex items-center gap-2 mb-3.5 font-mono text-[13px] font-semibold tracking-[0.08em] text-[#12F095]">
             <span className="dp-live w-2 h-2 rounded-full bg-[#12F095] shadow-[0_0_10px_#12F095]" />
             PULSE AI
-          </div>
+          </div> */}
 
-          {/* Interactive Card */}
-          <div className="bg-white text-[#0A0A0A] rounded-[22px] sm:rounded-[24px] p-2 sm:p-2.5 text-left shadow-[0_0_0_1px_rgba(18,240,149,0.55),0_0_0_8px_rgba(18,240,149,0.10),0_40px_90px_-20px_rgba(18,240,149,0.45)]">
+          {/* <div className="bg-white text-[#0A0A0A] rounded-[22px] sm:rounded-[24px] p-2 sm:p-2.5 text-left shadow-[0_0_0_1px_rgba(18,240,149,0.55),0_0_0_8px_rgba(18,240,149,0.10),0_40px_90px_-20px_rgba(18,240,149,0.45)]">
             <form onSubmit={handleAsk} className="flex items-center gap-2 sm:gap-3 p-1 sm:pl-2">
-              {/* EKG Icon Box */}
               <span
                 aria-hidden="true"
                 className="shrink-0 w-9 h-9 sm:w-11 sm:h-11 rounded-[12px] sm:rounded-[14px] bg-[#0A0A0A] flex items-center justify-center p-2 sm:p-2.5 overflow-hidden"
@@ -138,7 +135,6 @@ export function Hero() {
                 />
               </span>
 
-              {/* Text Input */}
               <label htmlFor="pulse-q" className="sr-only">
                 Ask Pulse AI
               </label>
@@ -151,7 +147,6 @@ export function Hero() {
                 className="flex-1 min-w-0 min-h-[46px] sm:min-h-[56px] border-none outline-none bg-transparent font-sans text-[14px] sm:text-[18px] text-[#0A0A0A] placeholder-[#6E6E6E]"
               />
 
-              {/* Ask Button */}
               <button
                 type="submit"
                 className="shrink-0 inline-flex items-center gap-1.5 sm:gap-2 min-h-[44px] sm:min-h-[52px] px-3.5 sm:px-6 rounded-[14px] sm:rounded-[16px] bg-[#0A0A0A] text-white font-sans text-[14px] sm:text-[16px] font-bold hover:bg-[#1a1a1a] transition-colors cursor-pointer"
@@ -175,7 +170,6 @@ export function Hero() {
               </button>
             </form>
 
-            {/* Answer Display Area */}
             {hasAnswer && (
               <div
                 role="status"
@@ -192,10 +186,9 @@ export function Hero() {
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
 
-          {/* Quick Prompt Chips */}
-          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-4.5">
+          {/* <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-4.5">
             {SAMPLE_PROMPTS.map((prompt) => (
               <button
                 key={prompt.label}
@@ -206,7 +199,7 @@ export function Hero() {
                 {prompt.label}
               </button>
             ))}
-          </div>
+          </div> */}
 
           {/* Hero CTAs: Book a demo / Calculate your ROI */}
           <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
