@@ -1,0 +1,89 @@
+# Pricing Page Implementation Plan
+
+**Reference Design:** `Pricing.dc.html`  
+**Target Route:** `/pricing` (`src/app/pricing/page.tsx`)  
+**Related Audit:** [`new_docs/PRICING_PAGE_AUDIT.md`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/new_docs/PRICING_PAGE_AUDIT.md)  
+
+---
+
+## 1. Target Component Architecture
+
+```
+src/
+├── app/
+│   └── pricing/
+│       └── page.tsx                               # Main Pricing Route (/pricing)
+└── components/
+    └── pricing/
+        ├── PricingHero.tsx                        # Centered header + Monthly/Yearly toggle
+        ├── PricingCardsGrid.tsx                   # 4 Tiered Plan Cards (Starter, Growth, Growth AI, Enterprise)
+        ├── PricingCompareTable.tsx                # Comprehensive 5-category Feature Comparison Matrix
+        ├── PricingFAQ.tsx                         # 5-item Accordion FAQ component
+        └── PricingCTA.tsx                         # Dark #0A0A0A "Not sure which plan fits?" conversion banner
+```
+
+---
+
+## 2. Phased Rollout Roadmap
+
+### Phase 1: Route Setup & Navigation Linking (COMPLETED)
+1. Created `src/app/pricing/page.tsx` with SEO metadata:
+   - Title: `Pricing | DentalPulse`
+   - Description: `Pricing that grows with your lab. Transparent plans for dental laboratory customer intelligence, marketing automation, and AI predictive insights.`
+2. Updated [`src/components/layout/Header.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/layout/Header.tsx):
+   - Updated `Pricing` nav link from `/#book-demo` to `/pricing`.
+3. Updated [`src/components/layout/Footer.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/layout/Footer.tsx):
+   - Updated `Pricing` link in Platform column to use Next.js `<Link href="/pricing">`.
+4. Verified compilation via `npm run build` (16 routes compiled with 0 errors) and HTTP 200 on `http://localhost:3000/pricing`.
+
+---
+
+### Phase 2: Pricing Hero & Interactive Billing Toggle (`PricingHero.tsx`) (COMPLETED)
+1. Created `src/components/pricing/PricingHero.tsx`:
+   - Kicker: `PRICING` (JetBrains Mono, `#067A47`).
+   - Headline: *"Pricing that grows with your lab."*
+   - Subtext: *"Four plans, one platform. Start with the visibility your team needs today, then add depth as you grow to more locations, more reps and more dentists to keep close."*
+   - Interactive Billing Period Switcher:
+     * `Monthly` button.
+     * `Yearly` button with green `2 months free` badge (`#BDF5DA` / `#06663C`).
+     * State passed down to plan cards for dynamic pricing updates.
+2. Created `src/components/pricing/PricingPageContent.tsx`:
+   - Client component managing `isYearly` state and hosting pricing child sections.
+3. Connected into `src/app/pricing/page.tsx` maintaining server-side SEO metadata.
+4. Verified compilation via `npm run build` (16 routes compiled) and HTTP 200 on `http://localhost:3000/pricing`.
+
+---
+
+### Phase 3: Subscription Plan Cards Grid & CheckoutModal Integration (`PricingCardsGrid.tsx`) (COMPLETED)
+1. Created `src/components/pricing/PricingCardsGrid.tsx`:
+   - 4 Tiered plan cards with responsive styling:
+     * **Starter:** $499/mo ($416/mo yearly), 3 users included, essential CRM & tracking.
+     * **Growth (Most Popular):** $799/mo ($666/mo yearly), 5 users included, dark `#0A0A0A` card with `#12F095` neon green badge and checkmarks.
+     * **Growth AI:** $999/mo ($833/mo yearly), 10 users included, AI predictive suite.
+     * **Enterprise:** Custom group pricing, unlimited users, dedicated success manager.
+2. Integrated `CheckoutModal` in `src/components/pricing/PricingPageContent.tsx`:
+   - Plan selection dynamically passes `planName`, `billingInterval`, `basePriceMonthly`, and `includedUsers` to the 6-step Stripe checkout modal.
+   - Enterprise routes to contact/demo flow.
+3. Verified compilation via `npm run build` (16 routes compiled) and HTTP 200 on `http://localhost:3000/pricing`.
+
+---
+
+### Phase 4: Feature Comparison Table & FAQ Accordion (`PricingCompareTable.tsx` & `PricingFAQ.tsx`) (COMPLETED)
+1. Created `src/components/pricing/PricingCompareTable.tsx`:
+   - 5-Column feature comparison matrix (`Features`, `Starter`, `Growth`, `Growth AI`, `Enterprise`).
+   - 5 Grouped categories: `USERS & ACCESS`, `CUSTOMER INTELLIGENCE`, `MARKETING`, `AI & PREDICTIVE SUITE`, and `SUPPORT & SERVICES`.
+   - Distinct green checkmarks (`#067A47`), dashes, and specific metrics (user counts, API access levels).
+2. Created `src/components/pricing/PricingFAQ.tsx`:
+   - 2-Column responsive layout: headline and email support callout on left, 5 accordion items on right.
+   - Verified answers covering user definitions, annual savings, setup timelines, plan switches, and lab management integrations.
+3. Integrated into `PricingPageContent.tsx`.
+4. Verified compilation via `npm run build` (16 routes compiled) and HTTP 200 on `http://localhost:3000/pricing`.
+
+---
+
+### Phase 5: Conversion CTA Banner, Page Assembly & Polish (`PricingCTA.tsx`) (COMPLETED)
+1. Created `src/components/pricing/PricingCTA.tsx`:
+   - Dark `#0A0A0A` banner: *"Not sure which plan fits?"* with SVG neon pulse watermark and ambient glow.
+   - Dual action buttons: *"Book a demo"* (`bg-[#12F095]`) and *"Calculate ROI"* (`border border-[#3A3A3A]`).
+2. Assembled all sections cleanly into `PricingPageContent.tsx` within `src/app/pricing/page.tsx` surrounded by `<Header />` and `<Footer />`.
+3. Validated production build via `npm run build` (16/16 routes compiled with 0 errors) and verified HTTP 200 on `http://localhost:3000/pricing`.

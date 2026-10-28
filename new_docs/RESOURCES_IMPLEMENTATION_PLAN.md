@@ -1,0 +1,102 @@
+# Resources Page Implementation Plan
+
+**Reference Design:** `Resources.dc.html`  
+**Target Route:** `/resources` (`src/app/resources/page.tsx`)  
+**Related Audit:** [`new_docs/RESOURCES_PAGE_AUDIT.md`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/new_docs/RESOURCES_PAGE_AUDIT.md)  
+
+---
+
+## 1. Target Component Architecture
+
+```
+src/
+├── app/
+│   └── resources/
+│       └── page.tsx                               # Main Resources Route (/resources)
+└── components/
+    └── resources/
+        ├── ResourcesPageContent.tsx               # Client container & modal coordinator
+        ├── ResourcesHero.tsx                      # Asymmetric hero title, kicker & description
+        ├── FeaturedGuideCard.tsx                  # Large split card: Pulse graphic + Featured Guide
+        ├── ResourcesGrid.tsx                      # Interactive topic filter pills + 9-card responsive grid
+        ├── LabGrowthBrief.tsx                     # Mint newsletter subscription banner
+        └── ArticleReaderModal.tsx                 # Interactive reader modal with actionable takeaways
+```
+
+---
+
+## 2. Phased Rollout Roadmap
+
+### Phase 1: Route Setup & Navigation Linking (COMPLETED)
+1. Created `src/app/resources/page.tsx` with complete Next.js metadata:
+   - Title: `Resources & Guides | DentalPulse`
+   - Description: `Practical guides and actionable strategies on dentist account retention, wallet-share expansion, sales routines, and marketing for modern dental laboratories.`
+   - OpenGraph metadata and canonical URL: `https://dentalpulse.com/resources`.
+2. Created `src/components/resources/ResourcesPageContent.tsx` as the client container.
+3. Updated [`src/components/layout/Header.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/layout/Header.tsx):
+   - Updated `Resources` nav link from `/#resources` to `/resources`.
+   - Active state highlighting automatically triggers with neon green `#12F095` when on `/resources`.
+4. Updated [`src/components/layout/Footer.tsx`](file:///c:/Users/VUI%20Live/Desktop/dentalpulse-website/src/components/layout/Footer.tsx):
+   - Updated `Resources` link in the Company column to use Next.js `<Link href="/resources">`.
+5. Verified production build via `pnpm build` (all 18 static routes compiled with 0 errors) and live HTTP 200 on `http://localhost:3000/resources`.
+
+---
+
+### Phase 2: Hero & Featured Guide Card (COMPLETED)
+1. Created `src/components/resources/ResourcesHero.tsx`:
+   - Eyebrow kicker: `RESOURCES` in JetBrains Mono (`#067A47`).
+   - Main headline: *"Ideas for growing a modern dental lab."* (`text-[40px] sm:text-[54px] lg:text-[66px] font-extrabold`).
+   - Side value-prop text: *"Practical guides on retention, account growth, sales and marketing for lab teams."*
+2. Created `src/components/resources/FeaturedGuideCard.tsx`:
+   - Split card shell (`bg-white`, `border border-[#E6E6E6]`, `rounded-[28px]`, `overflow-hidden`).
+   - Left panel: `#0A0A0A` dark surface, green heartbeat pulse ECG SVG path (`#12F095`), `FEATURED GUIDE` neon badge.
+   - Right panel:
+     - Tag: `RETENTION • 9 MIN READ`.
+     - Title: *"The early-warning playbook: 7 signals a dentist is about to leave your lab"*.
+     - Excerpt: *"From longer gaps between cases to quiet shifts in product mix — what to watch, and what to do about each one."*
+     - Animated *"Read the guide →"* trigger.
+3. Connected components into `src/components/resources/ResourcesPageContent.tsx`.
+4. Verified compilation and live HTTP 200 response on `http://localhost:3000/resources`.
+
+---
+
+### Phase 3: Interactive Filter & Resources Grid (`ResourcesGrid.tsx`) (COMPLETED)
+1. Created `src/components/resources/ResourcesGrid.tsx`:
+   - Interactive topic filter buttons: `All`, `Retention`, `Growth`, `Sales`, `Marketing`, `Guides`.
+   - Dynamic active/inactive pill styling matching reference specifications:
+     - Active: `bg-[#0A0A0A] text-white border border-[#0A0A0A] rounded-full font-bold px-5 py-2.5 min-h-[44px]`
+     - Inactive: `bg-white text-[#0A0A0A] border border-[#D6D6D6] hover:border-[#0A0A0A] rounded-full font-bold px-5 py-2.5 min-h-[44px]`
+   - 9 articles with category tags, read times, titles, vector heartbeat SVG headers, and reading links:
+     - *How to spot an at-risk dental account before it churns* (Retention)
+     - *Share of wallet: finding the categories your dentists send elsewhere* (Growth)
+     - *A weekly routine for lab sales reps that actually sticks* (Sales)
+     - *WhatsApp, SMS or email? Reaching dentists where they read* (Marketing)
+     - *The real cost of losing a dentist — and how to calculate it* (Retention)
+     - *The dental lab KPI cheat sheet: numbers every owner should track* (Guides)
+     - *Turning remake data into a retention signal* (Growth)
+     - *Onboarding new dentists: the first 90 days* (Sales)
+     - *Building segments from real buying behaviour* (Marketing)
+   - Dynamic filtering responding to active topic pill clicks.
+2. Connected `ResourcesGrid` into `src/components/resources/ResourcesPageContent.tsx`.
+3. Verified compilation and live HTTP 200 response on `http://localhost:3000/resources`.
+
+---
+
+### Phase 4: Newsletter Banner (`LabGrowthBrief.tsx`) (COMPLETED)
+1. Created `src/components/resources/LabGrowthBrief.tsx`:
+   - Mint container (`#EEFDF5`, `border border-[#BDF5DA]`, `rounded-[28px]`, `padding: clamp(32px, 5vw, 64px)`).
+   - Headline: *"The Lab Growth Brief"* (`text-[28px] sm:text-[34px] lg:text-[40px] font-extrabold`).
+   - Subtext: *"One practical idea for retaining and growing dental accounts, delivered monthly."*
+   - Interactive work email form with client-side validation, error handling, and animated subscription confirmation notice (*"You’re subscribed to The Lab Growth Brief!"*).
+2. Connected `LabGrowthBrief` into `src/components/resources/ResourcesPageContent.tsx`.
+3. Verified compilation and live HTTP 200 response on `http://localhost:3000/resources`.
+
+---
+
+### Phase 5: Article Reader Modal & Page Assembly (COMPLETED)
+1. Created `src/components/resources/ArticleReaderModal.tsx`:
+   - Interactive deep-dive drawer dialog with backdrop blur, Escape key dismiss, and accessible close button.
+   - Comprehensive article database covering all 10 resources & guides with full clinical/operational overviews, actionable lab takeaways, and DentalPulse automated playbook callouts.
+   - Direct *"Book a demo"* action in the footer.
+2. Completed full component assembly inside `src/components/resources/ResourcesPageContent.tsx`.
+3. Verified end-to-end production build (`pnpm build` passed with 0 errors across all 18 routes) and live HTTP 200 checks on `http://localhost:3000/resources`.

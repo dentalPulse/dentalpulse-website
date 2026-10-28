@@ -1,75 +1,23 @@
 'use client';
+
 import React, { useState } from 'react';
-import { CheckoutModal } from './CheckoutModal';
+import dynamic from 'next/dynamic';
+import { PRICING_PLANS } from '@/data/pricingData';
 
-// basePriceMonthly / includedUsers must stay in sync with the backend's
-// app/billing/plans.py (PLAN_PRICE_IDS / PLAN_MIN_USERS) and the actual
-// Stripe Price configured for each plan+interval — this file only controls
-// what's *displayed*, the backend is what's actually charged. Each plan is
-// a FLAT price covering its included seats — NOT a pure per-seat rate;
-// going above includedUsers adds the shared extra-seat rate
-// (EXTRA_SEAT_USD_MONTHLY, below) per additional seat. Yearly is always 10x
-// the monthly amount ("2 months free"), not a separate number — see
-// planning/STRIPE_SEAT_BASED_PRICING_AND_SETUP_FEE_PLAN.md §2.
-const plans = [
-  {
-    name: 'Starter',
-    basePriceMonthly: 499,
-    includedUsers: 3,
-    features: [
-      'CRM',
-      'Dashboard & Analytics',
-      'Customer Database',
-      'Lead Management',
-      'Task Management',
-      'Website Tracking',
-    ],
-    isPopular: false,
-  },
-  {
-    name: 'Growth',
-    basePriceMonthly: 799,
-    includedUsers: 5,
-    features: [
-      'Email Marketing',
-      'SMS Marketing',
-      'WhatsApp Marketing',
-      'Customers Segments',
-      'Campaign Builder',
-      'Marketing Automation'
-    ],
-    isPopular: true,
-  },
-  {
-    name: 'Growth AI',
-    basePriceMonthly: 999,
-    includedUsers: 10,
-    features: [
-      'AI Insights',
-      'Revenue Forecasting',
-      'Churn Prediction',
-      'Ai Business Assistant',
-      'API Access - Limited',
-    ],
-    isPopular: false,
-  },
-  {
-    name: 'Enterprise',
-    basePriceMonthly: null,
-    includedUsers: null,
-    features: [
-      'Users Included - Unlimited',
-      'API Access - Unlimited',
-      'Dedicated Success Manager',
-      'All Plans Included'
-    ],
-    isPopular: false,
-  },
-];
+const CheckoutModal = dynamic(
+  () => import('./CheckoutModal').then((mod) => mod.CheckoutModal),
+  { ssr: false }
+);
 
-// Placeholder — must match the backend's STRIPE_PRICE_EXTRA_SEAT_MONTHLY
-// amount (app/config.py). Display-only; CheckoutModal.tsx has its own copy
-// of this same number for the live total calculation.
+// Map shared PRICING_PLANS for landing page display compatibility
+const plans = PRICING_PLANS.map((p) => ({
+  name: p.name,
+  basePriceMonthly: p.priceMonthly,
+  includedUsers: p.includedUsers,
+  features: p.features,
+  isPopular: !!p.isPopular,
+}));
+
 const EXTRA_SEAT_USD_MONTHLY = 25;
 
 function CheckIcon({ popular }: { popular: boolean }) {
@@ -87,31 +35,29 @@ export function Pricing() {
 
   function handleChoosePlan(planName: string) {
     if (planName === 'Enterprise') {
-      // No fixed price to charge — Enterprise goes through Book a Demo
-      // (Header) instead of Stripe Checkout, not this modal.
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.location.href = '/book-demo';
       return;
     }
     setCheckoutPlan(planName);
   }
 
   return (
-    <section id="pricing" className="w-full bg-brand-pricing-bg py-16 md:py-24 px-6 flex flex-col items-center">
+    <section id="pricing" className="w-full bg-brand-pricing-bg py-16 md:py-24 px-4 sm:px-6 flex flex-col items-center">
       <div className="max-w-[1280px] w-full flex flex-col items-center text-center">
 
-        <h2 className="text-[#111827] text-[32px] md:text-[40px] font-bold !leading-[100%] !tracking-[2%] mb-4">
+        <h2 className="text-[#111827] text-[30px] sm:text-[36px] md:text-[40px] font-bold !leading-[110%] !tracking-[2%] mb-4">
           Pricing that grows with your lab
         </h2>
-        <p className="text-gray-500 text-[16px] md:text-[20px] !font-normal mb-[26px]">
+        <p className="text-gray-500 text-[15px] sm:text-[18px] md:text-[20px] !font-normal mb-[26px]">
           Four plans, one platform. Start with the visibility your team needs today.<br className="hidden md:block" />
           Add depth as you scale to more locations, more reps, and more dentists to keep close.
         </p>
 
         {/* Toggle */}
-        <div className="flex items-center bg-brand-pricing-card rounded-full p-1 md:mb-[86px] mb-[46px] shadow-lg">
+        <div className="flex items-center bg-brand-pricing-card rounded-full p-1 md:mb-[72px] mb-[36px] shadow-lg">
           <button
             onClick={() => setIsAnnual(false)}
-            className={`px-7 py-2 rounded-full text-[16px] font-bold transition-all duration-200 cursor-pointer ${
+            className={`px-5 sm:px-7 py-2 rounded-full text-[14px] sm:text-[16px] font-bold transition-all duration-200 cursor-pointer ${
               !isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-400 hover:text-white'
             }`}
           >
@@ -119,7 +65,7 @@ export function Pricing() {
           </button>
           <button
             onClick={() => setIsAnnual(true)}
-            className={`px-7 py-2 rounded-full text-[14px] font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
+            className={`px-5 sm:px-7 py-2 rounded-full text-[13px] sm:text-[14px] font-bold flex items-center gap-1.5 transition-all duration-200 cursor-pointer ${
               isAnnual ? 'bg-brand-primary text-black shadow-sm' : 'text-gray-300 hover:text-white'
             }`}
           >
@@ -132,12 +78,12 @@ export function Pricing() {
 
         {/* Pricing Layout */}
         <div className="w-full relative flex items-stretch justify-center">
-          <div className="relative z-10 w-full grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-0 p-3 bg-white rounded-xl">
+          <div className="relative z-10 w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-0 p-3 bg-white rounded-xl">
             {plans.map((plan, idx) => (
               <div
                 key={idx}
-                className={`flex flex-col text-left pt-[32px] px-[24px] pb-[24px] rounded-[32px] ${plan.isPopular
-                  ? 'bg-brand-primary border-[8px] border-[#B8F7E1] p-4 lg:-translate-y-[10%] backdrop-blur-[4px] shadow-[0px_6px_10px_0px_rgba(0,0,0,0.25)]'
+                className={`flex flex-col text-left pt-[28px] sm:pt-[32px] px-[20px] sm:px-[24px] pb-[24px] rounded-[28px] sm:rounded-[32px] ${plan.isPopular
+                  ? 'bg-brand-primary border-[6px] sm:border-[8px] border-[#B8F7E1] p-4 lg:-translate-y-[4%] xl:-translate-y-[10%] backdrop-blur-[4px] shadow-[0px_6px_10px_0px_rgba(0,0,0,0.25)]'
                   : 'bg-white'
                   }`}
               >
@@ -153,9 +99,9 @@ export function Pricing() {
                   </div>
 
                   {/* Price */}
-                  <div className="flex flex-col gap-1 mb-8">
+                  <div className="flex flex-col gap-1 mb-6 sm:mb-8">
                     <div className="flex items-center gap-2">
-                      <span className="text-[36px] font-bold text-black leading-none">
+                      <span className="text-[32px] sm:text-[36px] font-bold text-black leading-none">
                         {plan.basePriceMonthly === null
                           ? 'Custom'
                           : `$${(isAnnual ? plan.basePriceMonthly * 10 : plan.basePriceMonthly).toLocaleString()}`}
@@ -174,7 +120,7 @@ export function Pricing() {
                   </div>
 
                   {/* Features */}
-                  <ul className="flex flex-col gap-2.5 flex-1 h-[311px]">
+                  <ul className="flex flex-col gap-2.5 flex-1 min-h-[200px] lg:h-[311px]">
                     {plan.features.map((f, fi) => (
                       <li key={fi} className="flex items-start gap-2.5 text-[12px] !font-light text-gray-500">
                         <CheckIcon popular={false} />
@@ -182,10 +128,10 @@ export function Pricing() {
                       </li>
                     ))}
                   </ul>
-                  <div className="px-6 pt-2 pb-0 h-[52px] flex items-start mt-5">
+                  <div className="px-2 sm:px-6 pt-2 pb-0 min-h-[52px] flex items-start mt-5">
                     <button
                       onClick={() => handleChoosePlan(plan.name)}
-                      className={`  ${plan.isPopular ? 'bg-black text-white' : 'bg-brand-pricing-btn-bg text-black'} w-full py-3 rounded-[8px] !font-normal text-[16px] cursor-pointer`}
+                      className={`  ${plan.isPopular ? 'bg-black text-white' : 'bg-brand-pricing-btn-bg text-black'} w-full py-3 rounded-[8px] !font-normal text-[15px] sm:text-[16px] cursor-pointer hover:opacity-90 transition-opacity`}
                     >
                       Choose Plan
                     </button>

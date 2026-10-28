@@ -1,12 +1,17 @@
 import { MetadataRoute } from 'next';
 
 export default function robots(): MetadataRoute.Robots {
+  const baseUrl = 'https://dentalpulse.com';
+
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: ['/private/'], // Add any private routes here if needed
-    },
-    sitemap: 'https://dentalpulse.com/sitemap.xml', // Replace with your actual domain when deploying
+    rules: [
+      {
+        userAgent: '*',
+        allow: '/',
+        disallow: ['/billing/', '/api/'],
+      },
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
+    host: baseUrl,
   };
 }
