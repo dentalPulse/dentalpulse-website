@@ -17,12 +17,14 @@ type FormState = {
   yourName: string;
   email: string;
   phone: string;
+  password: string;
+  confirmPassword: string;
 };
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SETUP_FEE_USD = 499;
 const EXTRA_SEAT_USD_MONTHLY = 25;
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:7000/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://dev-api.dentalpulseai.com/api/v1';
 
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
 
@@ -43,7 +45,12 @@ export function CheckoutModal({
     yourName: '',
     email: '',
     phone: '',
+    password: '',
+    confirmPassword: '',
   });
+
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
 
   const [numUsers, setNumUsers] = useState<number>(includedUsers);
   const [includeSetupFee, setIncludeSetupFee] = useState<boolean>(true);
@@ -82,6 +89,13 @@ export function CheckoutModal({
     };
   }
 
+  function handlePhoneChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setError(null);
+    // Strictly accept only numbers (digits 0-9), max 15 digits
+    const numericOnly = e.target.value.replace(/\D/g, '').slice(0, 15);
+    setForm((f) => ({ ...f, phone: numericOnly }));
+  }
+
   function goToStep(nextStep: 1 | 2 | 3) {
     setDirection(nextStep > currentTab ? 1 : -1);
     setCurrentTab(nextStep);
@@ -101,8 +115,8 @@ export function CheckoutModal({
       setError('Please enter a valid email address.');
       return;
     }
-    if (!form.phone.trim() || form.phone.trim().length < 4) {
-      setError('Please enter a valid phone number.');
+    if (!form.phone.trim() || form.phone.trim().length < 10) {
+      setError('Please enter a valid phone number (at least 10 digits, numbers only).');
       return;
     }
     goToStep(2);
@@ -110,6 +124,22 @@ export function CheckoutModal({
 
   function handleNextTab2() {
     setError(null);
+    if (!form.password) {
+      setError('Please enter a password.');
+      return;
+    }
+    if (form.password.length < 8) {
+      setError('Password must be at least 8 characters long.');
+      return;
+    }
+    if (!form.confirmPassword) {
+      setError('Please confirm your password.');
+      return;
+    }
+    if (form.password !== form.confirmPassword) {
+      setError('Passwords do not match.');
+      return;
+    }
     goToStep(3);
   }
 
@@ -119,34 +149,61 @@ export function CheckoutModal({
     setIncludeSetupFee(withSetup);
 
     try {
-      const res = await fetch(`${API_BASE_URL}/billing/checkout-session`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name: form.yourName.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          lab_name: form.labName.trim(),
-          plan_name: planName,
-          billing_interval: billingInterval,
-          num_users: numUsers,
-          include_setup_fee: withSetup,
-        }),
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        if (data?.checkout_url) {
-          window.location.href = data.checkout_url;
-          return;
+      // Normalize phone to E.164 required by Stripe backend
+      let formattedPhone = form.phone.trim();
+      if (!formattedPhone.startsWith('+')) {
+        if (formattedPhone.length === 10) {
+          formattedPhone = `+1${formattedPhone}`;
+        } else if (formattedPhone.length === 11 && formattedPhone.startsWith('1')) {
+          formattedPhone = `+${formattedPhone}`;
+        } else {
+          formattedPhone = `+${formattedPhone}`;
         }
       }
 
-      // If backend is not running or mock environment, navigate to success page
-      window.location.href = `/billing/success?session_id=dp_${Date.now().toString(36)}`;
-    } catch {
-      // Graceful fallback for local development preview
-      window.location.href = `/billing/success?session_id=dp_${Date.now().toString(36)}`;
+      const payload = {
+        name: form.yourName.trim(),
+        email: form.email.trim(),
+        phone: formattedPhone,
+        lab_name: form.labName.trim(),
+        password: form.password,
+        plan_name: planName,
+        billing_interval: billingInterval,
+        num_users: numUsers,
+        include_setup_fee: withSetup,
+      };
+
+      const res = await fetch(`${API_BASE_URL}/billing/checkout-session`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.checkout_url) {
+        // Direct browser redirect to the real hosted Stripe checkout page
+        window.location.href = data.checkout_url;
+        return;
+      }
+
+      // Extract error message from API response
+      let errorMsg = 'Failed to create checkout session. Please try again.';
+      if (data?.detail) {
+        if (Array.isArray(data.detail)) {
+          errorMsg = data.detail.map((d: any) => d.msg || `${d.loc?.slice(-1)}: invalid`).join(', ');
+        } else if (typeof data.detail === 'string') {
+          errorMsg = data.detail;
+        }
+      } else if (data?.message) {
+        errorMsg = data.message;
+      }
+
+      setError(errorMsg);
+      setSubmitting(false);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Network error connecting to payment gateway.');
+      setSubmitting(false);
     }
   }
 
@@ -186,7 +243,7 @@ export function CheckoutModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 16 }}
           transition={{ type: 'spring', damping: 26, stiffness: 320 }}
-          className="w-full max-w-[550px] rounded-[24px] sm:rounded-[28px] bg-white p-4 sm:p-7 shadow-2xl relative my-auto border border-gray-100 overflow-hidden"
+          className="w-full max-w-[550px] max-h-[92vh] overflow-y-auto no-scrollbar rounded-[24px] sm:rounded-[28px] bg-white p-4 sm:p-7 shadow-2xl relative my-auto border border-gray-100"
           onClick={(e) => e.stopPropagation()}
           role="dialog"
           aria-modal="true"
@@ -333,9 +390,11 @@ export function CheckoutModal({
                           </label>
                           <input
                             type="tel"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
                             value={form.phone}
-                            onChange={updateField('phone')}
-                            placeholder="Phone number"
+                            onChange={handlePhoneChange}
+                            placeholder="Numbers only (e.g. 2025550123)"
                             className="w-full px-4 py-3 rounded-2xl border border-gray-200 text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white"
                             required
                           />
@@ -443,6 +502,94 @@ export function CheckoutModal({
                         <span className="font-bold text-gray-900 text-[15px]">${subscriptionTotal}/{intervalLabel}</span>
                       </div>
                     </div>
+
+                    {/* Account Password Inputs (Tab 2) */}
+                    <div className="pt-3 border-t border-gray-100 text-left space-y-3">
+                      <div>
+                        <label className="block text-[14px] font-bold text-gray-900">
+                          Create account password
+                        </label>
+                        <p className="text-[12px] text-gray-500 mt-0.5">
+                          Set a password to log into your Dental Pulse dashboard.
+                        </p>
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                          <label className="block text-[13px] font-semibold text-gray-900 mb-1.5">
+                            Password
+                          </label>
+                          <div className="relative">
+                            <input
+                              type={showPassword ? 'text' : 'password'}
+                              value={form.password}
+                              onChange={updateField('password')}
+                              placeholder="Min. 8 characters"
+                              className="w-full pl-4 pr-10 py-3 rounded-2xl border border-gray-200 text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white"
+                              required
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowPassword((prev) => !prev)}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition cursor-pointer p-1"
+                              aria-label={showPassword ? 'Hide password' : 'Show password'}
+                            >
+                              {showPassword ? (
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                                  <line x1="1" y1="1" x2="23" y2="23" />
+                                </svg>
+                              ) : (
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                  <circle cx="12" cy="12" r="3" />
+                                </svg>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+
+                        <div>
+                          <label className="block text-[13px] font-semibold text-gray-900 mb-1.5">
+                            Confirm password
+                          </label>
+                          <div className="relative">
+                            <input
+                              type={showConfirmPassword ? 'text' : 'password'}
+                              value={form.confirmPassword}
+                              onChange={updateField('confirmPassword')}
+                              placeholder="Re-enter password"
+                              className="w-full pl-4 pr-10 py-3 rounded-2xl border border-gray-200 text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white"
+                              required
+                            />
+                            <button
+                              type="button"
+                              onClick={() => setShowConfirmPassword((prev) => !prev)}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition cursor-pointer p-1"
+                              aria-label={showConfirmPassword ? 'Hide password' : 'Show password'}
+                            >
+                              {showConfirmPassword ? (
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" />
+                                  <line x1="1" y1="1" x2="23" y2="23" />
+                                </svg>
+                              ) : (
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                                  <circle cx="12" cy="12" r="3" />
+                                </svg>
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {error && (
+                      <p className="text-[12px] text-red-500 font-medium pt-1 text-left">
+                        {error}
+                      </p>
+                    )}
                   </div>
 
                   {/* Tab 2 Actions: Back + Next */}
@@ -613,11 +760,16 @@ export function CheckoutModal({
                     )}
                   </AnimatePresence>
 
-                  {/* Tab 3 Actions as in Screenshot 3:
+                  {/* Tab 3 Actions:
                       1. Black button: "Add setup support · $499"
                       2. Row: "Back" + "Continue without setup support"
                   */}
                   <div className="space-y-3 pt-6 mt-4">
+                    {error && (
+                      <p className="text-[12px] text-red-500 font-medium text-center pb-1">
+                        {error}
+                      </p>
+                    )}
                     <motion.button
                       whileHover={{ scale: 1.01 }}
                       whileTap={{ scale: 0.99 }}
