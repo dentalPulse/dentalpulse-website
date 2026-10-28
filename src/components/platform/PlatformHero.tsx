@@ -60,7 +60,7 @@ export function PlatformHero() {
                 href="/roi"
                 className="inline-flex items-center justify-center border border-[#D6D6D6] text-[#0A0A0A] bg-white text-[15px] font-bold px-6 py-3.5 rounded-full hover:bg-black/5 transition-colors"
               >
-                Calculate ROI
+                Calculate your ROI
               </Link>
             </div>
           </div>

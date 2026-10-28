@@ -27,7 +27,7 @@ export function AboutContactCTA() {
               href="/roi"
               className="inline-flex items-center justify-center border border-[#3A3A3A] hover:bg-white/10 text-white font-bold text-[16px] px-7 py-4 rounded-full transition-all duration-200"
             >
-              Calculate ROI
+              Calculate your ROI
             </Link>
           </div>
         </div>

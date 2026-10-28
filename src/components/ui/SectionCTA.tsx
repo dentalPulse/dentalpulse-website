@@ -19,7 +19,7 @@ export interface SectionCTAProps {
 export function SectionCTA({
   title,
   description,
-  eyebrow,
+  eyebrow = 'GET STARTED TODAY',
   primaryCta = { label: 'Book a demo', href: '/book-demo' },
   secondaryCta = { label: 'Calculate your ROI', href: '/roi' },
   id = 'book-demo',
@@ -27,7 +27,7 @@ export function SectionCTA({
 }: SectionCTAProps) {
   return (
     <section id={id} className={className}>
-      <div className="max-w-[1240px] mx-auto bg-[#0A0A0A] rounded-[24px] sm:rounded-[32px] p-6 sm:p-12 lg:p-18 text-white relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8 shadow-2xl">
+      <div className="max-w-[1240px] mx-auto bg-[#0A0A0A] rounded-[24px] sm:rounded-[32px] p-6 sm:p-12 lg:p-16 text-white relative overflow-hidden flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-8 shadow-2xl">
         {/* Neon Green Pulse Watermark SVG */}
         <svg
           viewBox="0 0 600 200"
@@ -45,13 +45,13 @@ export function SectionCTA({
         </svg>
 
         {/* Left Column: Heading & Subtext */}
-        <div className="relative z-10 max-w-[640px]">
+        <div className="relative z-10 max-w-[620px]">
           {eyebrow && (
             <p className="font-mono text-[13px] font-semibold text-[#12F095] tracking-[0.06em] uppercase mb-2">
               {eyebrow}
             </p>
           )}
-          <h2 className="m-0 text-[26px] xs:text-[30px] sm:text-[40px] lg:text-[48px] font-extrabold leading-[1.08] tracking-[-0.035em] text-white">
+          <h2 className="m-0 text-[26px] sm:text-[36px] lg:text-[44px] font-extrabold leading-[1.1] tracking-[-0.035em] text-white">
             {title}
           </h2>
           <p className="mt-3 text-[14px] sm:text-[17px] text-[#BDBDBD] leading-relaxed max-w-[540px]">
@@ -59,12 +59,12 @@ export function SectionCTA({
           </p>
         </div>
 
-        {/* Right Column: CTA Buttons */}
-        <div className="relative z-10 flex flex-col xs:flex-row w-full lg:w-auto items-stretch xs:items-center gap-3 shrink-0">
+        {/* Right Column: CTA Buttons (Horizontal) */}
+        <div className="relative z-10 flex flex-row flex-wrap sm:flex-nowrap items-center gap-3 sm:gap-3.5 shrink-0">
           {primaryCta && (
             <Link
               href={primaryCta.href}
-              className="inline-flex items-center justify-center bg-[#12F095] text-[#0A0A0A] font-extrabold text-[15px] sm:text-[16px] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-[#00df83] transition-colors shadow-lg active:scale-[0.99] select-none text-center"
+              className="inline-flex items-center justify-center bg-[#12F095] text-[#0A0A0A] font-extrabold text-[15px] sm:text-[16px] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-[#00df83] transition-all duration-200 shadow-lg hover:shadow-[0_0_24px_rgba(18,240,149,0.35)] active:scale-[0.98] select-none text-center whitespace-nowrap"
             >
               {primaryCta.label}
             </Link>
@@ -72,7 +72,7 @@ export function SectionCTA({
           {secondaryCta && (
             <Link
               href={secondaryCta.href}
-              className="inline-flex items-center justify-center border border-[#3A3A3A] bg-transparent text-white font-bold text-[15px] sm:text-[16px] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 transition-colors active:scale-[0.99] select-none text-center"
+              className="inline-flex items-center justify-center border border-[#3A3A3A] bg-transparent text-white font-bold text-[15px] sm:text-[16px] px-6 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-200 active:scale-[0.98] select-none text-center whitespace-nowrap"
             >
               {secondaryCta.label}
             </Link>

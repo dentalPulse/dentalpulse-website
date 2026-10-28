@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Prompt {
   label: string;
@@ -205,6 +206,22 @@ export function Hero() {
                 {prompt.label}
               </button>
             ))}
+          </div>
+
+          {/* Hero CTAs: Book a demo / Calculate your ROI */}
+          <div className="flex flex-row flex-wrap items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-10">
+            <Link
+              href="/book-demo"
+              className="inline-flex items-center justify-center bg-[#12F095] text-[#0A0A0A] font-extrabold text-[15px] sm:text-[16px] px-7 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-[#00df83] transition-all duration-200 shadow-[0_0_24px_rgba(18,240,149,0.35)] hover:shadow-[0_0_32px_rgba(18,240,149,0.55)] active:scale-[0.98] select-none text-center whitespace-nowrap"
+            >
+              Book a demo
+            </Link>
+            <Link
+              href="/roi"
+              className="inline-flex items-center justify-center border border-[#3A3A3A] bg-white/[0.04] text-white font-bold text-[15px] sm:text-[16px] px-7 sm:px-8 py-3.5 sm:py-4 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-200 active:scale-[0.98] select-none text-center whitespace-nowrap"
+            >
+              Calculate your ROI
+            </Link>
           </div>
         </div>
       </div>

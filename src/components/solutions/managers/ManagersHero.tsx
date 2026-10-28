@@ -68,10 +68,10 @@ export function ManagersHero() {
               Book a demo
             </Link>
             <Link
-              href="/platform"
+              href="/roi"
               className="inline-flex items-center justify-center border border-[#D6D6D6] bg-white text-[#0A0A0A] text-[15px] sm:text-[16px] font-bold px-7 py-3.5 sm:py-4 rounded-full hover:bg-[#F5F5F5] transition-colors"
             >
-              See the platform
+              Calculate your ROI
             </Link>
           </div>
         </div>
