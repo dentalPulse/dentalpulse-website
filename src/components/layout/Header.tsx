@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -12,6 +12,50 @@ export function Header() {
   const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
   const navLinks = HEADER_NAV_LINKS;
+  const [isSticky, setIsSticky] = useState(true);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const lastScrollY = useRef(0);
+
+  // Track scroll direction on both mobile and desktop:
+  // - Scroll down: navbar is sticky at top
+  // - Scroll up: navbar is not sticky (retracts out of view until back at the top)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    lastScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY.current;
+
+      setIsScrolled(currentScrollY > 10);
+
+      // Always keep visible at the very top of the page
+      if (currentScrollY <= 10) {
+        setIsSticky(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Ignore tiny scroll jitter (< 6px)
+      if (Math.abs(delta) < 6) {
+        return;
+      }
+
+      if (delta > 0) {
+        // User is scrolling DOWN -> navbar should be sticky
+        setIsSticky(true);
+      } else if (delta < 0 && currentScrollY > 70) {
+        // User is scrolling UP -> navbar should NOT be sticky
+        setIsSticky(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   // Track hash changes and smooth scroll to section on hash mount
   useEffect(() => {
@@ -104,7 +148,13 @@ export function Header() {
   };
 
   return (
-    <header className="w-full bg-[#0A0A0A] border-b border-[#222222] sticky top-0 z-50 transition-colors">
+    <header
+      className={`w-full bg-[#0A0A0A] border-b border-[#222222] sticky top-0 z-50 transition-all duration-300 ease-in-out ${
+        isSticky || isMenuOpen
+          ? 'translate-y-0 opacity-100 pointer-events-auto'
+          : '-translate-y-full opacity-0 pointer-events-none'
+      } ${isScrolled && isSticky ? 'shadow-lg' : ''}`}
+    >
       <div className="max-w-[1240px] mx-auto px-4 sm:px-6 py-3.5 sm:py-4 flex items-center justify-between gap-3 sm:gap-4">
         {/* Brand Logo */}
         <Link
