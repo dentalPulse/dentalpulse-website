@@ -6,6 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export function BookDemoForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -26,10 +29,36 @@ export function BookDemoForm() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Simulate instantaneous booking submission
-    setIsSubmitted(true);
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const response = await fetch('/api/book-demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to submit demo request. Please try again.');
+      }
+
+      setIsSubmitted(true);
+    } catch (err: unknown) {
+      const message =
+        err instanceof Error
+          ? err.message
+          : 'Something went wrong while booking your demo. Please try again.';
+      setErrorMessage(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleReset = () => {
@@ -43,6 +72,8 @@ export function BookDemoForm() {
       accounts: '100–300',
       message: '',
     });
+    setErrorMessage(null);
+    setIsSubmitting(false);
     setIsSubmitted(false);
   };
 
@@ -63,6 +94,29 @@ export function BookDemoForm() {
               Tell us about your lab
             </h2>
 
+            {/* Error Message Alert */}
+            {errorMessage && (
+              <div
+                role="alert"
+                className="p-4 rounded-[14px] bg-[#FEF2F2] border border-[#FCA5A5] text-[#991B1B] text-[14px] flex items-start gap-3"
+              >
+                <svg
+                  className="w-5 h-5 shrink-0 text-[#DC2626] mt-0.5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <line x1="12" y1="8" x2="12" y2="12" />
+                  <line x1="12" y1="16" x2="12.01" y2="16" />
+                </svg>
+                <div className="flex-1 leading-snug">
+                  {errorMessage}
+                </div>
+              </div>
+            )}
+
             {/* First & Last Name */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
               <div className="flex flex-col gap-1.5">
@@ -74,10 +128,11 @@ export function BookDemoForm() {
                   name="firstName"
                   type="text"
                   required
+                  disabled={isSubmitting}
                   autoComplete="given-name"
                   value={formData.firstName}
                   onChange={handleChange}
-                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all"
+                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -90,10 +145,11 @@ export function BookDemoForm() {
                   name="lastName"
                   type="text"
                   required
+                  disabled={isSubmitting}
                   autoComplete="family-name"
                   value={formData.lastName}
                   onChange={handleChange}
-                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all"
+                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
             </div>
@@ -108,11 +164,12 @@ export function BookDemoForm() {
                 name="email"
                 type="email"
                 required
+                disabled={isSubmitting}
                 autoComplete="email"
                 placeholder="you@yourlab.com"
                 value={formData.email}
                 onChange={handleChange}
-                className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] placeholder-[#999999] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all"
+                className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] placeholder-[#999999] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
               />
             </div>
 
@@ -127,10 +184,11 @@ export function BookDemoForm() {
                   name="labName"
                   type="text"
                   required
+                  disabled={isSubmitting}
                   autoComplete="organization"
                   value={formData.labName}
                   onChange={handleChange}
-                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all"
+                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -142,10 +200,11 @@ export function BookDemoForm() {
                   id="d-phone"
                   name="phone"
                   type="tel"
+                  disabled={isSubmitting}
                   autoComplete="tel"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all"
+                  className="min-h-[48px] px-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 />
               </div>
             </div>
@@ -159,9 +218,10 @@ export function BookDemoForm() {
                 <select
                   id="d-role"
                   name="role"
+                  disabled={isSubmitting}
                   value={formData.role}
                   onChange={handleChange}
-                  className="min-h-[48px] px-3 rounded-[12px] border border-[#D6D6D6] bg-white text-[15px] sm:text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all cursor-pointer"
+                  className="min-h-[48px] px-3 rounded-[12px] border border-[#D6D6D6] bg-white text-[15px] sm:text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <option value="Owner / C-suite">Owner / C-suite</option>
                   <option value="Sales or CS manager">Sales or CS manager</option>
@@ -178,9 +238,10 @@ export function BookDemoForm() {
                 <select
                   id="d-size"
                   name="accounts"
+                  disabled={isSubmitting}
                   value={formData.accounts}
                   onChange={handleChange}
-                  className="min-h-[48px] px-3 rounded-[12px] border border-[#D6D6D6] bg-white text-[15px] sm:text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all cursor-pointer"
+                  className="min-h-[48px] px-3 rounded-[12px] border border-[#D6D6D6] bg-white text-[15px] sm:text-[16px] text-[#0A0A0A] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] transition-all cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <option value="Under 100">Under 100</option>
                   <option value="100–300">100–300</option>
@@ -200,21 +261,49 @@ export function BookDemoForm() {
                 id="d-msg"
                 name="message"
                 rows={3}
+                disabled={isSubmitting}
                 placeholder="E.g. reduce dentist churn, increase aligner cross-sells..."
                 value={formData.message}
                 onChange={handleChange}
-                className="p-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] placeholder-[#999999] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] resize-y transition-all"
+                className="p-3.5 rounded-[12px] border border-[#D6D6D6] bg-white text-[16px] text-[#0A0A0A] placeholder-[#999999] focus:outline-none focus:border-[#067A47] focus:ring-1 focus:ring-[#067A47] resize-y transition-all disabled:opacity-60 disabled:cursor-not-allowed"
               />
             </div>
 
             {/* Submit Button */}
             <motion.button
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
+              whileHover={isSubmitting ? {} : { scale: 1.01 }}
+              whileTap={isSubmitting ? {} : { scale: 0.98 }}
               type="submit"
-              className="mt-1.5 min-h-[54px] w-full rounded-full bg-[#0A0A0A] hover:bg-[#222222] text-white text-[17px] font-extrabold cursor-pointer transition-colors shadow-sm"
+              disabled={isSubmitting}
+              className="mt-1.5 min-h-[54px] w-full rounded-full bg-[#0A0A0A] hover:bg-[#222222] text-white text-[17px] font-extrabold cursor-pointer transition-colors shadow-sm disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              Book my demo
+              {isSubmitting ? (
+                <>
+                  <svg
+                    className="animate-spin h-5 w-5 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    />
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    />
+                  </svg>
+                  <span>Booking demo...</span>
+                </>
+              ) : (
+                'Book my demo'
+              )}
             </motion.button>
 
             {/* Privacy Disclaimer */}
