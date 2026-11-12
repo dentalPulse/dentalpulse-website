@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useLockBodyScroll } from '@/hooks/useLockBodyScroll';
+import { getPhoneValidationRule, validateEmail, validatePhoneNumber } from '@/utils/validation';
 
 type CheckoutModalProps = {
   planName: string;
@@ -40,7 +41,6 @@ const COUNTRY_CODES = [
   { code: '+64', flag: '🇳🇿', label: 'NZ (+64)' },
 ];
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const SETUP_FEE_USD = 499;
 const EXTRA_SEAT_USD_MONTHLY = 25;
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://uat-api.dentalpulseai.com/api/v1';
@@ -67,6 +67,7 @@ export function CheckoutModal({
   });
 
   const [countryCode, setCountryCode] = useState<string>('+1');
+  const phoneRule = getPhoneValidationRule(countryCode);
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
@@ -121,9 +122,22 @@ export function CheckoutModal({
       delete next.phone;
       return next;
     });
-    // Strictly accept only numbers (digits 0-9), max 14 digits
-    const numericOnly = e.target.value.replace(/\D/g, '').slice(0, 14);
+    // Strictly accept only numbers (digits 0-9), limited by the selected country's max length
+    const numericOnly = e.target.value.replace(/\D/g, '').slice(0, phoneRule.max);
     setForm((f) => ({ ...f, phone: numericOnly }));
+  }
+
+  function handleCountryCodeChange(e: React.ChangeEvent<HTMLSelectElement>) {
+    const nextCode = e.target.value;
+    const nextRule = getPhoneValidationRule(nextCode);
+    setCountryCode(nextCode);
+    setError(null);
+    setFieldErrors((prev) => {
+      const next = { ...prev };
+      delete next.phone;
+      return next;
+    });
+    setForm((f) => ({ ...f, phone: f.phone.slice(0, nextRule.max) }));
   }
 
   function goToStep(nextStep: 1 | 2 | 3) {
@@ -141,15 +155,13 @@ export function CheckoutModal({
     if (!form.yourName.trim() || form.yourName.trim().length < 2) {
       errors.yourName = 'Please enter your name.';
     }
-    if (!form.email.trim()) {
-      errors.email = 'Please enter your email.';
-    } else if (!EMAIL_PATTERN.test(form.email.trim())) {
-      errors.email = 'Please enter a valid email address.';
+    const emailError = validateEmail(form.email);
+    if (emailError) {
+      errors.email = emailError;
     }
-    if (!form.phone.trim()) {
-      errors.phone = 'Please enter your phone number.';
-    } else if (form.phone.trim().length < 7 || form.phone.trim().length > 14) {
-      errors.phone = 'Please enter a valid phone number (7–14 digits).';
+    const phoneError = validatePhoneNumber(form.phone, countryCode);
+    if (phoneError) {
+      errors.phone = phoneError;
     }
 
     if (Object.keys(errors).length > 0) {
@@ -457,7 +469,7 @@ export function CheckoutModal({
                         <div className="relative shrink-0">
                           <select
                             value={countryCode}
-                            onChange={(e) => setCountryCode(e.target.value)}
+                            onChange={handleCountryCodeChange}
                             aria-label="Country Code"
                             className="h-[44px] sm:h-[48px] pl-3 pr-7 rounded-2xl border border-gray-200 text-gray-900 text-[13px] sm:text-[14px] font-semibold bg-white focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition cursor-pointer appearance-none"
                           >
@@ -481,7 +493,8 @@ export function CheckoutModal({
                           pattern="[0-9]*"
                           value={form.phone}
                           onChange={handlePhoneChange}
-                          placeholder="Digits only (e.g. 2025550123)"
+                          maxLength={phoneRule.max}
+                          placeholder={phoneRule.placeholder}
                           className={`flex-1 min-w-0 h-[44px] sm:h-[48px] px-4 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
                             fieldErrors.phone ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
                           }`}
