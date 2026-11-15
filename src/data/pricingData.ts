@@ -13,6 +13,7 @@ export interface PlanData {
   ctaText: string;
   isPopular?: boolean;
   isCustom?: boolean;
+  comingSoon?: boolean;
 }
 
 export const PRICING_PLANS: PlanData[] = [
@@ -36,11 +37,12 @@ export const PRICING_PLANS: PlanData[] = [
     ],
     ctaText: 'Choose Starter',
     isPopular: false,
+    comingSoon: false,
   },
   {
     id: 'growth',
     name: 'Growth',
-    badge: 'Most popular',
+    badge: 'Coming soon',
     description: 'Reach every dentist with targeted, automated campaigns.',
     priceMonthly: 799,
     priceYearlyPerMonth: 666,
@@ -58,10 +60,12 @@ export const PRICING_PLANS: PlanData[] = [
     ],
     ctaText: 'Choose Growth',
     isPopular: true,
+    comingSoon: true,
   },
   {
     id: 'growth-ai',
     name: 'Growth AI',
+    badge: 'Coming soon',
     description: 'Predictive intelligence that flags churn risk before it happens.',
     priceMonthly: 999,
     priceYearlyPerMonth: 833,
@@ -78,10 +82,12 @@ export const PRICING_PLANS: PlanData[] = [
     ],
     ctaText: 'Choose Growth AI',
     isPopular: false,
+    comingSoon: true,
   },
   {
     id: 'enterprise',
     name: 'Enterprise',
+    badge: 'Coming soon',
     description: 'Dedicated infrastructure, custom integrations, and SLA guarantees.',
     priceMonthly: null,
     priceYearlyPerMonth: null,
@@ -98,5 +104,6 @@ export const PRICING_PLANS: PlanData[] = [
     ctaText: 'Talk to sales',
     isCustom: true,
     isPopular: false,
+    comingSoon: true,
   },
 ];
