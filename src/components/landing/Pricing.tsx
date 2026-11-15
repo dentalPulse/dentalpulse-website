@@ -12,10 +12,12 @@ const CheckoutModal = dynamic(
 // Map shared PRICING_PLANS for landing page display compatibility
 const plans = PRICING_PLANS.map((p) => ({
   name: p.name,
+  badge: p.badge,
   basePriceMonthly: p.priceMonthly,
   includedUsers: p.includedUsers,
   features: p.features,
   isPopular: !!p.isPopular,
+  comingSoon: !!p.comingSoon,
 }));
 
 const EXTRA_SEAT_USD_MONTHLY = 25;
@@ -33,7 +35,10 @@ export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [checkoutPlan, setCheckoutPlan] = useState<string | null>(null);
 
-  function handleChoosePlan(planName: string) {
+  function handleChoosePlan(planName: string, comingSoon?: boolean) {
+    if (comingSoon) {
+      return;
+    }
     if (planName === 'Enterprise') {
       window.location.href = '/book-demo';
       return;
@@ -82,18 +87,19 @@ export function Pricing() {
             {plans.map((plan, idx) => (
               <div
                 key={idx}
-                className={`flex flex-col text-left pt-[28px] sm:pt-[32px] px-[20px] sm:px-[24px] pb-[24px] rounded-[28px] sm:rounded-[32px] ${plan.isPopular
-                  ? 'bg-brand-primary border-[6px] sm:border-[8px] border-[#B8F7E1] p-4 lg:-translate-y-[4%] xl:-translate-y-[10%] backdrop-blur-[4px] shadow-[0px_6px_10px_0px_rgba(0,0,0,0.25)]'
-                  : 'bg-white'
-                  }`}
+                className={`flex flex-col text-left pt-[28px] sm:pt-[32px] px-[20px] sm:px-[24px] pb-[24px] rounded-[28px] sm:rounded-[32px] ${
+                  plan.isPopular
+                    ? 'bg-brand-primary border-[6px] sm:border-[8px] border-[#B8F7E1] p-4 lg:-translate-y-[4%] xl:-translate-y-[10%] backdrop-blur-[4px] shadow-[0px_6px_10px_0px_rgba(0,0,0,0.25)]'
+                    : 'bg-white'
+                }`}
               >
                 {/* Content inside white panel */}
                 <div className="flex flex-col flex-1">
                   <div className="flex justify-between items-start mb-4">
                     <h3 className="text-[16px] !font-normal">{plan.name}</h3>
-                    {plan.isPopular && (
-                      <span className="bg-white text-[11px] font-bold text-gray-700 px-3 py-1 rounded-md shadow-sm border border-black/10">
-                        Most Popular
+                    {plan.badge && (
+                      <span className="bg-white text-[11px] font-bold text-gray-700 px-3 py-1 rounded-md shadow-sm border border-black/10 uppercase">
+                        {plan.badge}
                       </span>
                     )}
                   </div>
@@ -130,8 +136,13 @@ export function Pricing() {
                   </ul>
                   <div className="px-2 sm:px-6 pt-2 pb-0 min-h-[52px] flex items-start mt-5">
                     <button
-                      onClick={() => handleChoosePlan(plan.name)}
-                      className={`  ${plan.isPopular ? 'bg-black text-white' : 'bg-brand-pricing-btn-bg text-black'} w-full py-3 rounded-[8px] !font-normal text-[15px] sm:text-[16px] cursor-pointer hover:opacity-90 transition-opacity`}
+                      disabled={plan.comingSoon}
+                      onClick={() => handleChoosePlan(plan.name, plan.comingSoon)}
+                      className={`${
+                        plan.isPopular ? 'bg-black text-white' : 'bg-brand-pricing-btn-bg text-black'
+                      } w-full py-3 rounded-[8px] !font-normal text-[15px] sm:text-[16px] transition-opacity ${
+                        plan.comingSoon ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer hover:opacity-90'
+                      }`}
                     >
                       Choose Plan
                     </button>
@@ -146,7 +157,7 @@ export function Pricing() {
 
       {checkoutPlan && (() => {
         const plan = plans.find((p) => p.name === checkoutPlan);
-        if (!plan || plan.basePriceMonthly === null || plan.includedUsers === null) return null;
+        if (!plan || plan.comingSoon || plan.basePriceMonthly === null || plan.includedUsers === null) return null;
         return (
           <CheckoutModal
             planName={plan.name}
@@ -160,5 +171,3 @@ export function Pricing() {
     </section>
   );
 }
-
-

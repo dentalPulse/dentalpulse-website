@@ -18,6 +18,9 @@ export function PricingPageContent() {
   const [checkoutPlan, setCheckoutPlan] = useState<PlanData | null>(null);
 
   const handleSelectPlan = (plan: PlanData) => {
+    if (plan.comingSoon) {
+      return;
+    }
     if (plan.isCustom || !plan.priceMonthly || !plan.includedUsers) {
       // Enterprise goes to contact/demo
       window.location.href = '/book-demo';

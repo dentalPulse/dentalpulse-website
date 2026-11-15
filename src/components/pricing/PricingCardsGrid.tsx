@@ -16,21 +16,23 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {PRICING_PLANS.map((plan) => {
             const isDark = plan.isPopular;
+            const isDisabled = !!plan.comingSoon;
 
             return (
               <div
                 key={plan.id}
-                className={`rounded-[24px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 relative ${isDark
-                  ? 'bg-[#0A0A0A] text-white border-2 border-[#12F095] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.55)] lg:-translate-y-2'
-                  : plan.isCustom
-                    ? 'bg-[#F9FAFB] text-[#0A0A0A] border border-[#E5E7EB] hover:border-[#D1D5DB] hover:shadow-md'
-                    : 'bg-white text-[#0A0A0A] border border-[#E5E7EB] hover:border-[#D1D5DB] hover:shadow-md'
-                  }`}
+                className={`rounded-[24px] p-6 sm:p-7 flex flex-col justify-between transition-all duration-200 relative ${
+                  isDark
+                    ? 'bg-[#0A0A0A] text-white border-2 border-[#12F095] shadow-[0_24px_50px_-12px_rgba(0,0,0,0.55)] lg:-translate-y-2'
+                    : plan.isCustom
+                      ? 'bg-[#F9FAFB] text-[#0A0A0A] border border-[#E5E7EB] hover:border-[#D1D5DB] hover:shadow-md'
+                      : 'bg-white text-[#0A0A0A] border border-[#E5E7EB] hover:border-[#D1D5DB] hover:shadow-md'
+                }`}
               >
-                {/* Popular Badge */}
+                {/* Plan Badge (e.g., Coming soon) */}
                 {plan.badge && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2">
-                    <span className="bg-[#12F095] text-[#0A0A0A] text-[11px] font-extrabold uppercase tracking-[0.08em] px-3.5 py-1 rounded-full shadow-sm">
+                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 z-10">
+                    <span className="bg-[#12F095] text-[#0A0A0A] text-[11px] font-extrabold uppercase tracking-[0.08em] px-3.5 py-1 rounded-full shadow-sm whitespace-nowrap">
                       {plan.badge}
                     </span>
                   </div>
@@ -39,14 +41,16 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
                 {/* Top Section: Header & Price */}
                 <div>
                   <h3
-                    className={`text-[22px] font-extrabold tracking-[-0.02em] ${isDark ? 'text-white' : 'text-[#0A0A0A]'
-                      }`}
+                    className={`text-[22px] font-extrabold tracking-[-0.02em] ${
+                      isDark ? 'text-white' : 'text-[#0A0A0A]'
+                    }`}
                   >
                     {plan.name}
                   </h3>
                   <p
-                    className={`mt-1.5 text-[14px] leading-[1.5] min-h-[42px] ${isDark ? 'text-[#A3A3A3]' : 'text-[#5C5C5C]'
-                      }`}
+                    className={`mt-1.5 text-[14px] leading-[1.5] min-h-[42px] ${
+                      isDark ? 'text-[#A3A3A3]' : 'text-[#5C5C5C]'
+                    }`}
                   >
                     {plan.description}
                   </p>
@@ -56,14 +60,16 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
                     {plan.isCustom ? (
                       <div className="flex flex-col">
                         <span
-                          className={`text-[36px] sm:text-[40px] font-extrabold leading-none tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#0A0A0A]'
-                            }`}
+                          className={`text-[36px] sm:text-[40px] font-extrabold leading-none tracking-[-0.03em] ${
+                            isDark ? 'text-white' : 'text-[#0A0A0A]'
+                          }`}
                         >
                           Custom
                         </span>
                         <span
-                          className={`mt-2 text-[13px] font-medium ${isDark ? 'text-[#8A8A8A]' : 'text-[#6B7280]'
-                            }`}
+                          className={`mt-2 text-[13px] font-medium ${
+                            isDark ? 'text-[#8A8A8A]' : 'text-[#6B7280]'
+                          }`}
                         >
                           Tailored to your lab group
                         </span>
@@ -72,21 +78,24 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
                       <div className="flex flex-col">
                         <div className="flex items-baseline gap-1.5">
                           <span
-                            className={`text-[38px] sm:text-[42px] font-extrabold leading-none tracking-[-0.03em] ${isDark ? 'text-white' : 'text-[#0A0A0A]'
-                              }`}
+                            className={`text-[38px] sm:text-[42px] font-extrabold leading-none tracking-[-0.03em] ${
+                              isDark ? 'text-white' : 'text-[#0A0A0A]'
+                            }`}
                           >
                             ${isYearly ? plan.priceYearlyPerMonth : plan.priceMonthly}
                           </span>
                           <span
-                            className={`text-[14px] font-semibold ${isDark ? 'text-[#A3A3A3]' : 'text-[#6B7280]'
-                              }`}
+                            className={`text-[14px] font-semibold ${
+                              isDark ? 'text-[#A3A3A3]' : 'text-[#6B7280]'
+                            }`}
                           >
                             /month
                           </span>
                         </div>
                         <span
-                          className={`mt-2 text-[12.5px] font-medium ${isDark ? 'text-[#8A8A8A]' : 'text-[#6B7280]'
-                            }`}
+                          className={`mt-2 text-[12.5px] font-medium ${
+                            isDark ? 'text-[#8A8A8A]' : 'text-[#6B7280]'
+                          }`}
                         >
                           {isYearly
                             ? `Billed annually ($${plan.annualTotal?.toLocaleString()}/yr)`
@@ -97,12 +106,13 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
 
                     {/* Seat Limit Pill */}
                     <div
-                      className={`mt-4 py-2 px-3 rounded-[10px] text-[12.5px] font-semibold flex items-center justify-center text-center ${isDark
-                        ? 'bg-[#1C1C1C] text-[#E5E5E5] border border-white/10'
-                        : plan.isCustom
-                          ? 'bg-white text-[#374151] border border-[#E5E7EB]'
-                          : 'bg-[#F3F4F6] text-[#374151]'
-                        }`}
+                      className={`mt-4 py-2 px-3 rounded-[10px] text-[12.5px] font-semibold flex items-center justify-center text-center ${
+                        isDark
+                          ? 'bg-[#1C1C1C] text-[#E5E5E5] border border-white/10'
+                          : plan.isCustom
+                            ? 'bg-white text-[#374151] border border-[#E5E7EB]'
+                            : 'bg-[#F3F4F6] text-[#374151]'
+                      }`}
                     >
                       {plan.includedUsers === null
                         ? 'Unlimited users included'
@@ -113,8 +123,9 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
                   {/* Feature List Header */}
                   <div className="mt-5">
                     <p
-                      className={`text-[12px] font-bold uppercase tracking-[0.05em] mb-3 ${isDark ? 'text-[#E5E5E5]' : 'text-[#0A0A0A]'
-                        }`}
+                      className={`text-[12px] font-bold uppercase tracking-[0.05em] mb-3 ${
+                        isDark ? 'text-[#E5E5E5]' : 'text-[#0A0A0A]'
+                      }`}
                     >
                       {plan.featuresHeader}
                     </p>
@@ -124,8 +135,9 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
                         <li key={idx} className="flex items-start gap-2.5 text-[13.5px] leading-[1.4]">
                           {/* Check Icon */}
                           <svg
-                            className={`w-4 h-4 shrink-0 mt-0.5 ${isDark ? 'text-[#12F095]' : 'text-[#067A47]'
-                              }`}
+                            className={`w-4 h-4 shrink-0 mt-0.5 ${
+                              isDark ? 'text-[#12F095]' : 'text-[#067A47]'
+                            }`}
                             viewBox="0 0 16 16"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
@@ -158,15 +170,27 @@ export function PricingCardsGrid({ isYearly, onSelectPlan }: PricingCardsGridPro
                 <div className="mt-8 pt-4">
                   <button
                     type="button"
-                    onClick={() => onSelectPlan(plan)}
-                    className={`w-full py-3.5 px-4 rounded-full text-[14px] font-bold transition-all duration-150 cursor-pointer text-center select-none ${isDark
-                      ? 'bg-[#12F095] text-[#0A0A0A] hover:bg-[#00DF83] shadow-[0_4px_14px_rgba(18,240,149,0.3)] active:scale-[0.99]'
-                      : plan.isCustom
-                        ? 'border border-[#0A0A0A] bg-white text-[#0A0A0A] hover:bg-black/5 active:scale-[0.99]'
-                        : plan.id === 'growth-ai'
-                          ? 'bg-[#0A0A0A] text-white hover:bg-[#262626] shadow-sm active:scale-[0.99]'
-                          : 'border border-[#0A0A0A] bg-white text-[#0A0A0A] hover:bg-[#F3F4F6] active:scale-[0.99]'
-                      }`}
+                    disabled={isDisabled}
+                    onClick={() => {
+                      if (!isDisabled) {
+                        onSelectPlan(plan);
+                      }
+                    }}
+                    className={`w-full py-3.5 px-4 rounded-full text-[14px] font-bold transition-all duration-150 text-center select-none ${
+                      isDisabled
+                        ? isDark
+                          ? 'bg-[#12F095]/50 text-[#0A0A0A]/70 cursor-not-allowed'
+                          : plan.id === 'growth-ai'
+                            ? 'bg-[#0A0A0A]/40 text-white/80 cursor-not-allowed'
+                            : 'border border-[#D1D5DB] bg-[#F3F4F6] text-[#9CA3AF] cursor-not-allowed'
+                        : isDark
+                          ? 'bg-[#12F095] text-[#0A0A0A] hover:bg-[#00DF83] shadow-[0_4px_14px_rgba(18,240,149,0.3)] active:scale-[0.99] cursor-pointer'
+                          : plan.isCustom
+                            ? 'border border-[#0A0A0A] bg-white text-[#0A0A0A] hover:bg-black/5 active:scale-[0.99] cursor-pointer'
+                            : plan.id === 'growth-ai'
+                              ? 'bg-[#0A0A0A] text-white hover:bg-[#262626] shadow-sm active:scale-[0.99] cursor-pointer'
+                              : 'border border-[#0A0A0A] bg-white text-[#0A0A0A] hover:bg-[#F3F4F6] active:scale-[0.99] cursor-pointer'
+                    }`}
                   >
                     {plan.ctaText}
                   </button>
