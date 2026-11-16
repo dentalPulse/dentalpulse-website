@@ -15,10 +15,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: '/solutions/sales-reps', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/solutions/marketing', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/integrations', priority: 0.8, changeFrequency: 'weekly' },
-    { path: '/customers', priority: 0.85, changeFrequency: 'weekly' },
+    // { path: '/customers', priority: 0.85, changeFrequency: 'weekly' },
     { path: '/resources', priority: 0.8, changeFrequency: 'weekly' },
     { path: '/about', priority: 0.75, changeFrequency: 'monthly' },
-    { path: '/careers', priority: 0.7, changeFrequency: 'monthly' },
+    // { path: '/careers', priority: 0.7, changeFrequency: 'monthly' },
+    { path: '/privacy', priority: 0.5, changeFrequency: 'monthly' },
+    { path: '/terms', priority: 0.5, changeFrequency: 'monthly' },
   ];
 
   return routes.map((r) => ({

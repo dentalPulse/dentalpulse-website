@@ -68,14 +68,14 @@ export function BookDemoLeft() {
       </div>
 
       {/* Customer Quote Card */}
-      <figure className="m-0 bg-white border border-[#E6E6E6] rounded-[20px] p-6 shadow-sm">
+      {/* <figure className="m-0 bg-white border border-[#E6E6E6] rounded-[20px] p-6 shadow-sm">
         <blockquote className="m-0 text-[16px] sm:text-[17px] leading-[1.55] font-semibold text-[#0A0A0A]">
           “Dental Pulse showed us exactly which 14 accounts were quietly slipping away. We saved 11 of them in the first 60 days.”
         </blockquote>
         <figcaption className="mt-3.5 text-[14px] text-[#5C5C5C]">
           <strong className="text-[#0A0A0A] font-bold">Marcus Vance</strong> · Operations Director, Apex Dental Ceramics
         </figcaption>
-      </figure>
+      </figure> */}
     </div>
   );
 }

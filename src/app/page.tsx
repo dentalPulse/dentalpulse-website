@@ -8,7 +8,7 @@ import { HowItWorks } from '@/components/landing/HowItWorks';
 import { FeaturesBento } from '@/components/landing/FeaturesBento';
 import { ProvenResults } from '@/components/landing/ProvenResults';
 import { RolesSection } from '@/components/landing/RolesSection';
-import { Testimonials } from '@/components/landing/Testimonials';
+// import { Testimonials } from '@/components/landing/Testimonials';
 import { BottomCTA } from '@/components/landing/BottomCTA';
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function Home() {
       <FeaturesBento />
       <ProvenResults />
       <RolesSection />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <BottomCTA />
     </div>
   );

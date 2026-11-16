@@ -168,23 +168,41 @@ export function Footer() {
         <div className="mt-14 pt-6 border-t border-[#222222] flex flex-col sm:flex-row justify-between items-center gap-4 text-[13px] sm:text-[14px] text-[#7A7A7A]">
           <span>© 2026 Dental Pulse. All rights reserved.</span>
           <div className="flex items-center gap-5">
+            <motion.div whileHover={{ y: -1 }}>
+              <Link
+                href="/terms"
+                className="text-[#7A7A7A] hover:text-[#BDBDBD] transition-colors"
+              >
+                Terms of use
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -1 }}>
+              <Link
+                href="/privacy"
+                className="text-[#7A7A7A] hover:text-[#BDBDBD] transition-colors"
+              >
+                Privacy
+              </Link>
+            </motion.div>
+          </div>
+          {false && <div className="hidden">
             <motion.a
               whileHover={{ y: -1 }}
-              href="#terms"
-              onClick={(e) => handleSmoothClick(e, '#terms')}
+              href="/terms"
+              onClick={(e) => handleSmoothClick(e, '/terms')}
               className="text-[#7A7A7A] hover:text-[#BDBDBD] transition-colors"
             >
               Terms of use
             </motion.a>
             <motion.a
               whileHover={{ y: -1 }}
-              href="#privacy"
-              onClick={(e) => handleSmoothClick(e, '#privacy')}
+              href="/privacy"
+              onClick={(e) => handleSmoothClick(e, '/privacy')}
               className="text-[#7A7A7A] hover:text-[#BDBDBD] transition-colors"
             >
               Privacy
             </motion.a>
-          </div>
+          </div>}
         </div>
       </div>
     </footer>
