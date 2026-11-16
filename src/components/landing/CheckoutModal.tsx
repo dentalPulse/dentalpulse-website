@@ -354,9 +354,8 @@ export function CheckoutModal({
                     </div>
                     {/* Step Label */}
                     <span
-                      className={`text-[12px] transition-colors ${
-                        isPassedOrActive ? 'text-gray-900 font-semibold' : 'text-gray-400 font-medium'
-                      }`}
+                      className={`text-[12px] transition-colors ${isPassedOrActive ? 'text-gray-900 font-semibold' : 'text-gray-400 font-medium'
+                        }`}
                     >
                       {tab.label}
                     </span>
@@ -402,9 +401,8 @@ export function CheckoutModal({
                         value={form.labName}
                         onChange={updateField('labName')}
                         placeholder="e.g. Apex Dental Laboratory"
-                        className={`w-full px-4 py-2.5 sm:py-3 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
-                          fieldErrors.labName ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
-                        }`}
+                        className={`w-full px-4 py-2.5 sm:py-3 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${fieldErrors.labName ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
+                          }`}
                         autoFocus
                         required
                       />
@@ -425,9 +423,8 @@ export function CheckoutModal({
                         value={form.yourName}
                         onChange={updateField('yourName')}
                         placeholder="e.g. Dr. John Doe"
-                        className={`w-full px-4 py-2.5 sm:py-3 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
-                          fieldErrors.yourName ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
-                        }`}
+                        className={`w-full px-4 py-2.5 sm:py-3 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${fieldErrors.yourName ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
+                          }`}
                         required
                       />
                       {fieldErrors.yourName && (
@@ -447,9 +444,8 @@ export function CheckoutModal({
                         value={form.email}
                         onChange={updateField('email')}
                         placeholder="example@domain.com"
-                        className={`w-full px-4 py-2.5 sm:py-3 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
-                          fieldErrors.email ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
-                        }`}
+                        className={`w-full px-4 py-2.5 sm:py-3 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${fieldErrors.email ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
+                          }`}
                         required
                       />
                       {fieldErrors.email && (
@@ -495,9 +491,8 @@ export function CheckoutModal({
                           onChange={handlePhoneChange}
                           maxLength={phoneRule.max}
                           placeholder={phoneRule.placeholder}
-                          className={`flex-1 min-w-0 h-[44px] sm:h-[48px] px-4 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
-                            fieldErrors.phone ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
-                          }`}
+                          className={`flex-1 min-w-0 h-[44px] sm:h-[48px] px-4 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${fieldErrors.phone ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
+                            }`}
                           required
                         />
                       </div>
@@ -611,9 +606,8 @@ export function CheckoutModal({
                             value={form.password}
                             onChange={updateField('password')}
                             placeholder="Min. 8 characters"
-                            className={`w-full pl-3.5 pr-10 py-2.5 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
-                              fieldErrors.password ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
-                            }`}
+                            className={`w-full pl-3.5 pr-10 py-2.5 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${fieldErrors.password ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
+                              }`}
                             required
                           />
                           <button
@@ -652,9 +646,8 @@ export function CheckoutModal({
                             value={form.confirmPassword}
                             onChange={updateField('confirmPassword')}
                             placeholder="Re-enter password"
-                            className={`w-full pl-3.5 pr-10 py-2.5 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${
-                              fieldErrors.confirmPassword ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
-                            }`}
+                            className={`w-full pl-3.5 pr-10 py-2.5 rounded-2xl border text-gray-900 text-[14px] focus:border-[#00E396] focus:ring-1 focus:ring-[#00E396] outline-none transition placeholder:text-gray-400 bg-white ${fieldErrors.confirmPassword ? 'border-red-400 bg-red-50/20' : 'border-gray-200'
+                              }`}
                             required
                           />
                           <button
@@ -718,11 +711,10 @@ export function CheckoutModal({
                         setIncludeSetupFee((prev) => !prev);
                       }
                     }}
-                    className={`rounded-2xl border-2 p-3.5 sm:p-4 text-left transition-all relative cursor-pointer select-none ${
-                      includeSetupFee
-                        ? 'border-[#00E396] bg-emerald-50/20 shadow-xs'
-                        : 'border-gray-200 bg-white hover:border-gray-300'
-                    }`}
+                    className={`rounded-2xl border-2 p-3.5 sm:p-4 text-left transition-all relative cursor-pointer select-none ${includeSetupFee
+                      ? 'border-[#00E396] bg-emerald-50/20 shadow-xs'
+                      : 'border-gray-200 bg-white hover:border-gray-300'
+                      }`}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-3">
@@ -746,11 +738,10 @@ export function CheckoutModal({
                               Setup support
                             </span>
                             <span
-                              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider ${
-                                includeSetupFee
-                                  ? 'bg-[#E8FDF3] text-[#057A47]'
-                                  : 'bg-gray-100 text-gray-500'
-                              }`}
+                              className={`text-[10px] font-semibold px-2 py-0.5 rounded-full uppercase tracking-wider ${includeSetupFee
+                                ? 'bg-[#E8FDF3] text-[#057A47]'
+                                : 'bg-gray-100 text-gray-500'
+                                }`}
                             >
                               {includeSetupFee ? 'Selected' : 'Optional'}
                             </span>
@@ -773,11 +764,10 @@ export function CheckoutModal({
 
                         {/* Interactive Checkbox Indicator */}
                         <div
-                          className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${
-                            includeSetupFee
-                              ? 'bg-[#00E396] text-[#0B0F17]'
-                              : 'border-2 border-gray-300 bg-white'
-                          }`}
+                          className={`w-5 h-5 rounded-md flex items-center justify-center transition-all ${includeSetupFee
+                            ? 'bg-[#00E396] text-[#0B0F17]'
+                            : 'border-2 border-gray-300 bg-white'
+                            }`}
                         >
                           {includeSetupFee && (
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round">
@@ -822,11 +812,13 @@ export function CheckoutModal({
                         className="mt-3 pt-3 border-t border-gray-100 space-y-2 text-[12px] text-gray-600 animate-in fade-in duration-200"
                       >
                         {[
-                          'Connecting your lab software & importing case history',
-                          'Dashboards, churn risk alerts & health scores configured',
-                          'Win-back & cross-sell playbooks set up',
-                          'Live training sessions for your lab team',
-                          'Dedicated onboarding specialist for 30 days',
+                          'Connecting your laboratory management software',
+                          'Team onboarding',
+                          'Hierarchy Building',
+                          'Live Training Session',
+                          'Dedicated Onboarding Specialist',
+                          'Territory Mapping',
+                          'Configuring Commission Structures'
                         ].map((item, idx) => (
                           <div key={idx} className="flex items-start gap-2">
                             <svg className="w-3.5 h-3.5 text-[#00E396] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

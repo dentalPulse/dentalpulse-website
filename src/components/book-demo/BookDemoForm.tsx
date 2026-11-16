@@ -309,9 +309,13 @@ export function BookDemoForm() {
             {/* Privacy Disclaimer */}
             <p className="m-0 text-[13px] text-[#5C5C5C] text-center leading-normal">
               By submitting, you agree to our{' '}
-              <a href="#privacy" className="text-[#067A47] hover:underline font-medium">
+              <Link href="/privacy" className="text-[#067A47] hover:underline font-medium">
                 privacy policy
-              </a>
+              </Link>
+              {' '}and{' '}
+              <Link href="/terms" className="text-[#067A47] hover:underline font-medium">
+                terms of use
+              </Link>
               . We’ll never share your data.
             </p>
           </motion.form>

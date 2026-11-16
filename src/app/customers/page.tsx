@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { CustomersPageContent } from '@/components/customers/CustomersPageContent';
+// import { CustomersPageContent } from '@/components/customers/CustomersPageContent';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Customers & Case Studies | DentalPulse',
@@ -17,9 +18,12 @@ export const metadata: Metadata = {
 };
 
 export default function CustomersPage() {
+  notFound();
+  /*
   return (
     <div className="flex-1 w-full flex flex-col bg-white">
       <CustomersPageContent />
     </div>
   );
+  */
 }

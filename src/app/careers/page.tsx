@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { CareersPageContent } from '@/components/careers/CareersPageContent';
+// import { CareersPageContent } from '@/components/careers/CareersPageContent';
+import { notFound } from 'next/navigation';
 
 export const metadata: Metadata = {
   title: 'Careers | Join DentalPulse',
@@ -17,9 +18,12 @@ export const metadata: Metadata = {
 };
 
 export default function CareersPage() {
+  notFound();
+  /*
   return (
     <div className="flex-1 w-full flex flex-col bg-white">
       <CareersPageContent />
     </div>
   );
+  */
 }

@@ -20,7 +20,7 @@ export const HEADER_NAV_LINKS: NavLink[] = [
   { label: 'Integrations', href: '/integrations' },
   { label: 'ROI', href: '/roi' },
   { label: 'Pricing', href: '/pricing' },
-  { label: 'Customers', href: '/customers' },
+  // { label: 'Customers', href: '/customers' },
   { label: 'Resources', href: '/resources' },
 ];
 
@@ -47,8 +47,8 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     title: 'Company',
     links: [
       { label: 'About', href: '/about' },
-      { label: 'Customers', href: '/customers' },
-      { label: 'Careers', href: '/careers' },
+      // { label: 'Customers', href: '/customers' },
+      // { label: 'Careers', href: '/careers' },
       { label: 'Resources', href: '/resources' },
     ],
   },

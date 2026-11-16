@@ -20,9 +20,7 @@ export function IntegrationsDirectory() {
       description: 'Cases, products, turnaround and remakes — the core of every customer signal.',
       items: [
         { name: 'Magic Touch', initials: 'MT' },
-        { name: 'Labstar', initials: 'LS' },
-        { name: 'Evident', initials: 'EV' },
-        { name: '3Shape Dental System', initials: '3S' },
+        { name: 'Atlanta Based Systems', initials: 'ABS' },
       ],
     },
     {
@@ -30,8 +28,6 @@ export function IntegrationsDirectory() {
       description: 'Revenue, payment behaviour and credit — for true lifetime value per dentist.',
       items: [
         { name: 'QuickBooks Online', initials: 'QB' },
-        { name: 'Xero', initials: 'XR' },
-        { name: 'Sage', initials: 'SG' },
       ],
     },
     {
@@ -55,23 +51,13 @@ export function IntegrationsDirectory() {
               <path d="M11 18h2" />
             </svg>
           ),
-        },
-        {
-          name: 'WhatsApp',
-          badge: (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-            </svg>
-          ),
-        },
+        }
       ],
     },
     {
       title: 'Website & CRM',
       description: 'Track which practices visit your site and keep contacts in sync.',
       items: [
-        { name: 'HubSpot', initials: 'HS' },
-        { name: 'Salesforce', initials: 'SF' },
         {
           name: 'Open API',
           badge: (
@@ -111,19 +97,39 @@ export function IntegrationsDirectory() {
                   >
                     {/* Badge Icon or Monogram */}
                     <span
-                      className={`w-10 h-10 rounded-[10px] flex items-center justify-center shrink-0 ${
-                        item.badge
-                          ? 'bg-[#E3FCEF] text-[#067A47]'
-                          : 'bg-[#F2F2F2] text-[#0A0A0A] font-mono text-[12px] font-bold'
-                      }`}
+                      className={`w-10 h-10 rounded-[10px] flex items-center justify-center shrink-0 ${item.badge
+                        ? 'bg-[#E3FCEF] text-[#067A47]'
+                        : 'bg-[#F2F2F2] text-[#0A0A0A] font-mono text-[12px] font-bold'
+                        }`}
                       aria-hidden="true"
                     >
                       {item.badge || item.initials}
                     </span>
 
                     {/* Integration Name */}
-                    <span className="font-extrabold text-[15px] sm:text-[16px] text-[#0A0A0A] group-hover:text-[#067A47] transition-colors">
+                    <span className="font-extrabold text-[15px] sm:text-[16px] text-[#0A0A0A] group-hover:text-[#067A47] transition-colors flex-1">
                       {item.name}
+                    </span>
+
+                    {/* Active Check Icon */}
+                    <span
+                      title="Active integration"
+                      aria-label="Active"
+                      className="w-5 h-5 rounded-full bg-[#E3FCEF] text-[#067A47] flex items-center justify-center shrink-0"
+                    >
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
                     </span>
                   </div>
                 ))}
