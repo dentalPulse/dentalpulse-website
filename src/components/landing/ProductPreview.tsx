@@ -2,21 +2,38 @@
 
 import React, { useRef, useState } from 'react';
 
-const PRODUCT_TOUR_VIDEO_URL =
-  'https://res.cloudinary.com/fysybyy3/video/upload/v1794821946/dental-pulse-video.mp4';
-const PRODUCT_TOUR_POSTER_URL =
-  'https://res.cloudinary.com/fysybyy3/video/upload/v1794821946/dental-pulse-video.jpg';
+const CLOUDINARY_BASE = 'https://res.cloudinary.com/fysybyy3/video/upload';
+const VIDEO_VERSION_PATH = 'v1794821946/dental-pulse-video';
+
+// Optimized Cloudinary URLs for fast loading on mobile & desktop
+const PRODUCT_TOUR_VIDEO_MOBILE = `${CLOUDINARY_BASE}/w_720,q_auto:good,f_mp4,vc_auto/${VIDEO_VERSION_PATH}.mp4`;
+const PRODUCT_TOUR_VIDEO_DESKTOP = `${CLOUDINARY_BASE}/q_auto:good,f_mp4,vc_auto/${VIDEO_VERSION_PATH}.mp4`;
+const PRODUCT_TOUR_VIDEO_FALLBACK = `${CLOUDINARY_BASE}/${VIDEO_VERSION_PATH}.mp4`;
+const PRODUCT_TOUR_POSTER_URL = `${CLOUDINARY_BASE}/so_0,f_auto,q_auto,w_1200/${VIDEO_VERSION_PATH}.jpg`;
 
 export function ProductPreview() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handlePlayClick = () => {
-    if (!videoRef.current) return;
+    const video = videoRef.current;
+    if (!video) return;
+
+    setIsBuffering(true);
     setIsPlaying(true);
-    videoRef.current.play().catch(() => {
-      setIsPlaying(false);
-    });
+
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          setIsBuffering(false);
+        })
+        .catch(() => {
+          setIsBuffering(false);
+          setIsPlaying(false);
+        });
+    }
   };
 
   return (
@@ -34,20 +51,41 @@ export function ProductPreview() {
             </span>
           </div>
 
-          {/* Video Player with Actual Video Thumbnail */}
+          {/* Video Player with Optimized Thumbnail & Mobile Stream */}
           <div className="relative rounded-[12px] sm:rounded-[14px] overflow-hidden bg-black">
             <video
               ref={videoRef}
-              src={`${PRODUCT_TOUR_VIDEO_URL}#t=0.001`}
               poster={PRODUCT_TOUR_POSTER_URL}
               controls={isPlaying}
               playsInline
-              preload="metadata"
-              onPlay={() => setIsPlaying(true)}
-              onPause={() => setIsPlaying(false)}
-              onEnded={() => setIsPlaying(false)}
+              preload="auto"
+              onPlaying={() => {
+                setIsBuffering(false);
+                setIsPlaying(true);
+              }}
+              onWaiting={() => setIsBuffering(true)}
+              onCanPlay={() => setIsBuffering(false)}
+              onPause={() => {
+                setIsBuffering(false);
+                setIsPlaying(false);
+              }}
+              onEnded={() => {
+                setIsBuffering(false);
+                setIsPlaying(false);
+              }}
               className="w-full h-auto aspect-video block bg-black rounded-[12px] sm:rounded-[14px] object-cover"
-            />
+            >
+              <source src={PRODUCT_TOUR_VIDEO_MOBILE} type="video/mp4" media="(max-width: 767px)" />
+              <source src={PRODUCT_TOUR_VIDEO_DESKTOP} type="video/mp4" />
+              <source src={PRODUCT_TOUR_VIDEO_FALLBACK} type="video/mp4" />
+            </video>
+
+            {/* Buffering Spinner (if slow mobile network) */}
+            {isPlaying && isBuffering && (
+              <div className="absolute inset-0 flex items-center justify-center bg-black/25 pointer-events-none">
+                <div className="w-12 h-12 rounded-full border-4 border-[#12F095]/30 border-t-[#12F095] animate-spin" />
+              </div>
+            )}
 
             {/* Product Tour Play Button Overlay (shown when video is not actively playing) */}
             {!isPlaying && (
@@ -74,7 +112,7 @@ export function ProductPreview() {
                   onClick={handlePlayClick}
                   className="pointer-events-auto bg-white text-[#0A0A0A] font-bold text-[12px] sm:text-[15px] px-4 py-2 sm:px-5 sm:py-2.5 rounded-full shadow-lg hover:bg-gray-100 transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap"
                 >
-                  <span>Watch the product tour • 0:30</span>
+                  <span>Watch the product tour • 0:47</span>
                 </button>
               </div>
             )}
