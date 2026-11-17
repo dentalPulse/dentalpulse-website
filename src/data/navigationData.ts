@@ -31,7 +31,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
       { label: 'How it works', href: '/platform' },
       { label: 'Pricing', href: '/pricing' },
       { label: 'Integrations', href: '/integrations' },
-      { label: 'ROI calculator', href: '/roi' },
+      { label: 'ROI Calculator', href: '/roi' },
     ],
   },
   {
@@ -39,7 +39,7 @@ export const FOOTER_COLUMNS: FooterColumn[] = [
     links: [
       { label: 'Owners & C-suite', href: '/solutions' },
       { label: 'Managers', href: '/solutions/managers' },
-      { label: 'Sales reps', href: '/solutions/sales-reps' },
+      { label: 'Sales Reps', href: '/solutions/sales-reps' },
       { label: 'Marketing', href: '/solutions/marketing' },
     ],
   },
