@@ -1,28 +1,28 @@
 "use client";
 
-import React, { useState } from 'react';
+import React from 'react';
 import dynamic from 'next/dynamic';
 import { AboutHero } from './AboutHero';
 import { AboutMissionCards } from './AboutMissionCards';
 import { AboutValues } from './AboutValues';
-import { AboutLeadership, Leader } from './AboutLeadership';
+// import { AboutLeadership, Leader } from './AboutLeadership';
 import { AboutContactCTA } from './AboutContactCTA';
 
-const LeaderBioModal = dynamic(
-  () => import('./LeaderBioModal').then((mod) => mod.LeaderBioModal),
-  { ssr: false }
-);
+// const LeaderBioModal = dynamic(
+//   () => import('./LeaderBioModal').then((mod) => mod.LeaderBioModal),
+//   { ssr: false }
+// );
 
 export function AboutPageContent() {
-  const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
+  // const [selectedLeader, setSelectedLeader] = useState<Leader | null>(null);
 
-  const handleSelectLeader = (leader: Leader) => {
-    setSelectedLeader(leader);
-  };
+  // const handleSelectLeader = (leader: Leader) => {
+  //   setSelectedLeader(leader);
+  // };
 
-  const handleCloseLeader = () => {
-    setSelectedLeader(null);
-  };
+  // const handleCloseLeader = () => {
+  //   setSelectedLeader(null);
+  // };
 
   return (
     <div className="flex-1 w-full flex flex-col">
@@ -36,18 +36,18 @@ export function AboutPageContent() {
       <AboutValues />
 
       {/* 4. Leadership Team Showcase */}
-      <AboutLeadership onSelectLeader={handleSelectLeader} />
+      {/* <AboutLeadership onSelectLeader={handleSelectLeader} /> */}
 
       {/* 5. Contact Block CTA */}
       <AboutContactCTA />
 
       {/* 6. Executive Leader Bio Modal */}
-      {selectedLeader && (
+      {/* {selectedLeader && (
         <LeaderBioModal
           leader={selectedLeader}
           onClose={handleCloseLeader}
         />
-      )}
+      )} */}
     </div>
   );
 }

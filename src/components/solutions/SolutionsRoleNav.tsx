@@ -9,7 +9,7 @@ export function SolutionsRoleNav({ activeRole = 'owners' }: SolutionsRoleNavProp
   const roles = [
     { id: 'owners', label: 'Owners & C-suite', href: '/solutions' },
     { id: 'managers', label: 'Managers', href: '/solutions/managers' },
-    { id: 'sales-reps', label: 'Sales reps', href: '/solutions/sales-reps' },
+    { id: 'sales-reps', label: 'Sales Reps', href: '/solutions/sales-reps' },
     { id: 'marketing', label: 'Marketing', href: '/solutions/marketing' },
   ];
 
@@ -27,11 +27,10 @@ export function SolutionsRoleNav({ activeRole = 'owners' }: SolutionsRoleNavProp
                 key={role.id}
                 href={role.href}
                 aria-current={isActive ? 'page' : undefined}
-                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all text-center ${
-                  isActive
-                    ? 'bg-[#0A0A0A] text-white shadow-xs'
-                    : 'text-[#0A0A0A] hover:text-[#067A47] hover:bg-black/5'
-                }`}
+                className={`px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full transition-all text-center ${isActive
+                  ? 'bg-[#0A0A0A] text-white shadow-xs'
+                  : 'text-[#0A0A0A] hover:text-[#067A47] hover:bg-black/5'
+                  }`}
               >
                 {role.label}
               </Link>

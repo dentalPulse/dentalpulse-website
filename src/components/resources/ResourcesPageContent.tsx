@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic';
 import { ResourcesHero } from './ResourcesHero';
 import { FeaturedGuideCard } from './FeaturedGuideCard';
 import { ResourcesGrid } from './ResourcesGrid';
-import { LabGrowthBrief } from './LabGrowthBrief';
+// import { LabGrowthBrief } from './LabGrowthBrief';
 
 const ArticleReaderModal = dynamic(
   () => import('./ArticleReaderModal').then((mod) => mod.ArticleReaderModal),
@@ -35,7 +35,7 @@ export function ResourcesPageContent() {
       <ResourcesGrid onOpenArticle={handleOpenArticle} />
 
       {/* 4. Newsletter Subscription Banner */}
-      <LabGrowthBrief />
+      {/* <LabGrowthBrief /> */}
 
       {/* 5. Interactive Article Reader Modal */}
       {selectedArticleId && (
